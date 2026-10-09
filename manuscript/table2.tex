@@ -1,0 +1,55 @@
+\begin{table}[t]
+\caption{Prediction of measured score changes on the 19 held-out targets. $r$ is the Pearson correlation over all ligand-edit pairs of contact truncations for the seed ensemble, with the 95\% interval from bootstrapping targets. The next column gives mean and SD of $r$ over seeds (number of seeds in parentheses). Edit mean $r$ is the correlation of the receptor-mean changes and within $r$ the mean correlation within a receptor, both pooled over the receptors of all 19 targets (Figure~\ref{fig:levels} and Table~\ref{tab:si_levels} give the means of the per-target correlations), and AUC the separation of contact truncations from shell and far controls. SD is the standard deviation of the predicted change in \kcal{}, against 0.71 for the measured change. v1 marks the first implementation of a permutation control and v2 its correction.}
+\label{tab:main}
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrr}
+\toprule
+Model & $r$ (ensemble) & 95\% interval & $r$ over seeds & Edit mean $r$ & Within $r$ & SD & AUC \\
+\midrule
+\multicolumn{8}{l}{\emph{Baseline surrogates, regression head}} \\
+\quad Plain objective & 0.01 & $-$0.06 to 0.11 & 0.01 $\pm$ 0.06 (3) & $-$0.03 & 0.05 & 0.04 & 0.67 \\
+\quad Within-target ranking & 0.03 & $-$0.05 to 0.13 & 0.02 $\pm$ 0.01 (3) & 0.05 & $-$0.01 & 0.03 & 0.64 \\
+\quad Cross-target ranking & 0.06 & 0.01 to 0.12 & 0.05 $\pm$ 0.02 (3) & 0.12 & $-$0.01 & 0.02 & 0.65 \\
+\midrule
+\multicolumn{8}{l}{\emph{Baseline surrogates, hit-probability head}} \\
+\quad Plain objective & 0.04 & 0.00 to 0.09 & 0.02 $\pm$ 0.05 (3) & 0.03 & 0.04 & 0.08 & 0.67 \\
+\quad Within-target ranking & 0.01 & $-$0.07 to 0.07 & 0.01 $\pm$ 0.01 (3) & 0.02 & 0.00 & 0.12 & 0.65 \\
+\quad Cross-target ranking & $-$0.01 & $-$0.08 to 0.05 & $-$0.02 $\pm$ 0.03 (3) & $-$0.03 & $-$0.01 & 0.05 & 0.68 \\
+\midrule
+\multicolumn{8}{l}{\emph{Descriptor models}} \\
+\quad Ligand size and removed atoms & 0.11 & 0.05 to 0.18 & single fit & 0.06 & 0.07 & 0.11 & 0.74 \\
+\quad Ridge, ligand and edit descriptors & 0.17 & 0.07 to 0.25 & single fit & 0.20 & 0.09 & 0.16 & 0.82 \\
+\quad Boosting, ligand and edit descriptors & 0.05 & $-$0.04 to 0.13 & single fit & $-$0.02 & 0.08 & 0.29 & 0.96 \\
+\quad Ridge with pocket geometry & 0.34 & 0.20 to 0.44 & single fit & 0.52 & 0.09 & 0.31 & 0.68 \\
+\quad Boosting with pocket geometry & 0.39 & 0.21 to 0.49 & single fit & 0.56 & 0.10 & 0.23 & 0.94 \\
+\midrule
+\multicolumn{8}{l}{\emph{Descriptor model with wild-type pose (post hoc)}} \\
+\quad Boosting with pose contacts & 0.27 & 0.12 to 0.36 & single fit & 0.32 & 0.14 & 0.28 & 0.98 \\
+\quad Boosting with pose contacts and geometry & 0.49 & 0.29 to 0.57 & single fit & 0.71 & 0.16 & 0.31 & 0.98 \\
+\midrule
+\multicolumn{8}{l}{\emph{Wild-type training only}} \\
+\quad Dual encoder & 0.08 & $-$0.05 to 0.21 & 0.06 $\pm$ 0.04 (3) & 0.11 & 0.00 & 0.03 & 0.63 \\
+\quad ResidueSum & 0.00 & $-$0.07 to 0.05 & 0.00 $\pm$ 0.01 (3) & 0.20 & $-$0.06 & 0.03 & 0.78 \\
+\quad ResidueSum-Edit & 0.09 & $-$0.02 to 0.20 & 0.04 $\pm$ 0.13 (3) & 0.07 & 0.08 & 0.47 & 0.58 \\
+\quad ResidueSum-Geo & 0.21 & 0.06 to 0.33 & 0.17 $\pm$ 0.08 (6) & 0.30 & 0.08 & 0.31 & 0.99 \\
+\midrule
+\multicolumn{8}{l}{\emph{Interventional training}} \\
+\quad Dual encoder & 0.14 & 0.03 to 0.24 & 0.10 $\pm$ 0.01 (3) & 0.26 & $-$0.02 & 0.07 & 0.73 \\
+\quad ResidueSum & 0.20 & 0.12 to 0.28 & 0.16 $\pm$ 0.05 (3) & 0.33 & 0.05 & 0.15 & 0.89 \\
+\quad ResidueSum-Edit & 0.31 & 0.16 to 0.41 & 0.27 $\pm$ 0.07 (3) & 0.43 & 0.10 & 0.31 & 0.93 \\
+\quad ResidueSum-Geo & 0.27 & 0.10 to 0.38 & 0.21 $\pm$ 0.11 (6) & 0.34 & 0.10 & 0.30 & 0.99 \\
+\midrule
+\multicolumn{8}{l}{\emph{Network with a hit head (addendum 7, post hoc)}} \\
+\quad ResidueSum-Geo with hit head, wild type only & 0.19 & 0.05 to 0.31 & 0.16 $\pm$ 0.08 (3) & 0.25 & 0.07 & 0.39 & 0.99 \\
+\quad ResidueSum-Geo with hit head, measured changes & 0.37 & 0.16 to 0.47 & 0.31 $\pm$ 0.02 (3) & 0.61 & 0.09 & 0.38 & 0.99 \\
+\midrule
+\multicolumn{8}{l}{\emph{Label controls for the geometry network}} \\
+\quad Labels permuted over ligands & 0.35 & 0.17 to 0.45 & 0.21 $\pm$ 0.13 (6) & 0.60 & 0.06 & 0.23 & 0.99 \\
+\quad Labels permuted over edits (v1) & 0.39 & 0.16 to 0.50 & 0.37 $\pm$ 0.02 (3) & 0.57 & 0.10 & 0.21 & 0.99 \\
+\quad All labels permuted (v1) & 0.35 & 0.17 to 0.44 & 0.32 $\pm$ 0.03 (3) & 0.56 & 0.07 & 0.17 & 0.99 \\
+\quad Labels deranged over edits (v2) & 0.34 & 0.14 to 0.44 & 0.31 $\pm$ 0.04 (6) & 0.49 & 0.09 & 0.18 & 0.99 \\
+\quad All labels deranged (v2) & 0.28 & 0.13 to 0.39 & 0.26 $\pm$ 0.07 (6) & 0.47 & 0.06 & 0.16 & 0.99 \\
+\bottomrule
+\end{tabular}}
+\end{table}

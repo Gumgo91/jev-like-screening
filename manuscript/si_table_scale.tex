@@ -1,0 +1,28 @@
+\begin{table}[h]
+\caption{Scaling of the geometry network trained on measured changes and within-family transfer. Pooled $r$ on the 19 held-out targets for two seeds (mean), and the same for the four withheld kinases (seeds in parentheses).}
+\label{tab:si_scale}
+\begin{tabular}{lrrr}
+\toprule
+Setting & Pooled $r$ & Ensemble $r$ & Edit mean $r$ \\
+\midrule
+4 training targets & 0.03 & 0.06 & 0.04 \\
+8 training targets & 0.01 & 0.01 & $-$0.02 \\
+16 training targets & 0.10 & 0.12 & 0.16 \\
+24 training targets & 0.23 & 0.26 & 0.35 \\
+2 edits per target & 0.02 & 0.02 & $-$0.04 \\
+4 edits per target & 0.07 & 0.08 & 0.10 \\
+8 edits per target & 0.12 & 0.16 & 0.16 \\
+12 edits per target & 0.21 & 0.26 & 0.29 \\
+38 targets, all edits & 0.22 & 0.25 & 0.36 \\
+\midrule
+\multicolumn{4}{l}{\emph{Four withheld kinases}} \\
+Geometry network, measured changes (3) & 0.37 & -- & 0.56 \\
+Geometry network, wild type only (3) & 0.22 & -- & 0.22 \\
+Labels deranged over edits (2) & 0.30 & -- & 0.41 \\
+All labels deranged (2) & 0.24 & -- & 0.45 \\
+Boosting with pocket geometry & 0.17 & -- & 0.28 \\
+Boosting without pocket geometry & 0.19 & -- & 0.30 \\
+Ligand size and removed atoms & 0.18 & -- & 0.22 \\
+\bottomrule
+\end{tabular}
+\end{table}

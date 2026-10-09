@@ -1,0 +1,21 @@
+\begin{table}[t]
+\caption{Cost of screening the 260{,}155 ligands of DOCKSTRING at the full scale on one RTX 4090 (seconds, best of two runs for the GPU stages). Model time: ligand embedding, pocket states, scoring and selection of the best 10\% per pocket. End to end: model time plus the featurization of the SMILES on 32 CPU processes (39.3 s) and the collation of the batches. 1{,}000 pockets are the 57 pockets of DOCKSTRING used cyclically. Mpairs/s: million pairs per second of the scoring and selection stages for 57 pockets. Uni-Dock: library size times the number of pockets divided by the median docking rate at 4{,}000 ligands per call on one RTX 4090, without ligand preparation.}
+\label{tab:cost}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrrr}
+\toprule
+ & \multicolumn{2}{c}{57 pockets} & \multicolumn{2}{c}{1{,}000 pockets} & Scoring rate \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Network & Model & End to end & Model & End to end & Mpairs/s \\
+\midrule
+Dual encoder & 1.61 & 43.3 & 1.81 & 43.5 & 19{,}314 \\
+Pooled concatenation & 1.64 & 43.3 & 2.38 & 44.1 & 454 \\
+Cross-attention, float16 & 10.4 & 52.0 & 156 & 197 & 1.69 \\
+Cross-attention, float32 & 29.4 & 71.1 & 494 & 535 & 0.53 \\
+Uni-Dock, fast mode & 349{,}204 & 349{,}204 & 6{,}126{,}390 & 6{,}126{,}390 & $4.2\times10^{-5}$ \\
+Uni-Dock, detail mode & 1{,}037{,}358 & 1{,}037{,}358 & 18{,}199{,}267 & 18{,}199{,}267 & $1.4\times10^{-5}$ \\
+\bottomrule
+\end{tabular}
+\end{table}

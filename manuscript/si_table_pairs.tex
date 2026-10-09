@@ -1,0 +1,37 @@
+\begin{longtable}{p{8.6cm}rrr}
+\caption{Paired differences of the pooled correlation on the 19 held-out targets (seed ensembles). The interval is the 95\% percentile interval of 10{,}000 bootstrap resamples of targets, and $P$ is the fraction of resamples with a difference of zero or less.}
+\label{tab:si_pairs}\\
+\toprule
+Comparison (first minus second) & Difference & 95\% interval & $P$ \\
+\midrule
+\endfirsthead
+Comparison (first minus second) & Difference & 95\% interval & $P$ \\
+\midrule
+\endhead
+geometry network, measured labels minus baseline, plain objective & 0.25 & 0.06 to 0.39 & 0.004 \\
+geometry network, measured labels minus geometry network, wild type only & 0.06 & $-$0.07 to 0.17 & 0.194 \\
+geometry network, measured labels minus labels deranged over edits (v2) & $-$0.07 & $-$0.13 to 0.00 & 0.965 \\
+geometry network, measured labels minus all labels deranged (v2) & $-$0.02 & $-$0.10 to 0.07 & 0.641 \\
+geometry network, measured labels minus labels permuted over edits (v1) & $-$0.12 & $-$0.19 to $-$0.03 & 0.997 \\
+geometry network, measured labels minus all labels permuted (v1) & $-$0.08 & $-$0.15 to $-$0.00 & 0.976 \\
+geometry network, measured labels minus labels permuted over ligands & $-$0.08 & $-$0.15 to $-$0.00 & 0.980 \\
+geometry network, measured labels minus boosting with geometry & $-$0.13 & $-$0.21 to $-$0.03 & 0.994 \\
+geometry network, measured labels minus ResidueSum, measured labels & 0.06 & $-$0.10 to 0.18 & 0.227 \\
+geometry network, measured labels minus ResidueSum-Edit, measured labels & $-$0.05 & $-$0.13 to 0.03 & 0.888 \\
+ResidueSum, measured labels minus ResidueSum, wild type only & 0.21 & 0.11 to 0.31 & 0.000 \\
+ResidueSum-Edit, measured labels minus ResidueSum-Edit, wild type only & 0.22 & 0.05 to 0.39 & 0.004 \\
+geometry network, measured labels minus dual encoder, measured labels & 0.12 & $-$0.10 to 0.29 & 0.127 \\
+dual encoder, measured labels minus dual encoder, wild type only & 0.07 & $-$0.13 to 0.25 & 0.234 \\
+boosting with geometry minus boosting without geometry & 0.35 & 0.14 to 0.47 & 0.000 \\
+boosting with pose contacts and geometry minus boosting with geometry & 0.10 & 0.05 to 0.14 & 0.000 \\
+geometry network, wild type only minus baseline, plain objective & 0.20 & 0.03 to 0.33 & 0.010 \\
+ResidueSum-Edit, measured labels minus boosting with geometry & $-$0.08 & $-$0.17 to 0.03 & 0.928 \\
+boosting with geometry minus geometry network, measured labels & 0.13 & 0.03 to 0.21 & 0.006 \\
+geometry network with hit head, measured labels minus geometry network with hit head, wild type only & 0.19 & 0.02 to 0.28 & 0.012 \\
+geometry network with hit head, measured labels minus geometry network, measured labels & 0.11 & 0.02 to 0.17 & 0.009 \\
+geometry network with hit head, wild type only minus geometry network, wild type only & $-$0.02 & $-$0.10 to 0.08 & 0.689 \\
+geometry network with hit head, measured labels minus baseline, plain objective & 0.36 & 0.13 to 0.48 & 0.000 \\
+geometry network with hit head, measured labels minus boosting with geometry & $-$0.02 & $-$0.11 to 0.04 & 0.779 \\
+geometry network with hit head, wild type only minus baseline, plain objective & 0.18 & 0.01 to 0.32 & 0.019 \\
+\bottomrule
+\end{longtable}

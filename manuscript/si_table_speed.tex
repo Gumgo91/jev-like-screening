@@ -1,0 +1,50 @@
+\begin{table}[h]
+\caption{Speed records. Upper block: ligands docked per second by Uni-Dock 1.2.0 on one RTX 4090 for each receptor, search mode and number of ligands per call (median over the timed calls, whose number is given in the last column; the first call of each job and receptor is a warm-up and is not counted). Lower block: the two timing runs of each network family (ensembles of three networks, 260{,}155 ligands against 57 pockets, seconds).}
+\label{tab:si_speed}
+\small
+\begin{tabular}{llrrr}
+\toprule
+Receptor & Mode & Per call & Rate & Calls \\
+\midrule
+ABL1 & detail & 160 & 7.6 & 2 \\
+ABL1 & detail & 256 & 9.1 & 3 \\
+ABL1 & balance & 256 & 10.7 & 3 \\
+ABL1 & fast & 256 & 16.1 & 3 \\
+MAOB & detail & 160 & 6.8 & 2 \\
+MAOB & detail & 256 & 8.4 & 3 \\
+MAOB & balance & 256 & 9.8 & 3 \\
+MAOB & fast & 256 & 14.5 & 3 \\
+PTGS2 & detail & 160 & 7.2 & 2 \\
+PTGS2 & detail & 256 & 8.5 & 3 \\
+PTGS2 & balance & 256 & 9.9 & 3 \\
+PTGS2 & fast & 256 & 15.0 & 3 \\
+ABL1 & detail & 1{,}000 & 12.8 & 1 \\
+ABL1 & balance & 1{,}000 & 15.8 & 2 \\
+ABL1 & fast & 1{,}000 & 32.0 & 2 \\
+MAOB & detail & 1{,}000 & 12.0 & 1 \\
+MAOB & balance & 1{,}000 & 14.7 & 2 \\
+MAOB & fast & 1{,}000 & 29.3 & 2 \\
+PTGS2 & detail & 1{,}000 & 12.7 & 1 \\
+PTGS2 & balance & 1{,}000 & 15.5 & 2 \\
+PTGS2 & fast & 1{,}000 & 30.2 & 2 \\
+ABL1 & fast & 4{,}000 & 43.4 & 1 \\
+ABL1 & balance & 4{,}000 & 18.1 & 1 \\
+ABL1 & detail & 4{,}000 & 14.6 & 1 \\
+MAOB & fast & 4{,}000 & 40.4 & 1 \\
+MAOB & balance & 4{,}000 & 17.0 & 1 \\
+MAOB & detail & 4{,}000 & 13.5 & 1 \\
+PTGS2 & fast & 4{,}000 & 42.5 & 1 \\
+PTGS2 & balance & 4{,}000 & 17.6 & 1 \\
+PTGS2 & detail & 4{,}000 & 14.3 & 1 \\
+\midrule
+Network family & Run & Featurization & Embedding and states & Scoring \\
+\midrule
+Baseline dual encoders & 1 & 41.9 & 5.02 & 0.33 \\
+Baseline dual encoders & 2 & 41.9 & 5.06 & 0.36 \\
+Geometry networks & 1 & 43.2 & 4.96 & 36.31 \\
+Geometry networks & 2 & 40.7 & 5.02 & 36.31 \\
+Hit-head networks & 1 & 41.4 & 5.02 & 39.19 \\
+Hit-head networks & 2 & 42.0 & 4.96 & 39.19 \\
+\bottomrule
+\end{tabular}
+\end{table}

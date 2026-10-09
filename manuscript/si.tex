@@ -1,0 +1,236 @@
+\documentclass[journal=jcisd8,manuscript=article]{achemso}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{array}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.6}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{3}
+\setcounter{totalnumber}{5}
+
+\setlength{\emergencystretch}{3em}
+\newcommand{\TBD}[1]{\textbf{[#1]}}
+\newcommand{\dS}{\Delta S}
+\newcommand{\kcal}{kcal\,mol$^{-1}$}
+\IfFileExists{numbers.tex}{\input{numbers}}{}
+\IfFileExists{numbers_v5.tex}{\input{numbers_v5}}{}
+\providecommand{\nTargets}{57}
+
+% table2.tex is generated for the main text and names the table of the three levels as "Table S7".
+% Inside the SI the number is resolved from the label, so that it stays correct when tables are added.
+\ExplSyntaxOn
+\tl_new:N \l__si_caption_tl
+\cs_new_protected:Npn \__si_patch_caption:nnn #1#2#3
+  {
+    \tl_set:Nn \l__si_caption_tl { #3 }
+    \tl_replace_all:Nnn \l__si_caption_tl { #1 } { #2 }
+    \exp_args:NV \__si_orig_caption:n \l__si_caption_tl
+  }
+\NewDocumentCommand{\siinputpatched}{m m m}
+  {
+    \group_begin:
+      \cs_set_eq:NN \__si_orig_caption:n \caption
+      \cs_set:Npn \caption ##1 { \__si_patch_caption:nnn { #2 } { #3 } { ##1 } }
+      \file_input:n { #1 }
+    \group_end:
+  }
+\ExplSyntaxOff
+
+\author{Hyunseung Kong}
+\email{hskong@snu.ac.kr}
+\affiliation{Interdisciplinary Program in Bioinformatics, Seoul National University, Seoul 08826, Republic of Korea}
+
+\title{Supporting Information for Jev-Like Shared-State Networks for Fast Structure-Based Screening}
+
+\begin{document}
+
+\maketitle
+
+
+\section*{Scope of this document}
+
+The main text reports the cost of Jev-like and joint networks and their recall on the pockets of their training data. This document gives the extended methods and the stage-by-stage records of these measurements and, as the record of the study, the analyses of the preceding work on targets outside the training data, on the throughput of the earlier version and on the pocket-edit test with the DockMut-1 re-dockings.
+
+\section*{Contents of the archive}
+
+The GitHub repository \url{https://github.com/Gumgo91/jev-like-screening} holds the files of Table~\ref{tab:files}, except the checkpoints and the cached pocket graphs (\texttt{plan/pocket\_graphs.pt}), which exceed the size limits of a git repository. The archive \texttt{DockMut\_release.zip} of release v1.0 of the repository holds the complete file tree. Receptor variants and manifests are regenerated from the published DOCKSTRING receptors by the script \texttt{make\_mutants.py} in the folder \texttt{code}, and the plan hashes in \texttt{plan.json} verify that the regenerated files match the ones that were docked. The scripts expect the layout of the repository (\texttt{dockmut/}, \texttt{src/}, \texttt{data/}, \texttt{configs/}), and the file \texttt{DOCKMUT1.md} of the archive maps its folders to that layout and lists the public input files that the archive does not contain.
+
+\begin{table}[h]
+\caption{Files of the data and code archive.}
+\label{tab:files}
+\begin{tabular}{p{0.34\linewidth}p{0.6\linewidth}}
+\toprule
+File or folder & Content \\
+\midrule
+\texttt{results/*.csv} & Docking scores of every receptor variant, wild-type replicates and truncations, for every ligand, one file per target \\
+\texttt{plan/} & Design of the docking campaign, shard assignment, receptor manifests and the ligand sets (JSON, CSV) \\
+\texttt{poses/*.tgz} & Seed-1 wild-type poses of every target (PDBQT archives) \\
+\texttt{checkpoints/*.pt} & Trained surrogates of every condition and seed, the scaling runs, the frozen baseline surrogates, the six networks of addendum 8 (\texttt{joint\_ckpt\_v3\_*.pt}) and the forty networks of the cross-fitted folds of addenda 9 and 11 (\texttt{cv\_ckpt\_v4\_*.pt}) \\
+\texttt{eval/} & Predictions and metrics on held-out targets, wild-type screening results of the hit-head networks, the records of the docking rate benchmark (\texttt{docking\_timing*.csv}, \texttt{docking\_scores*.csv}), throughput measurements of the three network families, the budget summary of the wild-type screening (\texttt{wt\_budget\_summary.json}), the ML-guided baseline on the development targets (\texttt{ml\_guided\_dev.json}, not reported in the manuscript), the joint-network comparison of addendum 8 (\texttt{joint/} with registries, metrics and test predictions; \texttt{joint\_timing*.json}, \texttt{cost\_model.json}, \texttt{joint\_reversal.json}), the cross-validation, the known-pocket evaluations and the full-scale timing of addenda 9 to 11 (\texttt{cv/}, \texttt{known/}, \texttt{v4\_cv\_summary.json}, \texttt{v5\_known\_*\_summary.json}, \texttt{v4\_fair\_timing*.json}), scan output, validation tables, result files of the preceding analysis (\texttt{preceding/}) and the outputs of the pilot runs (\texttt{pilot/}) (JSON, Parquet, CSV) \\
+\texttt{runs/} & Training curves (\texttt{*\_loss.csv}) and validation diagnostics (\texttt{*\_diag.json}) of the pocket-edit networks \\
+\texttt{data/} & Split definitions of the preceding analysis and the folds of the cross-validation (\texttt{v4\_cv\_folds.json}) \\
+\texttt{code/} & Scripts of the study, the registered analysis plan and its hash ledger \\
+\texttt{manuscript/} & LaTeX sources, figure and table scripts and the generated numbers of the manuscript and of this document \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Extended methods}
+
+\subsection{Ligand preparation and docking settings}
+
+Ligands were prepared with the DOCKSTRING recipe. SMILES strings were canonicalized, neutralized and checked for a single fragment without radicals, protonated at pH 7.4 with Open Babel 3.1, embedded with RDKit ETKDG (seed 974528263, at most ten attempts per atom), optimized with MMFF94 for at most 1000 iterations (UFF as fallback), written as a MOL file and converted to PDBQT with Gasteiger charges. Uni-Dock 1.2.0 was called with \texttt{--scoring vina --search\_mode detail --num\_modes 1} and the center and size of the DOCKSTRING box of each target. A batch contained all ligands of one target for one receptor variant. Wild-type receptors were docked with seeds 1 and 2 (training targets) or 1, 2 and 3 (held-out targets) to measure run-to-run noise, and every truncated receptor was docked with seed 1. The rate of the campaign was not recorded per call. The docking rate quoted in the main text comes from the dedicated benchmark of the subsection Docking rate benchmark.
+
+\subsection{Pocket descriptors and edit record}
+
+The ten descriptors are computed from the receptor coordinates inside a sphere of 10~\AA{} around the box center on a 1~\AA{} probe grid. A probe point is free when no receptor heavy atom lies within 2.6~\AA{}, and a free point is enclosed when at least 10 of 14 rays of length 9~\AA{} (sampled every 1.5~\AA{}, hit distance 1.8~\AA{}) meet the receptor. The descriptors are the number of enclosed free points within 4, 6, 8 and 10~\AA{} of the center, the fraction of free points that are enclosed, the number of receptor heavy atoms within 10~\AA{} divided by 100, the fractions of polar (N, NA, OA, SA) and aromatic (A) atoms among them, the net partial charge of the heavy atoms divided by 10, and the mean distance of enclosed points to the nearest receptor atom. They were standardized with the mean and standard deviation of the wild-type training pockets. The descriptors, and the edit record, are added to the hidden layer of every residue term as well as to the global term. The residue terms can be removed at inference (\texttt{ablate\_residue\_sum.py}): the pooled correlation of the seed ensembles is then \ablNoResRsgWt{} for the geometry networks trained on wild-type scores, \ablNoResRsgInt{} for those trained on measured changes and \ablNoResRsghInt{} for those with a hit head (full models \ablFullRsgWt{}, \ablFullRsgInt{} and \ablFullRsghInt{}; per-seed values in \texttt{eval/ablation\_residue\_sum.json}). The edit record of ResidueSum-Edit holds the standardized change of the ten descriptors, the number of removed atoms divided by 20, the number of edited residues divided by 4, and the distance of the nearest edited side chain to the box center divided by 15~\AA{}. It is zero for the wild type.
+
+\input{si_edit_methods}
+
+\subsection{Training configuration}
+
+Table~\ref{tab:si_hyper} lists the settings shared by all trained conditions. The baseline dual encoders of the preceding analysis were not retrained.
+
+\begin{table}[tbp]
+\caption{Training configuration of the networks of this study.}
+\label{tab:si_hyper}
+\begin{tabular}{p{0.42\linewidth}p{0.5\linewidth}}
+\toprule
+Setting & Value \\
+\midrule
+Updates & 20{,}000, final checkpoint, no selection \\
+Wild-type batch & 256 ligands of one target per update \\
+Edit batch & 6 truncated receptors of that target on a shared set of 96 ligands \\
+Optimizer & AdamW, learning rate $5\times10^{-4}$, weight decay $10^{-4}$, cosine decay, gradient clipping at 5 \\
+Losses & Huber ($\delta$ = 1) on standardized scores and on standardized changes, weight $\lambda$ = 3 for the changes \\
+Score standardization & mean $-8.429$, SD 1.201 \kcal{} (training targets) \\
+Encoders & three message-passing layers of width 128 for ligand and pocket; dropout 0.1 on the ligand side, none on the pocket side \\
+Residue term & gated perceptron of hidden width 64; global term a perceptron of width 128 \\
+Parameters & dual encoder 831{,}489; ResidueSum 864{,}450; ResidueSum-Geo 883{,}011 (917{,}638 with the hit head); ResidueSum-Edit 885{,}507 \\
+Hit head (addendum 7) & second readout from the residue interaction features of the same ligand-pocket pair, binary cross-entropy against the top 1\% of the training scores of each target, weight 1, three seeds, with and without the loss on changes \\
+Seeds & 11, 22, 33 for all conditions; 44, 55, 66 added for five conditions (the seed fixes the data order, the dropout and the label shuffles, not the initial weights) \\
+Hardware & RTX 4090 and RTX 3090 RunPod pods for training (image runpod/pytorch:2.4.0-py3.11-cuda12.4.1, Python 3.11, PyTorch 2.4.0, unpinned pip installs of rdkit, pandas, pyarrow, scipy and scikit-learn), about 15 to 30 minutes per run; the timing pod used PyTorch 2.4.1 (Python 3.11.10); the pooled and cross-attention networks of addendum 8 were trained, evaluated and timed on one desktop RTX 4060 (driver 591.86, Python 3.13.5, PyTorch 2.7.1+cu118) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Docking rate benchmark}
+
+The benchmark ran on a RunPod pod with one RTX 4090 (driver 570.169, 96 visible CPU threads) in a micromamba environment with Uni-Dock 1.2.0, Open Babel 3.2.1 and RDKit 2026.03.6. The ligands are a random sample of the DOCKSTRING collection (1,024 molecules with seed 0 and 3,072 further molecules with seed 1), prepared with the recipe above, of which 1,023 and \dockPrepOkFourK{} passed the preparation. For ABL1, MAOB and PTGS2 the wild-type receptor and the DOCKSTRING box were docked against the first $n$ prepared ligands with \texttt{--scoring vina --num\_modes 1 --seed 974528263} and the search mode under test, in three jobs: batches of 160 and 256 ligands (detail mode with both sizes, balance and fast modes with 256 ligands), batches of 1,000 ligands, and batches of 4,000 ligands (one repetition per mode after one warm-up call). The first call of every job and receptor is a warm-up and is not counted. A call is one \texttt{unidock} process, timed from the start of the process to its exit, and the rate is the number of ligands with a score in the output divided by that time; calls with a return code other than zero would be flagged and none occurred. The records of all calls (\texttt{eval/docking\_timing*.csv}) and the best-pose scores of the first repetition of each configuration (\texttt{eval/docking\_scores*.csv}) are in the archive (Table~\ref{tab:si_speed}). Two runs of the detail mode with batches of 160 and 256 ligands, which share their first 160 ligands, give scores with a Spearman correlation of \dockAgreeDetail{}, and the balance and fast modes agree with the detail mode at \dockAgreeBal{} and \dockAgreeFast{} (4,000 ligands per call, mean over receptors). The rate of the DockMut-1 campaign was not recorded per call, and the rate in the main text comes from this benchmark. The calls of the DockMut-1 campaign held 160 ligands (held-out targets) or 256 ligands (training targets).
+
+\subsection{Throughput and independence of candidates}
+
+Timing used one RTX 4090 of a RunPod instance (96 visible CPU threads) with Python 3.11.10, PyTorch 2.4.1 (CUDA 12.4), NumPy 2.4.6 and RDKit 2026.03.6. Each family of networks (baseline dual encoders with the plain objective, seeds 11, 22 and 33; the registered geometry networks; the hit-head networks) embedded the 260,155 ligands of the DOCKSTRING collection once (featurization on 32 CPU processes, embedding on the GPU) and scored them against the wild-type pocket of each of the \nPocketsBench{} targets. Each family was timed in two identical runs (Table~\ref{tab:si_speed}); the second run follows the CUDA warm-up. These measurements of the earlier version of the study are superseded by the full-scale timing of the main text (Table~\ref{tab:si_timing}). The ensemble of the geometry networks needed \pocketSec{} s in total (\scanFeatSec{} s of featurization, \scanEmbSec{} s of embedding on the GPU and the rest for pocket states and scoring, \pocketPerSec{} s per pocket and ensemble after the embeddings were computed). The scan of the \scanEdits{} single truncations of DHFR took \scanAllSec{} s in total, of which \scanQuerySec{} s were queries of the three networks. The same scan took \laptopScanSec{} s on a desktop RTX 4060 in a first measurement. The independence test scored 4{,}096 ligands against one pocket with one network in one batch and in shuffled batches of 64, and 256 of them ligand by ligand: the largest difference of an embedding or a score was \indepMax{} for scores that span \indepRange{} (float32 rounding). The score of a ligand therefore does not depend on the other candidates of a batch.
+
+\subsection{Joint networks, cost model and addendum 8}
+
+Addendum 8 names two comparison networks, the cross-attention network (a joint network, in which the ligand representation depends on the pocket) and the pooled-concatenation network (a shared ligand embedding with a readout that is not a dot product); the plan, the files and the tables call both the joint networks. They were trained by \texttt{scripts/v3\_train\_joint.py} with the settings of the baseline dual encoders (AdamW, learning rate $3\times10^{-4}$, weight decay $10^{-4}$, batches of 256 ligands of one training target, binary cross-entropy on the top-1\% hits plus 0.2 times a Huber loss on standardized scores, at most 60{,}000 updates or 10 epochs, evaluation every 6{,}094 updates on the ten development targets, patience of three evaluations, checkpoint of the best evaluation). The cross-attention network has three message-passing layers for the pocket and for the ligand, two cross-attention layers with four heads in which the ligand atoms attend to the pocket residues, and a head that reads the pooled ligand state, the pooled pocket state and the pooled interaction state. The pooled network has the same two encoders and an MLP head on the concatenation of the pooled ligand and pocket vectors; it has the parameter count of the dual encoder by coincidence of the head sizes. The three runs of a network were trained concurrently on one desktop GPU, and the shared registry file was overwritten by the concurrent runs; the registry of the first three runs was rebuilt from the training logs and the hashes of the checkpoints, which do not change (Table \ref{tab:si_joint_runs}). Addendum 8 of the registered plan, written before the first run, states the conditions, the outcomes and the margin of $-0.03$ for the claim of equal recall.
+
+The cost model rests on the per-stage times of \texttt{dm\_joint\_timing.py} (Table \ref{tab:si_joint_timing}). Fifty thousand ligands of the cache were put on the GPU in batches of 1{,}024, five pockets were encoded, and every stage was run twice with the shorter time kept. Every network was timed in its own process, because the memory of the cached ligand states of the cross-attention network slowed a following network by a factor of about 30 in a first combined run. The times are linear in the number of ligands $L$ and of pockets $P$, so that the time of a library against any number of pockets follows from the embedding time per ligand, the state time per pocket and the scoring time per pair: $T = L e + P s + L P c$ for the Jev-like networks, $T = L e + P s + L P c_\mathrm{cached}$ for the cross-attention network with cached ligand atom states, and $T = P s + L P c_\mathrm{naive}$ for the cross-attention network without the cache, which has no shared embedding. The featurization of the ligands on the CPU (41 to 43 s for the library on 32 processes) is the same for every network. The networks were timed on a desktop RTX 4060, and the scoring step of the residue-sum network is about 3.4 times shorter on the RTX 4090 (throughput measurements of the previous subsection). Float16 autocast was timed for the cross-attention network only. The comparison covers one implementation of a joint network with two interaction layers, one dataset (DOCKSTRING with Vina scores and rigid receptors) and the recipe of the baselines; other joint architectures, in particular networks that use docked poses, were not tested.
+
+Addendum 8 registered the reversal accuracy of the joint networks on the frozen quadruplets as the second outcome. It was computed after the test read from the saved test predictions of the six networks and the frozen quadruplet files of the preceding analysis (\texttt{dockmut/v3\_reversal.py}), which hold the score differences that the earlier read of the test labels produced, so that the sealed vault was not opened a fourth time. The cross-attention networks reproduce both orderings of a quadruplet in \jointJDevXa{} of the development quadruplets and \jointJTestXa{} of the test quadruplets, the pooled networks in \jointJDevPc{} and \jointJTestPc{}, against \hitJDevCZero{} and \hitJTestCZero{} for the baseline dual encoders with their hit-probability head, and a model that ranks ligands identically in every target scores zero. The interaction layers of the cross-attention network therefore learned no ranking that differs between targets under the recipe of the dual encoders.
+
+\subsection{Full-scale timing, known-pocket evaluations and addenda 9 to 11}
+
+The full-scale timing of the main text (\texttt{dockmut/v4\_fair\_timing.py}, addendum 9, experiment E2) ran on one \tmAGpu{} of a RunPod instance and, as a second measurement, on one \tmBGpu{} of a RunPod instance (\tmBCpus{} visible CPU threads, \tmBProcs{} featurization processes). Table~\ref{tab:si_timing} gives every stage of the measurement of the main text and Table~\ref{tab:si_timing_b} that of the second GPU, on which the model time of the cross-attention network is \tmBRatioXaHalfFiftySevenModel{} to \tmBRatioXaSingleFiftySevenModel{} times that of the dual encoder for 57 pockets and \tmBRatioXaHalfThousandModel{} to \tmBRatioXaSingleThousandModel{} times for 1{,}000 pockets. The linear cost model of the previous subsection, which extrapolated the unoptimized implementations that were timed on a desktop RTX 4060 for 50{,}000 ligands and five pockets, gave a ratio of \ratioXaCachedLo{} for 57 pockets and of \ratioXaCachedHi{} for 10{,}000 pockets; the full-scale timing replaces it, and the difference for 57 pockets is the padding and the float32 operations of the first implementation of the cross-attention network, which the ragged implementation avoids.
+
+The known-pocket evaluations of the main text used two groups of networks. The evaluation with checkpoints chosen on new targets (addendum 10, experiment E3; lower block of Table~2 of the main text) used the existing checkpoints of the dual encoder, the constant-pocket network, the pooled network and the cross-attention network (three seeds each), the 39 training targets and the 10{,}000 development ligands, whose labels belong to an open cell of the label vault; the development ligands also served, together with the ten development targets, to choose the checkpoint of these networks. The evaluation with checkpoints chosen on known pockets (addendum 11, experiment E4; upper block of Table~2) used the 40 networks of five cross-fitted folds (dual encoder, pooled network and cross-attention network with the real pockets and with one constant pocket, recipe R0, and the dual encoder and the cross-attention network with the longer recipe R1, seed 11), each evaluated on the pockets of its training targets against the same 10{,}000 development ligands (\texttt{dockmut/v5\_known\_cv\_eval.py}); the recall of a pocket is the mean over the four folds in which it is a training target. Tables~\ref{tab:si_known_targets} and~\ref{tab:si_known_cv_targets} give the recall of every pocket at the 10\% budget.
+
+Addendum 9 was written after the review that followed addendum 8 and before any job of its experiments started. Addendum 10 was written after most of these experiments had finished: the measurement on the \tmBGpu{} and the cross-validation preceded it, and the measurement on the RTX 4090 followed it. Addendum 11 was written after the outcomes of E3 were known, because the checkpoint rule of the existing networks selects for new targets, and it registered E4. The order of the three networks differs between E3 and E4, and the main text reports both.
+
+Addendum 9 registered, besides the timing, a cross-validation over five folds of target families (\texttt{scripts/v4\_cv\_train.py}, outputs in \texttt{runs/v4}, summary in \texttt{eval/v4\_cv\_summary.json}); it was completed on rented GPUs. Addendum 10 restricted the manuscript to the pockets of the training data, and the outcome of the cross-validation is not part of the claims of the manuscript. On the \hoNTargets{} held-out targets of the cross-validation the dual encoder, the pooled network and the cross-attention network recover \hoDualTen{}, \hoPooledTen{} and \hoXattnTen{} of the top-1\% docking hits at the 10\% budget, against \hoConstTen{} for the dual encoder with a constant pocket, and the pocket state adds \hoGainDualTen{} (\hoGainDualTenLo{} to \hoGainDualTenHi{}), \hoGainPooledTen{} (\hoGainPooledTenLo{} to \hoGainPooledTenHi{}) and \hoGainXattnTen{} (\hoGainXattnTenLo{} to \hoGainXattnTenHi{}) for the three networks. Under this recipe the networks therefore do not read a pocket of a target family that is absent from their training data, the registered outcome of claim rule (c) of addendum 9 and the reason for the restriction to known pockets.
+
+\input{si_table_timing}
+
+\input{si_table_timing_b}
+
+{\footnotesize\input{si_table_known_targets}}
+
+{\footnotesize\input{si_table_known_cv_targets}}
+
+\subsection{Preceding analysis}
+
+The baseline surrogates, the data split, the frozen screening frames and the reversal quadruplets come from a preceding analysis by the same author that is not published. It trained dual-encoder surrogates on the 39 training targets (40,000 training ligands per target) with a binary cross-entropy loss on the top-1\% hits and an auxiliary Huber loss on scores, in four conditions with three seeds each: the plain loss, a within-target margin ranking loss, a cross-target reversal ranking loss and a constant synthetic pocket. The split assigns whole protein families to the roles training, development and test (39, 10 and 9 targets) and ligand scaffolds to training, development, calibration and test sets. Screening was evaluated as the top-1\% recall at a 10\% budget and as the reversal accuracy on frozen quadruplets, and the labels of the nine test targets were read once in that analysis (Table~\ref{tab:si_access}). An in-sample two-way additive model of ligand and target effects on the DOCKSTRING score matrix explains \addVarShare{}\% of the variance (target-effect SD \addTargetSd{}, ligand-effect SD \addLigandSd{}, raw SD \addRawSd{}~\kcal{}). The plain baseline and the constant-pocket baseline reach a top-1\% recall of \hitRTestCZero{} and \hitRTestCZeroC{} on the test targets. Exchanging the pocket of a development target for the pocket of another target at inference leaves the ranking nearly unchanged (mean Spearman correlation \swapRhoMean{}, median \swapRhoMedian{}, over \nSwapTargets{} targets with nine exchanged pockets and three seeds). The result files of these analyses are in the archive (\texttt{eval/preceding}).
+
+\subsection{Screening frames and reversal quadruplets}
+
+The development frame holds the 10 development targets and 10,000 development ligands. The test frame holds the 9 test targets and the 26,015 test ligands. The reversal quadruplets were drawn in the preceding analysis from pairs of targets and pairs of ligands whose score difference is at least 1~\kcal{} in both targets with opposite signs: 10,025 quadruplets on the development split and 3,536 on the test split, which contains no pair from one family.
+
+\section{Extended results of the pocket-edit test}
+
+\input{si_edit_results}
+
+\section{Extended results of wild-type screening}
+
+\input{si_screen_extra}
+
+\section{Registered analysis plan}
+
+The plan below was hashed before the final interventional models were trained and before any of them was evaluated on the 19 held-out targets. A pilot of five short runs on six of the held-out targets preceded the hash (Disclosure below), so that the status line of the plan, which says that no interventional surrogate had been evaluated on the held-out targets, is incorrect. The hashed text cannot be edited, and this paragraph is its erratum. Addenda 1 to 4 were added before the evaluation of the final models. Addendum 5 was written after the registered runs had been evaluated and declares the correction of the permutation controls, the additional seeds and the post hoc analyses. The file and its hash ledger are part of the archive (\texttt{code/PREREG.md}, \texttt{code/prereg\_ledger.json}).
+
+{\sloppy\input{si_prereg}}
+
+\input{si_ledger}
+
+\section{Disclosure of deviations and exploratory work}
+
+Before the registered runs, a pilot on three targets (ABL1, MAOB, PTGS2) and 96 ligands compared docking search modes of Uni-Dock with the DOCKSTRING scores and with AutoDock Vina 1.1.2 and measured replicate noise. A dry run of the training pipeline used eight training targets, six held-out targets and between 3,000 and 6,000 updates, and a second pilot compared four hyperparameter variants of the geometry-free network with interventional training on the same six held-out targets. Both were evaluated before the plan was hashed, and their outputs are in the archive (\texttt{eval/pilot}). The dry run exposed that dropout in the pocket encoder hides the small difference between a wild-type and an edited pocket, and dropout was removed from the pocket encoders for all reported models. The pilots informed the candidate list of the plan, and none of their results enters a reported number.
+
+The configuration was chosen on two validation folds inside the training targets (Table~\ref{tab:si_val}). The first round, on fold A alone, gave validation correlations between $-0.12$ and 0.17 for nine interventional candidates and 0.19 for the reference without intervention. A boosting model with pocket geometry reached $r$ = 0.39 on the held-out targets at that point, which led to the second round with two folds and the ResidueSum-Edit architecture (addendum 4). The registered rule selected ResidueSum-Geo with $\lambda$ = 3. The hashed addendum 4 describes the second round, and ResidueSum-Edit was added after the descriptor model had been evaluated on the held-out targets.
+
+After the held-out evaluation of the 36 registered final runs we found that the two controls that permute labels over edits had used uniform permutations, which return an edit to its own row with probability one in six. The corrected controls (derangements) and three further seeds for five conditions were trained afterwards (addendum 5). The levels of faithfulness, the pose-informed descriptor reference, the descriptor model for wild-type screening, the hot-spot ranking and the virtual scan were added after the registered outcomes were known. After the first complete draft we found that the baseline surrogates had been read out with their regression head in the screening comparison, whereas the preceding analysis ranked ligands with their hit-probability head, which recovers more top hits for the plain objective (\hitRTestCZero{} against \wtRTestCZero{} on the test targets). The hit-probability readout was added from the result files of the preceding analysis, the response of the baselines to edits was repeated with the hit logit (rows of Table~\ref{tab:main}), and the text was restated (addendum 6). Last, ResidueSum-Geo received a hit head (addendum 7, written before the six networks were trained), a second readout on the same residue features that is trained on the top-1\% hits with a weight of 1, with and without the loss on changes and with three seeds each. The rule registered for a claim that this network reaches the recall of the hit-trained baseline, a paired interval at or above zero, was not met, and the extension is reported as post hoc. The development split was inspected before the test split was opened in both rounds. The test labels were read once for the 69 models of the first round and a second time for the six hit-head networks (Table~\ref{tab:si_access}).
+
+Several registered items changed. The final runs omit the registered conditions rs\_int\_shl, rs\_int\_shm, rs\_int\_sha and rs\_const (the label controls and the constant-pocket condition of the geometry-free network) and include rse\_wt, rse\_int and rsg\_int\_sha, which were not in the original list, so that the geometry-free network has no label-shuffled control. The constant-pocket geometry network responds to an edit by zero by construction and is not tabulated, and its wild-type screening evaluation restored the real pockets, so that its screening row is not reported. The registered secondary outcome regression gain is stored in the archive (\texttt{eval/summary\_all.json}) and not tabulated, and the consensus of the neural ensemble with the descriptor model named in addendum 5 was not run. The kinase test of addendum 3 was registered with one seed and was run with three seeds for the network trained on measured changes, three for the wild-type-only network and two for each deranged control. The descriptor model for wild-type screening and the hot-spot ranking are not part of a hashed addendum and are described in the extended methods and results sections of this Supporting Information. Addendum 7 states that the score-head parameters of the hit-head networks start from the registered values for the same seed. The training script seeds the generator after it builds the model, so that the seed argument does not control the initial weights, the statement does not hold, and the hit-head networks were initialized independently of the registered networks.
+
+After the registered outcomes were known, the screening results were extended with analyses that were not part of a hashed addendum: the docking rate benchmark, the network throughput of the three families, the budget summary of the wild-type screening (\texttt{eval/wt\_budget\_summary.json}, a re-summary of existing per-target result files, with no new label read) and an ML-guided docking baseline on the development targets (development labels only, caller \texttt{ml\_guided\_dev}; \texttt{eval/ml\_guided\_dev.json}, not reported in the manuscript). They are post hoc, no model, configuration or readout was selected from them, and the sealed test labels were not read for them. The first run of the docking benchmark skipped the batches of 1{,}024 ligands because one of the 1{,}024 prepared ligands failed preparation. The batches of 1{,}000 and 4{,}000 ligands were run afterwards on the same pod, and every call of all runs is in the records. The joint networks and the cost model (addendum 8) were added after the registered outcomes and the revision of the framing; the plan for them was hashed before the first run, the sealed test labels were read a third time, once, for the six joint networks (Table \ref{tab:si_access}), and no setting was changed after the first run started.
+
+\input{si_table_access}
+
+\section{Supporting tables}
+
+{\footnotesize\setlength{\tabcolsep}{3pt}\input{si_table_targets}}
+
+{\footnotesize\setlength{\tabcolsep}{3pt}\input{si_table_validation}}
+
+{\footnotesize\setlength{\tabcolsep}{3pt}\input{si_table_levels}}
+
+\input{si_table_scale}
+
+{\footnotesize\setlength{\tabcolsep}{3pt}\input{si_table_joint}}
+
+{\footnotesize\setlength{\tabcolsep}{3pt}\input{si_table_speed}}
+
+{\footnotesize\setlength{\tabcolsep}{3pt}\input{si_table_pairs}}
+
+\section{Supporting figures}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{figures/figS1_pertarget}
+\caption{Correlation over the contact pairs of each held-out target for the baseline surrogates, the geometry network trained on wild-type scores, the geometry network trained on measured changes, the control with labels deranged over edits and the boosting model with geometry (seed ensembles). Targets are sorted by the correlation of the geometry network trained on measured changes; the role of each target is given in parentheses.}
+\label{fig:si_pertarget}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/figS2_law}
+\caption{The size law and the pose dependence of the measured changes. (a) Slope of the change of the score with the heavy-atom count of the ligand against the buried fraction of free space, one point per target. (b) The same slope against the number of receptor heavy atoms within 10~\AA{} of the box center. (c) Mean absolute change against the number of ligand heavy atoms of the wild-type pose within 4.5~\AA{} of the removed side-chain atoms, for controls, single contact truncations and multi-residue truncations.}
+\label{fig:si_law}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/figS3_curves}
+\caption{Training curves of the registered conditions (seeds 11, 22 and 33). (a) Huber loss on wild-type scores. (b) Huber loss on measured changes; the level of the deranged controls marks the loss that labels without edit-specific information leave.}
+\label{fig:si_curves}
+\end{figure}
+
+\end{document}

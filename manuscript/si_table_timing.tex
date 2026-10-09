@@ -1,0 +1,35 @@
+\begin{table}[h]
+\caption{Stages of the full-scale timing on one RTX 4090 (seconds). Featurization and collation of the ligands on the CPU are 39.3 s and 2.32 s for every network.}
+\label{tab:si_timing}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+Network & Pockets & Embedding & Pocket states & Scoring & Selection & Model time \\
+\midrule
+Dual encoder & 1 & 1.59 & 0.0014 & 0.0002 & 0.0002 & 1.59 \\
+Dual encoder & 5 & 1.60 & 0.0029 & 0.0003 & 0.0003 & 1.60 \\
+Dual encoder & 20 & 1.60 & 0.0044 & 0.0002 & 0.0002 & 1.60 \\
+Dual encoder & 57 & 1.60 & 0.0121 & 0.0003 & 0.0005 & 1.61 \\
+Dual encoder & 1000 & 1.59 & 0.21 & 0.0028 & 0.0110 & 1.81 \\
+\midrule
+Pooled concatenation & 1 & 1.59 & 0.0013 & 0.0007 & 0.0002 & 1.59 \\
+Pooled concatenation & 5 & 1.60 & 0.0018 & 0.0035 & 0.0002 & 1.61 \\
+Pooled concatenation & 20 & 1.60 & 0.0044 & 0.0136 & 0.0003 & 1.62 \\
+Pooled concatenation & 57 & 1.60 & 0.0125 & 0.0321 & 0.0006 & 1.64 \\
+Pooled concatenation & 1000 & 1.59 & 0.21 & 0.56 & 0.0111 & 2.38 \\
+\midrule
+Cross-attention, float16 & 1 & 1.62 & 0.0017 & 0.15 & 0.0003 & 1.78 \\
+Cross-attention, float16 & 5 & 1.83 & 0.0026 & 0.77 & 0.0004 & 2.60 \\
+Cross-attention, float16 & 20 & 1.60 & 0.0073 & 3.07 & 0.0003 & 4.68 \\
+Cross-attention, float16 & 57 & 1.60 & 0.0204 & 8.75 & 0.0006 & 10.4 \\
+Cross-attention, float16 & 1000 & 1.60 & 0.35 & 154 & 0.0114 & 156 \\
+\midrule
+Cross-attention, float32 & 1 & 1.59 & 0.0015 & 0.47 & 0.0003 & 2.06 \\
+Cross-attention, float32 & 5 & 1.59 & 0.0023 & 2.42 & 0.0005 & 4.01 \\
+Cross-attention, float32 & 20 & 1.60 & 0.0066 & 9.72 & 0.0003 & 11.3 \\
+Cross-attention, float32 & 57 & 1.61 & 0.0173 & 27.8 & 0.0006 & 29.4 \\
+Cross-attention, float32 & 1000 & 1.60 & 0.29 & 492 & 0.0117 & 494 \\
+\bottomrule
+\end{tabular}
+\end{table}

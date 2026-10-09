@@ -1,0 +1,69 @@
+\begin{longtable}{llp{2.4cm}rrrrrrrr}
+\caption{Per-target summary of DockMut-1. $\sigma$ is the replicate noise of the wild-type score, $n_\mathrm{stable}$ the ligands kept after the stability filter, the four shares are fractions of the variance of measured changes in percent, and $r_\mathrm{WT}$ and MAE compare the wild-type scores of the GPU engine with the DOCKSTRING table (training and development targets only).}
+\label{tab:si_targets}\\
+\toprule
+Target & Role & Family & Edits & $n_\mathrm{stable}$ & $\sigma$ & Mean & Ligand & Inter. & Noise & $r_\mathrm{WT}$ \\
+\midrule
+\endfirsthead
+Target & Role & Family & Edits & $n_\mathrm{stable}$ & $\sigma$ & Mean & Ligand & Inter. & Noise & $r_\mathrm{WT}$ \\
+\midrule
+\endhead
+BACE1 & dev & aspartyl protease & 21 & 160 & 0.23 & 20 & 7 & 37 & 39 & 0.94 \\
+REN & dev & aspartyl protease & 20 & 160 & 0.21 & 26 & 18 & 33 & 25 & 0.96 \\
+MAOB & dev & maob & 24 & 138 & 0.32 & 27 & 25 & 43 & 7 & 0.47 \\
+ADAM17 & dev & metalloprotease & 17 & 160 & 0.24 & 11 & 20 & 27 & 45 & 0.94 \\
+MMP13 & dev & metalloprotease & 21 & 160 & 0.24 & 22 & 17 & 30 & 33 & 0.93 \\
+NOS1 & dev & nos1 & 19 & 160 & 0.25 & 27 & 23 & 34 & 18 & 0.91 \\
+PARP1 & dev & parp1 & 19 & 159 & 0.28 & 36 & 18 & 15 & 32 & 0.94 \\
+PDE5A & dev & pde5a & 22 & 160 & 0.19 & 32 & 20 & 34 & 17 & 0.95 \\
+PTGS2 & dev & ptgs2 & 24 & 158 & 0.29 & 23 & 29 & 40 & 11 & 0.89 \\
+PTPN1 & dev & ptpn1 & 21 & 157 & 0.26 & 39 & 19 & 24 & 19 & 0.91 \\
+ACHE & test & ache & 23 & 158 & 0.22 & 16 & 36 & 41 & 9 & -- \\
+CA2 & test & ca2 & 23 & 160 & 0.21 & 15 & 16 & 45 & 27 & -- \\
+CASP3 & test & casp3 & 18 & 160 & 0.27 & 10 & 12 & 16 & 63 & -- \\
+DHFR & test & dhfr & 23 & 160 & 0.19 & 33 & 17 & 35 & 16 & -- \\
+DPP4 & test & dpp4 & 22 & 160 & 0.28 & 28 & 16 & 21 & 36 & -- \\
+GBA & test & gba & 24 & 160 & 0.20 & 16 & 20 & 43 & 24 & -- \\
+HMGCR & test & hmgcr & 19 & 158 & 0.26 & 2 & 14 & 32 & 55 & -- \\
+HSD11B1 & test & hsd11b1 & 22 & 160 & 0.23 & 11 & 40 & 36 & 15 & -- \\
+HSP90AA1 & test & hsp90aa1 & 23 & 159 & 0.23 & 3 & 18 & 48 & 33 & -- \\
+CYP2C9 & train & cyp450 & 23 & 254 & 0.18 & 7 & 23 & 43 & 29 & 0.96 \\
+CYP3A4 & train & cyp450 & 20 & 254 & 0.21 & 25 & 18 & 26 & 33 & 0.96 \\
+ADORA2A & train & gpcr classA & 23 & 256 & 0.19 & 29 & 23 & 33 & 18 & 0.93 \\
+ADRB1 & train & gpcr classA & 24 & 255 & 0.21 & 8 & 26 & 41 & 27 & 0.93 \\
+ADRB2 & train & gpcr classA & 24 & 255 & 0.20 & 20 & 24 & 39 & 19 & 0.95 \\
+DRD3 & train & gpcr classA & 23 & 255 & 0.14 & 15 & 32 & 48 & 8 & 0.95 \\
+ABL1 & train & kinase & 21 & 252 & 0.22 & 8 & 35 & 46 & 14 & 0.76 \\
+AKT1 & train & kinase & 24 & 256 & 0.21 & 21 & 8 & 27 & 46 & 0.95 \\
+AKT2 & train & kinase & 24 & 251 & 0.22 & 20 & 23 & 35 & 24 & 0.92 \\
+CDK2 & train & kinase & 19 & 255 & 0.20 & 13 & 21 & 32 & 36 & 0.93 \\
+CSF1R & train & kinase & 20 & 256 & 0.21 & 27 & 24 & 34 & 17 & 0.91 \\
+EGFR & train & kinase & 21 & 256 & 0.19 & 15 & 32 & 32 & 23 & 0.93 \\
+FGFR1 & train & kinase & 22 & 254 & 0.24 & 6 & 30 & 46 & 21 & 0.88 \\
+IGF1R & train & kinase & 20 & 256 & 0.21 & 2 & 31 & 39 & 31 & 0.88 \\
+JAK2 & train & kinase & 18 & 256 & 0.18 & 10 & 36 & 34 & 23 & 0.95 \\
+KDR & train & kinase & 24 & 253 & 0.20 & 17 & 26 & 43 & 16 & 0.91 \\
+KIT & train & kinase & 20 & 256 & 0.23 & 5 & 38 & 38 & 23 & 0.93 \\
+LCK & train & kinase & 17 & 255 & 0.20 & 6 & 31 & 28 & 37 & 0.95 \\
+MAP2K1 & train & kinase & 24 & 254 & 0.20 & 9 & 18 & 38 & 37 & 0.96 \\
+MAPK1 & train & kinase & 23 & 256 & 0.20 & 23 & 30 & 35 & 14 & 0.91 \\
+MAPK14 & train & kinase & 21 & 253 & 0.26 & 7 & 16 & 25 & 53 & 0.90 \\
+MAPKAPK2 & train & kinase & 22 & 254 & 0.19 & 11 & 27 & 37 & 27 & 0.95 \\
+MET & train & kinase & 21 & 252 & 0.24 & 4 & 24 & 43 & 32 & 0.88 \\
+PLK1 & train & kinase & 18 & 254 & 0.21 & 44 & 19 & 23 & 16 & 0.91 \\
+PTK2 & train & kinase & 18 & 254 & 0.16 & 11 & 38 & 37 & 17 & 0.84 \\
+ROCK1 & train & kinase & 24 & 256 & 0.18 & 18 & 18 & 35 & 31 & 0.95 \\
+SRC & train & kinase & 22 & 255 & 0.18 & 28 & 25 & 35 & 15 & 0.93 \\
+AR & train & nuclear receptor & 24 & 243 & 0.29 & 20 & 25 & 45 & 13 & 0.73 \\
+ESR1 & train & nuclear receptor & 23 & 255 & 0.21 & 40 & 18 & 33 & 11 & 0.90 \\
+ESR2 & train & nuclear receptor & 24 & 254 & 0.16 & 29 & 20 & 45 & 8 & 0.82 \\
+NR3C1 & train & nuclear receptor & 24 & 254 & 0.22 & 7 & 48 & 37 & 10 & 0.93 \\
+PGR & train & nuclear receptor & 24 & 250 & 0.28 & 17 & 39 & 38 & 8 & 0.67 \\
+PPARA & train & nuclear receptor & 20 & 255 & 0.22 & 8 & 24 & 41 & 29 & 0.91 \\
+PPARD & train & nuclear receptor & 24 & 255 & 0.21 & 5 & 12 & 42 & 43 & 0.93 \\
+PPARG & train & nuclear receptor & 22 & 254 & 0.21 & 7 & 25 & 42 & 27 & 0.90 \\
+THRB & train & nuclear receptor & 24 & 253 & 0.21 & 4 & 49 & 42 & 8 & 0.87 \\
+F10 & train & serine protease S1 & 19 & 253 & 0.26 & 16 & 24 & 29 & 33 & 0.90 \\
+F2 & train & serine protease S1 & 20 & 253 & 0.25 & 31 & 14 & 22 & 35 & 0.91 \\
+\bottomrule
+\end{longtable}

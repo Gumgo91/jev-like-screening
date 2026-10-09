@@ -1,0 +1,36 @@
+\begin{table}[h]
+\caption{Joint networks of addendum 8. Updates and best update count training updates of 256 ligands; the checkpoint is the evaluation point with the highest macro recall on the ten development targets (top-1\% recall at the 10\% budget). Test recall: the nine test targets, read once for all six networks after the checkpoints were frozen. The registry file of the first three runs was overwritten by concurrent runs and was rebuilt from the training logs and the checkpoint hashes.}
+\label{tab:si_joint_runs}
+\small
+\begin{tabular}{llrrrrr}
+\toprule
+Network & Seed & Updates & Best update & Stop & Dev. recall & Test recall \\
+\midrule
+Pooled concatenation & 11 & 36{,}564 & 18{,}282 & patience & 0.744 & 0.827 \\
+Pooled concatenation & 22 & 42{,}658 & 24{,}376 & patience & 0.754 & 0.826 \\
+Pooled concatenation & 33 & 36{,}564 & 18{,}282 & patience & 0.744 & 0.840 \\
+Cross-attention & 11 & 30{,}470 & 12{,}188 & patience & 0.711 & 0.822 \\
+Cross-attention & 22 & 30{,}470 & 12{,}188 & patience & 0.714 & 0.813 \\
+Cross-attention & 33 & 36{,}564 & 18{,}282 & patience & 0.745 & 0.830 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\caption{Per-stage times of the cost model on one RTX 4060 (50{,}000 ligands against 5 pockets{,} float32 unless noted{,} shorter of two runs{,} seconds). Embedding: the pocket-independent ligand representation (for the cross-attention network the atom states). State: the pocket states of all pockets. Scoring: all ligand-pocket pairs.}
+\label{tab:si_joint_timing}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Network and path & Embedding & State & Scoring \\
+\midrule
+Dual encoder & 0.545 & 0.014 & 0.004 \\
+Pooled concatenation & 0.556 & 0.014 & 0.005 \\
+Residue-sum, hit head & 0.548 & 0.014 & 0.782 \\
+Cross-attention, cached ligand states & 0.549 & 0.016 & 8.455 \\
+Cross-attention, whole network per pair & 0.549 & 0.016 & 11.311 \\
+Cross-attention, cached, float16 & 0.346 & 0.014 & 5.519 \\
+Cross-attention, whole network, float16 & 0.346 & 0.014 & 7.400 \\
+\bottomrule
+\end{tabular}
+\end{table}

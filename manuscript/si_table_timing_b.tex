@@ -1,0 +1,35 @@
+\begin{table}[h]
+\caption{Stages of the full-scale timing on one L40S (seconds). Featurization and collation of the ligands on the CPU are 22.4 s and 2.40 s for every network.}
+\label{tab:si_timing_b}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+Network & Pockets & Embedding & Pocket states & Scoring & Selection & Model time \\
+\midrule
+Dual encoder & 1 & 1.22 & 0.0011 & 0.0003 & 0.0002 & 1.22 \\
+Dual encoder & 5 & 1.22 & 0.0013 & 0.0003 & 0.0002 & 1.22 \\
+Dual encoder & 20 & 1.21 & 0.0030 & 0.0003 & 0.0003 & 1.22 \\
+Dual encoder & 57 & 1.22 & 0.0090 & 0.0004 & 0.0005 & 1.23 \\
+Dual encoder & 1000 & 1.21 & 0.15 & 0.0040 & 0.0130 & 1.38 \\
+\midrule
+Pooled concatenation & 1 & 1.21 & 0.0011 & 0.0009 & 0.0002 & 1.21 \\
+Pooled concatenation & 5 & 1.21 & 0.0012 & 0.0047 & 0.0002 & 1.22 \\
+Pooled concatenation & 20 & 1.21 & 0.0030 & 0.0162 & 0.0003 & 1.23 \\
+Pooled concatenation & 57 & 1.21 & 0.0087 & 0.0435 & 0.0006 & 1.26 \\
+Pooled concatenation & 1000 & 1.21 & 0.15 & 0.77 & 0.0140 & 2.15 \\
+\midrule
+Cross-attention, float16 & 1 & 1.22 & 0.0013 & 0.18 & 0.0005 & 1.40 \\
+Cross-attention, float16 & 5 & 1.22 & 0.0017 & 0.89 & 0.0006 & 2.11 \\
+Cross-attention, float16 & 20 & 1.22 & 0.0048 & 3.57 & 0.0010 & 4.79 \\
+Cross-attention, float16 & 57 & 1.21 & 0.0135 & 10.1 & 0.0008 & 11.3 \\
+Cross-attention, float16 & 1000 & 1.22 & 0.24 & 178 & 0.0141 & 180 \\
+\midrule
+Cross-attention, float32 & 1 & 1.21 & 0.0012 & 0.54 & 0.0008 & 1.75 \\
+Cross-attention, float32 & 5 & 1.21 & 0.0016 & 2.78 & 0.0007 & 3.99 \\
+Cross-attention, float32 & 20 & 1.21 & 0.0041 & 11.2 & 0.0007 & 12.4 \\
+Cross-attention, float32 & 57 & 1.21 & 0.0118 & 32.1 & 0.0008 & 33.3 \\
+Cross-attention, float32 & 1000 & 1.21 & 0.21 & 570 & 0.0152 & 571 \\
+\bottomrule
+\end{tabular}
+\end{table}

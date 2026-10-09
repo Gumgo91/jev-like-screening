@@ -1,0 +1,48 @@
+\begin{longtable}{p{4.6cm}rrrr}
+\caption{Three levels of faithfulness on the 19 held-out targets (mean over targets with 95\% interval from bootstrapping targets). Within-target $r$ is computed over all contact pairs of one target, edit-mean $r$ over the receptor means of its contact edits, and ligand-specific $r$ within a receptor after removing the receptor mean. SD is the standard deviation of the predicted change in \kcal{}.}
+\label{tab:si_levels}\\
+\toprule
+Model & Within target & Edit means & Ligand-specific & SD \\
+\midrule
+\endfirsthead
+Model & Within target & Edit means & Ligand-specific & SD \\
+\midrule
+\endhead
+\multicolumn{5}{l}{\emph{Baseline surrogates, regression head}} \\
+\quad Plain objective & 0.02 [$-$0.01, 0.06] & 0.01 [$-$0.06, 0.08] & 0.02 [0.00, 0.04] & 0.03 \\
+\quad Within-target ranking & 0.04 [0.00, 0.08] & 0.10 [0.01, 0.20] & $-$0.01 [$-$0.04, 0.02] & 0.03 \\
+\quad Cross-target ranking & 0.03 [$-$0.01, 0.07] & 0.09 [0.00, 0.18] & $-$0.01 [$-$0.04, 0.01] & 0.02 \\
+\multicolumn{5}{l}{\emph{Baseline surrogates, hit-probability head}} \\
+\quad Plain objective & 0.01 [$-$0.02, 0.04] & $-$0.05 [$-$0.13, 0.04] & 0.02 [0.00, 0.04] & 0.08 \\
+\quad Within-target ranking & $-$0.02 [$-$0.06, 0.01] & $-$0.08 [$-$0.18, 0.01] & $-$0.01 [$-$0.04, 0.02] & 0.10 \\
+\quad Cross-target ranking & $-$0.03 [$-$0.06, 0.00] & $-$0.11 [$-$0.21, $-$0.01] & $-$0.01 [$-$0.04, 0.02] & 0.04 \\
+\multicolumn{5}{l}{\emph{Descriptor models}} \\
+\quad Ligand size and removed atoms & 0.12 [0.06, 0.18] & 0.21 [$-$0.02, 0.44] & 0.07 [0.01, 0.13] & 0.11 \\
+\quad Ridge, ligand and edit descriptors & 0.14 [0.07, 0.21] & 0.20 [$-$0.01, 0.41] & 0.08 [0.02, 0.13] & 0.14 \\
+\quad Boosting, ligand and edit descriptors & 0.08 [0.00, 0.15] & 0.08 [$-$0.12, 0.28] & 0.07 [0.02, 0.12] & 0.27 \\
+\quad Ridge with pocket geometry & 0.24 [0.15, 0.33] & 0.42 [0.22, 0.60] & 0.08 [0.03, 0.13] & 0.20 \\
+\quad Boosting with pocket geometry & 0.25 [0.18, 0.32] & 0.44 [0.29, 0.57] & 0.09 [0.04, 0.14] & 0.18 \\
+\multicolumn{5}{l}{\emph{Descriptor model with wild-type pose (post hoc)}} \\
+\quad Boosting with pose contacts & 0.17 [0.09, 0.25] & 0.19 [$-$0.01, 0.37] & 0.13 [0.09, 0.19] & 0.26 \\
+\quad Boosting with pose contacts and geometry & 0.30 [0.21, 0.38] & 0.47 [0.32, 0.61] & 0.15 [0.10, 0.20] & 0.22 \\
+\multicolumn{5}{l}{\emph{Wild-type training only}} \\
+\quad Dual encoder & 0.06 [0.00, 0.11] & 0.12 [0.01, 0.22] & 0.01 [$-$0.02, 0.04] & 0.03 \\
+\quad ResidueSum & $-$0.03 [$-$0.07, 0.01] & 0.08 [$-$0.02, 0.18] & $-$0.04 [$-$0.06, $-$0.02] & 0.03 \\
+\quad ResidueSum-Edit & 0.07 [0.01, 0.13] & 0.00 [$-$0.11, 0.12] & 0.07 [0.03, 0.10] & 0.46 \\
+\quad ResidueSum-Geo & 0.09 [0.02, 0.15] & 0.05 [$-$0.10, 0.21] & 0.07 [0.04, 0.10] & 0.32 \\
+\multicolumn{5}{l}{\emph{Interventional training}} \\
+\quad Dual encoder & 0.08 [0.00, 0.16] & 0.16 [0.01, 0.32] & $-$0.01 [$-$0.05, 0.02] & 0.07 \\
+\quad ResidueSum & 0.13 [0.08, 0.19] & 0.25 [0.11, 0.38] & 0.05 [0.02, 0.07] & 0.17 \\
+\quad ResidueSum-Edit & 0.22 [0.14, 0.28] & 0.37 [0.21, 0.52] & 0.09 [0.05, 0.13] & 0.28 \\
+\quad ResidueSum-Geo & 0.17 [0.09, 0.24] & 0.25 [0.11, 0.39] & 0.09 [0.05, 0.13] & 0.28 \\
+\multicolumn{5}{l}{\emph{Network with a hit head (addendum 7, post hoc)}} \\
+\quad ResidueSum-Geo with hit head, wild type only & 0.09 [0.03, 0.15] & 0.04 [$-$0.08, 0.17] & 0.07 [0.03, 0.10] & 0.36 \\
+\quad ResidueSum-Geo with hit head, measured changes & 0.20 [0.13, 0.26] & 0.34 [0.21, 0.45] & 0.08 [0.05, 0.12] & 0.27 \\
+\multicolumn{5}{l}{\emph{Label controls for the geometry network}} \\
+\quad Labels permuted over ligands & 0.17 [0.10, 0.23] & 0.32 [0.19, 0.46] & 0.05 [0.03, 0.07] & 0.20 \\
+\quad Labels permuted over edits (v1) & 0.21 [0.12, 0.30] & 0.33 [0.15, 0.50] & 0.09 [0.05, 0.13] & 0.15 \\
+\quad All labels permuted (v1) & 0.18 [0.10, 0.25] & 0.33 [0.18, 0.47] & 0.06 [0.03, 0.09] & 0.13 \\
+\quad Labels deranged over edits (v2) & 0.19 [0.11, 0.27] & 0.29 [0.12, 0.45] & 0.08 [0.05, 0.12] & 0.15 \\
+\quad All labels deranged (v2) & 0.17 [0.08, 0.25] & 0.28 [0.09, 0.44] & 0.05 [0.03, 0.08] & 0.13 \\
+\bottomrule
+\end{longtable}
