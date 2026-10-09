@@ -493,7 +493,7 @@ if T:
     put("trainLabelDays", 39 * 40000 / dock_rate / 86400, "{:.1f}")
     put("trainLabelDaysHit", int(__import__("re").search(r"nTrainTargets\}\{(\d+)", OUT.read_text(encoding="utf-8")).group(1)) * 40000 / dock_rate / 86400, "{:.1f}")
     put("dockDays", sc["pairs"] / dock_rate / 86400, "{:.0f}")
-    put("dockBillionDays", thousands(round(1e9 / dock_rate / 86400, -2)))
+    put("dockBillionDays", thousands(round(1e9 / dock_rate / 86400, -1)))
     if FAST_RATE:
         put("dockBillionDaysFast", thousands(round(1e9 / FAST_RATE / 86400, -1)))
     put("speedup", thousands(round(sc["pairs"] / dock_rate / total, -3)))
