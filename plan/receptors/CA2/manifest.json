@@ -1,0 +1,477 @@
+{
+ "target": "CA2",
+ "box": {
+  "center_x": -5.846,
+  "center_y": 1.074,
+  "center_z": 16.803,
+  "size_x": 30.0,
+  "size_y": 30.0,
+  "size_z": 30.0
+ },
+ "n_atoms": 2520,
+ "receptors": [
+  {
+   "id": "wt",
+   "kind": "wt",
+   "residues": [],
+   "n_removed": 0
+  },
+  {
+   "id": "c_THR199",
+   "kind": "single_contact",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "THR199",
+     "res": "THR",
+     "resid": "199",
+     "d_sc": 3.96,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_HID94",
+   "kind": "single_contact",
+   "n_removed": 7,
+   "residues": [
+    {
+     "label": "HID94",
+     "res": "HID",
+     "resid": "94",
+     "d_sc": 4.03,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_LEU198",
+   "kind": "single_contact",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "LEU198",
+     "res": "LEU",
+     "resid": "198",
+     "d_sc": 4.66,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_TRP209",
+   "kind": "single_contact",
+   "n_removed": 10,
+   "residues": [
+    {
+     "label": "TRP209",
+     "res": "TRP",
+     "resid": "209",
+     "d_sc": 4.71,
+     "n_sc_heavy": 9,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_VAL121",
+   "kind": "single_contact",
+   "n_removed": 2,
+   "residues": [
+    {
+     "label": "VAL121",
+     "res": "VAL",
+     "resid": "121",
+     "d_sc": 4.88,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_HID96",
+   "kind": "single_contact",
+   "n_removed": 6,
+   "residues": [
+    {
+     "label": "HID96",
+     "res": "HID",
+     "resid": "96",
+     "d_sc": 4.89,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_VAL143",
+   "kind": "single_contact",
+   "n_removed": 2,
+   "residues": [
+    {
+     "label": "VAL143",
+     "res": "VAL",
+     "resid": "143",
+     "d_sc": 5.19,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_GLU106",
+   "kind": "single_contact",
+   "n_removed": 4,
+   "residues": [
+    {
+     "label": "GLU106",
+     "res": "GLU",
+     "resid": "106",
+     "d_sc": 5.45,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_GLN92",
+   "kind": "single_contact",
+   "n_removed": 6,
+   "residues": [
+    {
+     "label": "GLN92",
+     "res": "GLN",
+     "resid": "92",
+     "d_sc": 6.12,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_VAL207",
+   "kind": "single_contact",
+   "n_removed": 2,
+   "residues": [
+    {
+     "label": "VAL207",
+     "res": "VAL",
+     "resid": "207",
+     "d_sc": 6.42,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_HIS64",
+   "kind": "single_contact",
+   "n_removed": 7,
+   "residues": [
+    {
+     "label": "HIS64",
+     "res": "HIS",
+     "resid": "64",
+     "d_sc": 7.74,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_TYR7",
+   "kind": "single_contact",
+   "n_removed": 8,
+   "residues": [
+    {
+     "label": "TYR7",
+     "res": "TYR",
+     "resid": "7",
+     "d_sc": 8.0,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "s_PHE93",
+   "kind": "single_shell",
+   "n_removed": 6,
+   "residues": [
+    {
+     "label": "PHE93",
+     "res": "PHE",
+     "resid": "93",
+     "d_sc": 11.27,
+     "n_sc_heavy": 6,
+     "class": "shell"
+    }
+   ]
+  },
+  {
+   "id": "s_ILE146",
+   "kind": "single_shell",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "ILE146",
+     "res": "ILE",
+     "resid": "146",
+     "d_sc": 12.7,
+     "n_sc_heavy": 3,
+     "class": "shell"
+    }
+   ]
+  },
+  {
+   "id": "s_LEU118",
+   "kind": "single_shell",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "LEU118",
+     "res": "LEU",
+     "resid": "118",
+     "d_sc": 10.27,
+     "n_sc_heavy": 3,
+     "class": "shell"
+    }
+   ]
+  },
+  {
+   "id": "m00",
+   "kind": "multi_contact_3",
+   "n_removed": 21,
+   "residues": [
+    {
+     "label": "GLN92",
+     "res": "GLN",
+     "resid": "92",
+     "d_sc": 6.12,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    },
+    {
+     "label": "TYR7",
+     "res": "TYR",
+     "resid": "7",
+     "d_sc": 8.0,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    },
+    {
+     "label": "HIS64",
+     "res": "HIS",
+     "resid": "64",
+     "d_sc": 7.74,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m01",
+   "kind": "multi_contact_2",
+   "n_removed": 5,
+   "residues": [
+    {
+     "label": "LEU198",
+     "res": "LEU",
+     "resid": "198",
+     "d_sc": 4.66,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "VAL143",
+     "res": "VAL",
+     "resid": "143",
+     "d_sc": 5.19,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m02",
+   "kind": "multi_contact_4",
+   "n_removed": 26,
+   "residues": [
+    {
+     "label": "TRP209",
+     "res": "TRP",
+     "resid": "209",
+     "d_sc": 4.71,
+     "n_sc_heavy": 9,
+     "class": "contact"
+    },
+    {
+     "label": "LEU198",
+     "res": "LEU",
+     "resid": "198",
+     "d_sc": 4.66,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "HIS64",
+     "res": "HIS",
+     "resid": "64",
+     "d_sc": 7.74,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "HID96",
+     "res": "HID",
+     "resid": "96",
+     "d_sc": 4.89,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m03",
+   "kind": "multi_contact_3",
+   "n_removed": 8,
+   "residues": [
+    {
+     "label": "VAL143",
+     "res": "VAL",
+     "resid": "143",
+     "d_sc": 5.19,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    },
+    {
+     "label": "GLU106",
+     "res": "GLU",
+     "resid": "106",
+     "d_sc": 5.45,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    },
+    {
+     "label": "VAL207",
+     "res": "VAL",
+     "resid": "207",
+     "d_sc": 6.42,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m04",
+   "kind": "multi_contact_2",
+   "n_removed": 14,
+   "residues": [
+    {
+     "label": "HIS64",
+     "res": "HIS",
+     "resid": "64",
+     "d_sc": 7.74,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "HID94",
+     "res": "HID",
+     "resid": "94",
+     "d_sc": 4.03,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m05",
+   "kind": "multi_contact_2",
+   "n_removed": 11,
+   "residues": [
+    {
+     "label": "HID94",
+     "res": "HID",
+     "resid": "94",
+     "d_sc": 4.03,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "GLU106",
+     "res": "GLU",
+     "resid": "106",
+     "d_sc": 5.45,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m06",
+   "kind": "multi_contact_2",
+   "n_removed": 8,
+   "residues": [
+    {
+     "label": "HID96",
+     "res": "HID",
+     "resid": "96",
+     "d_sc": 4.89,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "VAL207",
+     "res": "VAL",
+     "resid": "207",
+     "d_sc": 6.42,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m07",
+   "kind": "multi_contact_4",
+   "n_removed": 21,
+   "residues": [
+    {
+     "label": "HID94",
+     "res": "HID",
+     "resid": "94",
+     "d_sc": 4.03,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "THR199",
+     "res": "THR",
+     "resid": "199",
+     "d_sc": 3.96,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    },
+    {
+     "label": "LEU198",
+     "res": "LEU",
+     "resid": "198",
+     "d_sc": 4.66,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "TYR7",
+     "res": "TYR",
+     "resid": "7",
+     "d_sc": 8.0,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    }
+   ]
+  }
+ ]
+}

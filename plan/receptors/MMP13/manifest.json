@@ -1,0 +1,463 @@
+{
+ "target": "MMP13",
+ "box": {
+  "center_x": -5.023,
+  "center_y": 27.29,
+  "center_z": 53.665,
+  "size_x": 30.0,
+  "size_y": 30.0,
+  "size_z": 30.0
+ },
+ "n_atoms": 1859,
+ "receptors": [
+  {
+   "id": "wt",
+   "kind": "wt",
+   "residues": [],
+   "n_removed": 0
+  },
+  {
+   "id": "c_HID119",
+   "kind": "single_contact",
+   "n_removed": 6,
+   "residues": [
+    {
+     "label": "HID119",
+     "res": "HID",
+     "resid": "119",
+     "d_sc": 2.82,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_GLU120",
+   "kind": "single_contact",
+   "n_removed": 4,
+   "residues": [
+    {
+     "label": "GLU120",
+     "res": "GLU",
+     "resid": "120",
+     "d_sc": 4.21,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_HID129",
+   "kind": "single_contact",
+   "n_removed": 6,
+   "residues": [
+    {
+     "label": "HID129",
+     "res": "HID",
+     "resid": "129",
+     "d_sc": 4.44,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_HID123",
+   "kind": "single_contact",
+   "n_removed": 6,
+   "residues": [
+    {
+     "label": "HID123",
+     "res": "HID",
+     "resid": "123",
+     "d_sc": 5.34,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_VAL116",
+   "kind": "single_contact",
+   "n_removed": 2,
+   "residues": [
+    {
+     "label": "VAL116",
+     "res": "VAL",
+     "resid": "116",
+     "d_sc": 6.21,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_LEU82",
+   "kind": "single_contact",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "LEU82",
+     "res": "LEU",
+     "resid": "82",
+     "d_sc": 6.22,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_MET137",
+   "kind": "single_contact",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "MET137",
+     "res": "MET",
+     "resid": "137",
+     "d_sc": 6.79,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_ILE140",
+   "kind": "single_contact",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "ILE140",
+     "res": "ILE",
+     "resid": "140",
+     "d_sc": 7.04,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_TYR141",
+   "kind": "single_contact",
+   "n_removed": 8,
+   "residues": [
+    {
+     "label": "TYR141",
+     "res": "TYR",
+     "resid": "141",
+     "d_sc": 7.11,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "s_PHE75",
+   "kind": "single_shell",
+   "n_removed": 6,
+   "residues": [
+    {
+     "label": "PHE75",
+     "res": "PHE",
+     "resid": "75",
+     "d_sc": 10.48,
+     "n_sc_heavy": 6,
+     "class": "shell"
+    }
+   ]
+  },
+  {
+   "id": "s_TYR143",
+   "kind": "single_shell",
+   "n_removed": 8,
+   "residues": [
+    {
+     "label": "TYR143",
+     "res": "TYR",
+     "resid": "143",
+     "d_sc": 13.62,
+     "n_sc_heavy": 7,
+     "class": "shell"
+    }
+   ]
+  },
+  {
+   "id": "s_LEU147",
+   "kind": "single_shell",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "LEU147",
+     "res": "LEU",
+     "resid": "147",
+     "d_sc": 12.85,
+     "n_sc_heavy": 3,
+     "class": "shell"
+    }
+   ]
+  },
+  {
+   "id": "f_ASP55",
+   "kind": "single_far",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "ASP55",
+     "res": "ASP",
+     "resid": "55",
+     "d_sc": 29.51,
+     "n_sc_heavy": 3,
+     "class": "far"
+    }
+   ]
+  },
+  {
+   "id": "m00",
+   "kind": "multi_contact_3",
+   "n_removed": 15,
+   "residues": [
+    {
+     "label": "ILE140",
+     "res": "ILE",
+     "resid": "140",
+     "d_sc": 7.04,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "HID129",
+     "res": "HID",
+     "resid": "129",
+     "d_sc": 4.44,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "HID119",
+     "res": "HID",
+     "resid": "119",
+     "d_sc": 2.82,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m01",
+   "kind": "multi_contact_3",
+   "n_removed": 17,
+   "residues": [
+    {
+     "label": "HID129",
+     "res": "HID",
+     "resid": "129",
+     "d_sc": 4.44,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "TYR141",
+     "res": "TYR",
+     "resid": "141",
+     "d_sc": 7.11,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    },
+    {
+     "label": "ILE140",
+     "res": "ILE",
+     "resid": "140",
+     "d_sc": 7.04,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m02",
+   "kind": "multi_contact_4",
+   "n_removed": 19,
+   "residues": [
+    {
+     "label": "VAL116",
+     "res": "VAL",
+     "resid": "116",
+     "d_sc": 6.21,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    },
+    {
+     "label": "HID119",
+     "res": "HID",
+     "resid": "119",
+     "d_sc": 2.82,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "TYR141",
+     "res": "TYR",
+     "resid": "141",
+     "d_sc": 7.11,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    },
+    {
+     "label": "MET137",
+     "res": "MET",
+     "resid": "137",
+     "d_sc": 6.79,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m03",
+   "kind": "multi_contact_2",
+   "n_removed": 7,
+   "residues": [
+    {
+     "label": "LEU82",
+     "res": "LEU",
+     "resid": "82",
+     "d_sc": 6.22,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "GLU120",
+     "res": "GLU",
+     "resid": "120",
+     "d_sc": 4.21,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m04",
+   "kind": "multi_contact_4",
+   "n_removed": 23,
+   "residues": [
+    {
+     "label": "HID119",
+     "res": "HID",
+     "resid": "119",
+     "d_sc": 2.82,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "HID129",
+     "res": "HID",
+     "resid": "129",
+     "d_sc": 4.44,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "TYR141",
+     "res": "TYR",
+     "resid": "141",
+     "d_sc": 7.11,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    },
+    {
+     "label": "LEU82",
+     "res": "LEU",
+     "resid": "82",
+     "d_sc": 6.22,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m05",
+   "kind": "multi_contact_3",
+   "n_removed": 17,
+   "residues": [
+    {
+     "label": "ILE140",
+     "res": "ILE",
+     "resid": "140",
+     "d_sc": 7.04,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "HID129",
+     "res": "HID",
+     "resid": "129",
+     "d_sc": 4.44,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "TYR141",
+     "res": "TYR",
+     "resid": "141",
+     "d_sc": 7.11,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m06",
+   "kind": "multi_contact_2",
+   "n_removed": 11,
+   "residues": [
+    {
+     "label": "TYR141",
+     "res": "TYR",
+     "resid": "141",
+     "d_sc": 7.11,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    },
+    {
+     "label": "LEU82",
+     "res": "LEU",
+     "resid": "82",
+     "d_sc": 6.22,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m07",
+   "kind": "multi_contact_3",
+   "n_removed": 15,
+   "residues": [
+    {
+     "label": "TYR141",
+     "res": "TYR",
+     "resid": "141",
+     "d_sc": 7.11,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    },
+    {
+     "label": "GLU120",
+     "res": "GLU",
+     "resid": "120",
+     "d_sc": 4.21,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    },
+    {
+     "label": "ILE140",
+     "res": "ILE",
+     "resid": "140",
+     "d_sc": 7.04,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  }
+ ]
+}

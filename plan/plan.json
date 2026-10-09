@@ -1,0 +1,714 @@
+{
+ "targets": {
+  "ABL1": {
+   "role": "train",
+   "n_receptors": 22,
+   "ligand_file": "ABL1.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5888,
+   "manifest_sha256": "1ac8cdc079e1aec5defb16d9c65836b0ab6711ef0768c36da13888d53f831e20"
+  },
+  "ACHE": {
+   "role": "test",
+   "n_receptors": 24,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 4160,
+   "manifest_sha256": "6a6c92a2b1b534ff7ff8e21251a8cc8e5ef923220352c55ee9f17aed81b7f942"
+  },
+  "ADAM17": {
+   "role": "dev",
+   "n_receptors": 18,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 3200,
+   "manifest_sha256": "3110be4cee99e6fce2e00aee267e88840917906cfd51a07a5e167222f9cf3fac"
+  },
+  "ADORA2A": {
+   "role": "train",
+   "n_receptors": 24,
+   "ligand_file": "ADORA2A.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6400,
+   "manifest_sha256": "330f868375d287184428ea8f015554cb3ca5c071a0ce74db26a41e4611c263c7"
+  },
+  "ADRB1": {
+   "role": "train",
+   "n_receptors": 25,
+   "ligand_file": "ADRB1.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6656,
+   "manifest_sha256": "499ef391c14fc73cd92371825801340a8a0e99c2eff4d67d3ccfec5b6da1f8c3"
+  },
+  "ADRB2": {
+   "role": "train",
+   "n_receptors": 25,
+   "ligand_file": "ADRB2.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6656,
+   "manifest_sha256": "724f736409f256494f6179df0cf3e7a20200ad1ec126d095fb86aa1b5a07b0f6"
+  },
+  "AKT1": {
+   "role": "train",
+   "n_receptors": 25,
+   "ligand_file": "AKT1.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6656,
+   "manifest_sha256": "d4feae7922c405d2e1cb8c9604d44f530bec8388979db2c69acbea322b2fb9a8"
+  },
+  "AKT2": {
+   "role": "train",
+   "n_receptors": 25,
+   "ligand_file": "AKT2.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6656,
+   "manifest_sha256": "1c951c72388cf1909b43d38e60c16538e3202290a2d2d03bd119819ee18ba423"
+  },
+  "AR": {
+   "role": "train",
+   "n_receptors": 25,
+   "ligand_file": "AR.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6656,
+   "manifest_sha256": "e6b4e286ccbce2da91a7402afc40f605458e921a7cbbc7dd82ccc1758e4f07be"
+  },
+  "BACE1": {
+   "role": "dev",
+   "n_receptors": 22,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 3840,
+   "manifest_sha256": "da1e963ecee3b65b794bc70aefabc05b8bf720aac1643fa4ae4faad30153c672"
+  },
+  "CA2": {
+   "role": "test",
+   "n_receptors": 24,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 4160,
+   "manifest_sha256": "a7cca4186201ce145a165c8613ee71ed9c89a61572a094c40924e1f0cf785738"
+  },
+  "CASP3": {
+   "role": "test",
+   "n_receptors": 19,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 3360,
+   "manifest_sha256": "3d294a9b625ae8db2311f4a465049f516db38194a3690047925964241b727cd8"
+  },
+  "CDK2": {
+   "role": "train",
+   "n_receptors": 20,
+   "ligand_file": "CDK2.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5376,
+   "manifest_sha256": "26b4c0f5144fea3871b29d443bb7ef480780879de53813250b9127a0bdc69918"
+  },
+  "CSF1R": {
+   "role": "train",
+   "n_receptors": 21,
+   "ligand_file": "CSF1R.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5632,
+   "manifest_sha256": "1e408ad666a5f3eb59fb9038ea1493d6ef8046d319978c87cc394d4bd075f9aa"
+  },
+  "CYP2C9": {
+   "role": "train",
+   "n_receptors": 24,
+   "ligand_file": "CYP2C9.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6400,
+   "manifest_sha256": "2ec2becd489f077f94bf606f4f1a8655e17d47523b93c69356f6af1df83dfea8"
+  },
+  "CYP3A4": {
+   "role": "train",
+   "n_receptors": 21,
+   "ligand_file": "CYP3A4.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5632,
+   "manifest_sha256": "6b37dd3877b99ec6c4be0bc5b242316e27afc0017ba2db6751acffdf9eb15637"
+  },
+  "DHFR": {
+   "role": "test",
+   "n_receptors": 24,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 4160,
+   "manifest_sha256": "5683e7020ae0727ae65dbcdf282322e8fc195a503c59dd6b0d2ae182f905b04c"
+  },
+  "DPP4": {
+   "role": "test",
+   "n_receptors": 23,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 4000,
+   "manifest_sha256": "13d3fec53bf81ad178e8ad7ea567d3bb0df27c269e05c0d76dbbf7d50f3c2fbd"
+  },
+  "DRD3": {
+   "role": "train",
+   "n_receptors": 24,
+   "ligand_file": "DRD3.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6400,
+   "manifest_sha256": "86a6458a54f3c318e284a79ffb1aeaadecc482698aa4c91a20ea55464adefe94"
+  },
+  "EGFR": {
+   "role": "train",
+   "n_receptors": 22,
+   "ligand_file": "EGFR.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5888,
+   "manifest_sha256": "1b148379fff20765107b0a15b9965dced16c8ada0d7816229702605c31396951"
+  },
+  "ESR1": {
+   "role": "train",
+   "n_receptors": 24,
+   "ligand_file": "ESR1.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6400,
+   "manifest_sha256": "c21f175d01a85c281268a8139806c2ecff90a2db3ae1ebdd1d424d0e00e0614f"
+  },
+  "ESR2": {
+   "role": "train",
+   "n_receptors": 25,
+   "ligand_file": "ESR2.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6656,
+   "manifest_sha256": "2c9b548aa4b01fab0584d17f51f8a03f3ec3096fc78f8d51ab62b2b45654b9b7"
+  },
+  "F10": {
+   "role": "train",
+   "n_receptors": 20,
+   "ligand_file": "F10.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5376,
+   "manifest_sha256": "5a84de488f2c4c00affca8bdabad42314544e70858b4232f47a0e30b6c4064f7"
+  },
+  "F2": {
+   "role": "train",
+   "n_receptors": 21,
+   "ligand_file": "F2.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5632,
+   "manifest_sha256": "705c5d058a77bb30da604873dccbbc30cb9aae11ab3171e29a4f3f2e547e88d4"
+  },
+  "FGFR1": {
+   "role": "train",
+   "n_receptors": 23,
+   "ligand_file": "FGFR1.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6144,
+   "manifest_sha256": "65c4255cad07d91554c3b47cb7fc887a9fb2986d48365f356530b774dcbfa96e"
+  },
+  "GBA": {
+   "role": "test",
+   "n_receptors": 25,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 4320,
+   "manifest_sha256": "b3f2b5bb536508ec5f7247a0877d7b5a6d6da4c4ddac1964c3cd59bf2a218812"
+  },
+  "HMGCR": {
+   "role": "test",
+   "n_receptors": 20,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 3520,
+   "manifest_sha256": "4d06e471040971b38e350c1b52bf1a53787cb6653a8bf7ecf5374b3431112c8d"
+  },
+  "HSD11B1": {
+   "role": "test",
+   "n_receptors": 23,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 4000,
+   "manifest_sha256": "4cc26f048f9a8f56ed738e1c6d2fb7a96dd17af19840e5c87bb7bb2a5c7484fa"
+  },
+  "HSP90AA1": {
+   "role": "test",
+   "n_receptors": 24,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 4160,
+   "manifest_sha256": "2014b90f8d17b492c347f14ffd29f08219b90f904a12756e874c34289109ea0d"
+  },
+  "IGF1R": {
+   "role": "train",
+   "n_receptors": 21,
+   "ligand_file": "IGF1R.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5632,
+   "manifest_sha256": "e79531444341b8a60e5d01adfa432424778e35569db18c366e2c59fd4bf4fffd"
+  },
+  "JAK2": {
+   "role": "train",
+   "n_receptors": 19,
+   "ligand_file": "JAK2.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5120,
+   "manifest_sha256": "a7bbbec0d4e5f9bdea33219eb8b70dc1c308086f76673cea457f7834e0c1ad72"
+  },
+  "KDR": {
+   "role": "train",
+   "n_receptors": 25,
+   "ligand_file": "KDR.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6656,
+   "manifest_sha256": "969984986407f95a4054733ea4315b1860a1993469c1dd1fdc33b47f07f72949"
+  },
+  "KIT": {
+   "role": "train",
+   "n_receptors": 21,
+   "ligand_file": "KIT.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5632,
+   "manifest_sha256": "bd8d400775eb3eab3d74c9d26d3a79d56a75a378f03d44b32d8e5378fddeeae9"
+  },
+  "LCK": {
+   "role": "train",
+   "n_receptors": 18,
+   "ligand_file": "LCK.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 4864,
+   "manifest_sha256": "85f31a537fbc7f350d3fc5dad09968a28720c34f7dec2fc637c7c63c149193cf"
+  },
+  "MAOB": {
+   "role": "dev",
+   "n_receptors": 25,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 4320,
+   "manifest_sha256": "7a155a6ad5634c085769a4fb7f7e43781e50b0e7cce5402eeeabd4afbd022127"
+  },
+  "MAP2K1": {
+   "role": "train",
+   "n_receptors": 25,
+   "ligand_file": "MAP2K1.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6656,
+   "manifest_sha256": "9b6695eb393446234f4765d9bb540644bf69fc4671c0bf371151cf19b91889f3"
+  },
+  "MAPK1": {
+   "role": "train",
+   "n_receptors": 24,
+   "ligand_file": "MAPK1.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6400,
+   "manifest_sha256": "85b868487f603455894eff8bba26dbafe607015aa3404f59b0b227f8838894c9"
+  },
+  "MAPK14": {
+   "role": "train",
+   "n_receptors": 22,
+   "ligand_file": "MAPK14.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5888,
+   "manifest_sha256": "e9456912a7b8488b6c45128a3c5a08d203e06e242374672963f2cdc9c29b5cba"
+  },
+  "MAPKAPK2": {
+   "role": "train",
+   "n_receptors": 23,
+   "ligand_file": "MAPKAPK2.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6144,
+   "manifest_sha256": "dceb8f3e620ea73eab1e2e4200b7e260e25550c23f44daedb66defe1faa722ed"
+  },
+  "MET": {
+   "role": "train",
+   "n_receptors": 22,
+   "ligand_file": "MET.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5888,
+   "manifest_sha256": "2a1fed0aabb880cb9b98abbdd7156e3329e461c7828d30d472df36ec032c836c"
+  },
+  "MMP13": {
+   "role": "dev",
+   "n_receptors": 22,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 3840,
+   "manifest_sha256": "c1089c0e4179aa1b1c6d91a52e7f15b74a6d83a45008d1ede8c206d00eb0004c"
+  },
+  "NOS1": {
+   "role": "dev",
+   "n_receptors": 20,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 3520,
+   "manifest_sha256": "681b73adf18a639698bc863995edaf9772dc6349334b0055aaae94d329fb7c2b"
+  },
+  "NR3C1": {
+   "role": "train",
+   "n_receptors": 25,
+   "ligand_file": "NR3C1.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6656,
+   "manifest_sha256": "50b846c7a9dfe5074be9ccb9652d49ab88d64fcc78d78e6fbc9ad89e5d34b19a"
+  },
+  "PARP1": {
+   "role": "dev",
+   "n_receptors": 20,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 3520,
+   "manifest_sha256": "c2e527cbcb129abb83b46a3e508043de266d0e8f456b57d645218817f4215972"
+  },
+  "PDE5A": {
+   "role": "dev",
+   "n_receptors": 23,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 4000,
+   "manifest_sha256": "a9fad8264966a9efe660ca3102bd5b408ab1b952aaa3b149ccb33f4708a391aa"
+  },
+  "PGR": {
+   "role": "train",
+   "n_receptors": 25,
+   "ligand_file": "PGR.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6656,
+   "manifest_sha256": "8aaebfd03adf8467606adbad9bc830de4bf648b70565c471b1b907a7f403d71f"
+  },
+  "PLK1": {
+   "role": "train",
+   "n_receptors": 19,
+   "ligand_file": "PLK1.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5120,
+   "manifest_sha256": "ab3f57a24e31a08af6ac6fb6df11e53ab09beca17dee87252e4f279ca00520d7"
+  },
+  "PPARA": {
+   "role": "train",
+   "n_receptors": 21,
+   "ligand_file": "PPARA.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5632,
+   "manifest_sha256": "c84b16fe12b74776e2269b81527019da309ac9a1628d81024fbb85db8ceceb55"
+  },
+  "PPARD": {
+   "role": "train",
+   "n_receptors": 25,
+   "ligand_file": "PPARD.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6656,
+   "manifest_sha256": "ea8e7094eb2426dea67353d8c911bbc2705fd7195424d11c33eae4608a80d71e"
+  },
+  "PPARG": {
+   "role": "train",
+   "n_receptors": 23,
+   "ligand_file": "PPARG.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6144,
+   "manifest_sha256": "6babc58a6ee3be3a092b507da5aca717e9b3097e5d1d8571af16f0729b016804"
+  },
+  "PTGS2": {
+   "role": "dev",
+   "n_receptors": 25,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 4320,
+   "manifest_sha256": "6476886dbec2eb3edd74470c336aa66c726615ab87ae4bab070d0b1120364e88"
+  },
+  "PTK2": {
+   "role": "train",
+   "n_receptors": 19,
+   "ligand_file": "PTK2.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 5120,
+   "manifest_sha256": "5427051c9f599302f793f0737ba332d2ea2ee33341e2df27263057ea3a113617"
+  },
+  "PTPN1": {
+   "role": "dev",
+   "n_receptors": 22,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 3840,
+   "manifest_sha256": "f6edf6de2b9a294f2ffed653fd49b411b6903e40b802b3a5ed0c625d1dde3717"
+  },
+  "REN": {
+   "role": "dev",
+   "n_receptors": 21,
+   "ligand_file": "heldout_shared.csv",
+   "n_ligands": 160,
+   "wt_seeds": [
+    1,
+    2,
+    3
+   ],
+   "n_dockings": 3680,
+   "manifest_sha256": "c53c44f233226163aeee1b604c645fd31b7a56baa53e5e50db35be3198105254"
+  },
+  "ROCK1": {
+   "role": "train",
+   "n_receptors": 25,
+   "ligand_file": "ROCK1.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6656,
+   "manifest_sha256": "2ccbeeaa8bee0a7de9bcf2ebf0de40c1bc2a37a7dfbd49fb5feaa1ec4a965d44"
+  },
+  "SRC": {
+   "role": "train",
+   "n_receptors": 23,
+   "ligand_file": "SRC.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6144,
+   "manifest_sha256": "b7600baf40b490c73b210791384a6ef568089131cdccc9bb8be3586dcd319f7b"
+  },
+  "THRB": {
+   "role": "train",
+   "n_receptors": 25,
+   "ligand_file": "THRB.csv",
+   "n_ligands": 256,
+   "wt_seeds": [
+    1,
+    2
+   ],
+   "n_dockings": 6656,
+   "manifest_sha256": "c442c1e7cbfebc5368991fdafd0c7d777f4453c5595a3b30e98fc565abd1fd4f"
+  }
+ },
+ "design": {
+  "n_train_lig": 256,
+  "n_held_lig": 160,
+  "seed": 20261001,
+  "engine": "unidock-1.2.0 detail"
+ },
+ "total_dockings": 305344
+}

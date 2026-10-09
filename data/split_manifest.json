@@ -1,0 +1,427 @@
+{
+  "target_roles": {
+    "train": 39,
+    "dev": 10,
+    "test": 9
+  },
+  "ligand_roles": {
+    "train": 156095,
+    "dev": 26015,
+    "probcal": 26015,
+    "policycal": 26015,
+    "test": 26015
+  },
+  "label_files": {
+    "dev_dev": {
+      "file": "labels_dev_dev.parquet",
+      "sha256": "d85146c137b6c4a7889371f2f4196c650df0fdf988e76cdda8c58541baf73629",
+      "n_cells": 260150,
+      "n_valid": 260135
+    },
+    "dev_policycal": {
+      "file": "labels_dev_policycal.parquet",
+      "sha256": "ec79751853de2f3c644268138cb1400792a7237a3102c0268029cf8aca7ca6c5",
+      "n_cells": 260150,
+      "n_valid": 260142
+    },
+    "dev_probcal": {
+      "file": "labels_dev_probcal.parquet",
+      "sha256": "57271b1ad8a1d69e10e863cbb05135d5902b77d9d5899288fe8969502de38257",
+      "n_cells": 260150,
+      "n_valid": 260145
+    },
+    "dev_test": {
+      "file": "labels_dev_test.parquet",
+      "sha256": "de418e0ef41bcb99148e5d8b950ef8148f7a98273a0f575efe91f5da4b2d3252",
+      "n_cells": 260150,
+      "n_valid": 260144
+    },
+    "dev_train": {
+      "file": "labels_dev_train.parquet",
+      "sha256": "e0854c278a9fc1b27a0e526e8cee5227172159abca0dc975ce4572a71d02790f",
+      "n_cells": 1560950,
+      "n_valid": 1560876
+    },
+    "test_dev": {
+      "file": "labels_test_dev.parquet",
+      "sha256": "1c07274a86ec2ad5e7f8cb552f4363dc40b932a13b8b1bd3d8c77773e55a7fea",
+      "n_cells": 234135,
+      "n_valid": 234125
+    },
+    "test_policycal": {
+      "file": "labels_test_policycal.parquet",
+      "sha256": "f9aba74bd5b7f1f33555b9294a94f7bdd36629d1f9059742eac9a712c366bfb6",
+      "n_cells": 234135,
+      "n_valid": 234135
+    },
+    "test_probcal": {
+      "file": "labels_test_probcal.parquet",
+      "sha256": "83c9bf456e3d04c0e3b196107e5fdf61bcadfc2d9818293258da3d157d8041a7",
+      "n_cells": 234135,
+      "n_valid": 234135
+    },
+    "test_test": {
+      "file": "labels_test_test.parquet",
+      "sha256": "007310c02b3bcc058bd1b56399c8fd9b4533c8e7b01191ef3b1f98bebc7ade39",
+      "n_cells": 234135,
+      "n_valid": 234134
+    },
+    "test_train": {
+      "file": "labels_test_train.parquet",
+      "sha256": "cdbb519a945865473be223ab1a29f7534d7aac45b09401218fe2de9030be5d2b",
+      "n_cells": 1404855,
+      "n_valid": 1404827
+    },
+    "train_dev": {
+      "file": "labels_train_dev.parquet",
+      "sha256": "79392fea8ea9ec522cc1580a7f5c21f4be86e7676a09116504aaf42d30b25cf2",
+      "n_cells": 1014585,
+      "n_valid": 1014540
+    },
+    "train_policycal": {
+      "file": "labels_train_policycal.parquet",
+      "sha256": "973332b8dbf31b9453abf0ab13ab73d57fcac55319a7d3054c574ef0fabb9fc8",
+      "n_cells": 1014585,
+      "n_valid": 1014582
+    },
+    "train_probcal": {
+      "file": "labels_train_probcal.parquet",
+      "sha256": "7f5d9a208c32d4639989a872c21eb22387c5cacce417f30b093b48b913ef3f68",
+      "n_cells": 1014585,
+      "n_valid": 1014584
+    },
+    "train_test": {
+      "file": "labels_train_test.parquet",
+      "sha256": "eaf640933ac884405d109a0012591af6a51851fc473c70504a290b59198203ec",
+      "n_cells": 1014585,
+      "n_valid": 1014583
+    },
+    "train_train": {
+      "file": "labels_train_train.parquet",
+      "sha256": "1e3a2acd077196a0342e3c6b72fc303286955ddb938994c1333bd6505719a5fd",
+      "n_cells": 6087705,
+      "n_valid": 6087564
+    }
+  },
+  "n_seq_links": 49,
+  "seq_links": [
+    [
+      "ABL1",
+      "CSF1R",
+      0.412,
+      0.819
+    ],
+    [
+      "ABL1",
+      "FGFR1",
+      0.468,
+      0.815
+    ],
+    [
+      "ABL1",
+      "IGF1R",
+      0.458,
+      0.841
+    ],
+    [
+      "ABL1",
+      "SRC",
+      0.505,
+      0.815
+    ],
+    [
+      "ADORA2A",
+      "ADRB1",
+      0.434,
+      0.847
+    ],
+    [
+      "ADORA2A",
+      "DRD3",
+      0.384,
+      0.868
+    ],
+    [
+      "ADRB1",
+      "ADRB2",
+      0.632,
+      0.826
+    ],
+    [
+      "ADRB1",
+      "DRD3",
+      0.403,
+      0.935
+    ],
+    [
+      "AKT1",
+      "AKT2",
+      0.882,
+      0.826
+    ],
+    [
+      "AKT2",
+      "ROCK1",
+      0.388,
+      0.853
+    ],
+    [
+      "AR",
+      "NR3C1",
+      0.52,
+      0.898
+    ],
+    [
+      "CSF1R",
+      "FGFR1",
+      0.583,
+      0.875
+    ],
+    [
+      "CSF1R",
+      "IGF1R",
+      0.403,
+      0.878
+    ],
+    [
+      "CSF1R",
+      "JAK2",
+      0.377,
+      0.837
+    ],
+    [
+      "CSF1R",
+      "KIT",
+      0.746,
+      0.93
+    ],
+    [
+      "CSF1R",
+      "LCK",
+      0.446,
+      0.852
+    ],
+    [
+      "EGFR",
+      "IGF1R",
+      0.412,
+      0.844
+    ],
+    [
+      "EGFR",
+      "JAK2",
+      0.412,
+      0.831
+    ],
+    [
+      "EGFR",
+      "LCK",
+      0.381,
+      0.878
+    ],
+    [
+      "EGFR",
+      "PTK2",
+      0.418,
+      0.849
+    ],
+    [
+      "ESR2",
+      "NR3C1",
+      0.312,
+      0.807
+    ],
+    [
+      "F10",
+      "F2",
+      0.446,
+      0.851
+    ],
+    [
+      "FGFR1",
+      "IGF1R",
+      0.437,
+      0.902
+    ],
+    [
+      "FGFR1",
+      "JAK2",
+      0.433,
+      0.835
+    ],
+    [
+      "FGFR1",
+      "KIT",
+      0.545,
+      0.867
+    ],
+    [
+      "FGFR1",
+      "LCK",
+      0.435,
+      0.878
+    ],
+    [
+      "FGFR1",
+      "PLK1",
+      0.33,
+      0.8
+    ],
+    [
+      "FGFR1",
+      "PTK2",
+      0.411,
+      0.856
+    ],
+    [
+      "FGFR1",
+      "SRC",
+      0.451,
+      0.852
+    ],
+    [
+      "IGF1R",
+      "JAK2",
+      0.336,
+      0.823
+    ],
+    [
+      "IGF1R",
+      "KIT",
+      0.412,
+      0.834
+    ],
+    [
+      "IGF1R",
+      "LCK",
+      0.424,
+      0.848
+    ],
+    [
+      "IGF1R",
+      "PTK2",
+      0.43,
+      0.836
+    ],
+    [
+      "JAK2",
+      "KIT",
+      0.373,
+      0.801
+    ],
+    [
+      "JAK2",
+      "LCK",
+      0.404,
+      0.838
+    ],
+    [
+      "JAK2",
+      "MET",
+      0.379,
+      0.839
+    ],
+    [
+      "JAK2",
+      "PLK1",
+      0.375,
+      0.8
+    ],
+    [
+      "JAK2",
+      "PTK2",
+      0.399,
+      0.838
+    ],
+    [
+      "LCK",
+      "MET",
+      0.431,
+      0.816
+    ],
+    [
+      "LCK",
+      "PTK2",
+      0.424,
+      0.909
+    ],
+    [
+      "LCK",
+      "SRC",
+      0.677,
+      0.878
+    ],
+    [
+      "MAPK1",
+      "MAPK14",
+      0.536,
+      0.898
+    ],
+    [
+      "MAPK1",
+      "MET",
+      0.309,
+      0.835
+    ],
+    [
+      "MET",
+      "PTK2",
+      0.395,
+      0.824
+    ],
+    [
+      "PLK1",
+      "PTK2",
+      0.327,
+      0.838
+    ],
+    [
+      "PPARA",
+      "PPARD",
+      0.75,
+      0.882
+    ],
+    [
+      "PPARA",
+      "PPARG",
+      0.664,
+      0.924
+    ],
+    [
+      "PPARD",
+      "PPARG",
+      0.684,
+      0.856
+    ],
+    [
+      "PTK2",
+      "SRC",
+      0.427,
+      0.916
+    ]
+  ],
+  "n_target_clusters": 22,
+  "test_clusters": [
+    1,
+    6,
+    7,
+    9,
+    10,
+    12,
+    13,
+    14,
+    15
+  ],
+  "ligand_ratios": {
+    "train": 0.6,
+    "dev": 0.1,
+    "probcal": 0.1,
+    "policycal": 0.1,
+    "test": 0.1
+  },
+  "split_salt": "pocketgate_split_v1",
+  "files": {
+    "targets.parquet": "ffd8c77e0c32f8dd103d460094411d19bc9cb9ac551fb9f682adb6c27d0a8441",
+    "ligand_splits.parquet": "51e2063876dfe7780bf5fa6ce8d28315422f3f6f52375218d5ddc07d524dc935"
+  }
+}

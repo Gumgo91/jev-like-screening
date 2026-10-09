@@ -1,0 +1,44 @@
+{
+ "utc": "2026-09-30T21:15:28.368568+00:00",
+ "fold_A": {
+  "rs_int_l3": 0.168,
+  "rs_int_l10": 0.168,
+  "rsg_int_l1": -0.08,
+  "rsg_int_l3": 0.125,
+  "rsg_int_l10": 0.107,
+  "rse_int_l3": 0.136,
+  "rse_int_l10": 0.007
+ },
+ "fold_B": {
+  "rs_int_l3": 0.074,
+  "rs_int_l10": 0.086,
+  "rsg_int_l1": 0.179,
+  "rsg_int_l3": 0.216,
+  "rsg_int_l10": 0.06,
+  "rse_int_l3": 0.07,
+  "rse_int_l10": 0.245
+ },
+ "mean": {
+  "rs_int_l3": 0.121,
+  "rs_int_l10": 0.127,
+  "rsg_int_l1": 0.049499999999999995,
+  "rsg_int_l3": 0.17049999999999998,
+  "rsg_int_l10": 0.08349999999999999,
+  "rse_int_l3": 0.10300000000000001,
+  "rse_int_l10": 0.126
+ },
+ "best": "rsg_int_l3",
+ "within_0.02_of_best": [
+  "rsg_int_l3"
+ ],
+ "rule": "highest mean validation pooled r over two folds; differences below 0.02 are ties, broken toward simpler architecture",
+ "selected": {
+  "arch": "rsg",
+  "lambda": 3,
+  "lr": 0.0005,
+  "n_mut": 6,
+  "mut_batch": 96,
+  "family_balance": false,
+  "updates": 20000
+ }
+}

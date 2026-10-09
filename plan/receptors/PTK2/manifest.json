@@ -1,0 +1,442 @@
+{
+ "target": "PTK2",
+ "box": {
+  "center_x": 9.656,
+  "center_y": 2.763,
+  "center_z": 5.578,
+  "size_x": 30.0,
+  "size_y": 30.0,
+  "size_z": 30.0
+ },
+ "n_atoms": 2371,
+ "receptors": [
+  {
+   "id": "wt",
+   "kind": "wt",
+   "residues": [],
+   "n_removed": 0
+  },
+  {
+   "id": "c_LEU553",
+   "kind": "single_contact",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "LEU553",
+     "res": "LEU",
+     "resid": "553",
+     "d_sc": 3.94,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_ILE428",
+   "kind": "single_contact",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "ILE428",
+     "res": "ILE",
+     "resid": "428",
+     "d_sc": 4.35,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_GLU506",
+   "kind": "single_contact",
+   "n_removed": 4,
+   "residues": [
+    {
+     "label": "GLU506",
+     "res": "GLU",
+     "resid": "506",
+     "d_sc": 4.62,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_VAL436",
+   "kind": "single_contact",
+   "n_removed": 2,
+   "residues": [
+    {
+     "label": "VAL436",
+     "res": "VAL",
+     "resid": "436",
+     "d_sc": 5.37,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_LEU567",
+   "kind": "single_contact",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "LEU567",
+     "res": "LEU",
+     "resid": "567",
+     "d_sc": 5.67,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_LEU501",
+   "kind": "single_contact",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "LEU501",
+     "res": "LEU",
+     "resid": "501",
+     "d_sc": 6.87,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "s_VAL560",
+   "kind": "single_shell",
+   "n_removed": 2,
+   "residues": [
+    {
+     "label": "VAL560",
+     "res": "VAL",
+     "resid": "560",
+     "d_sc": 13.01,
+     "n_sc_heavy": 2,
+     "class": "shell"
+    }
+   ]
+  },
+  {
+   "id": "s_MET475",
+   "kind": "single_shell",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "MET475",
+     "res": "MET",
+     "resid": "475",
+     "d_sc": 12.71,
+     "n_sc_heavy": 3,
+     "class": "shell"
+    }
+   ]
+  },
+  {
+   "id": "s_GLN432",
+   "kind": "single_shell",
+   "n_removed": 6,
+   "residues": [
+    {
+     "label": "GLN432",
+     "res": "GLN",
+     "resid": "432",
+     "d_sc": 10.36,
+     "n_sc_heavy": 4,
+     "class": "shell"
+    }
+   ]
+  },
+  {
+   "id": "f_GLU592",
+   "kind": "single_far",
+   "n_removed": 4,
+   "residues": [
+    {
+     "label": "GLU592",
+     "res": "GLU",
+     "resid": "592",
+     "d_sc": 27.88,
+     "n_sc_heavy": 4,
+     "class": "far"
+    }
+   ]
+  },
+  {
+   "id": "m00",
+   "kind": "multi_contact_4",
+   "n_removed": 11,
+   "residues": [
+    {
+     "label": "VAL436",
+     "res": "VAL",
+     "resid": "436",
+     "d_sc": 5.37,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    },
+    {
+     "label": "ILE428",
+     "res": "ILE",
+     "resid": "428",
+     "d_sc": 4.35,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "LEU501",
+     "res": "LEU",
+     "resid": "501",
+     "d_sc": 6.87,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "LEU553",
+     "res": "LEU",
+     "resid": "553",
+     "d_sc": 3.94,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m01",
+   "kind": "multi_contact_2",
+   "n_removed": 7,
+   "residues": [
+    {
+     "label": "GLU506",
+     "res": "GLU",
+     "resid": "506",
+     "d_sc": 4.62,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    },
+    {
+     "label": "LEU567",
+     "res": "LEU",
+     "resid": "567",
+     "d_sc": 5.67,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m02",
+   "kind": "multi_contact_4",
+   "n_removed": 12,
+   "residues": [
+    {
+     "label": "GLU506",
+     "res": "GLU",
+     "resid": "506",
+     "d_sc": 4.62,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    },
+    {
+     "label": "VAL436",
+     "res": "VAL",
+     "resid": "436",
+     "d_sc": 5.37,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    },
+    {
+     "label": "LEU567",
+     "res": "LEU",
+     "resid": "567",
+     "d_sc": 5.67,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "LEU501",
+     "res": "LEU",
+     "resid": "501",
+     "d_sc": 6.87,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m03",
+   "kind": "multi_contact_4",
+   "n_removed": 12,
+   "residues": [
+    {
+     "label": "LEU567",
+     "res": "LEU",
+     "resid": "567",
+     "d_sc": 5.67,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "LEU501",
+     "res": "LEU",
+     "resid": "501",
+     "d_sc": 6.87,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "VAL436",
+     "res": "VAL",
+     "resid": "436",
+     "d_sc": 5.37,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    },
+    {
+     "label": "GLU506",
+     "res": "GLU",
+     "resid": "506",
+     "d_sc": 4.62,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m04",
+   "kind": "multi_contact_3",
+   "n_removed": 8,
+   "residues": [
+    {
+     "label": "ILE428",
+     "res": "ILE",
+     "resid": "428",
+     "d_sc": 4.35,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "LEU501",
+     "res": "LEU",
+     "resid": "501",
+     "d_sc": 6.87,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "VAL436",
+     "res": "VAL",
+     "resid": "436",
+     "d_sc": 5.37,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m05",
+   "kind": "multi_contact_4",
+   "n_removed": 12,
+   "residues": [
+    {
+     "label": "LEU501",
+     "res": "LEU",
+     "resid": "501",
+     "d_sc": 6.87,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "VAL436",
+     "res": "VAL",
+     "resid": "436",
+     "d_sc": 5.37,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    },
+    {
+     "label": "GLU506",
+     "res": "GLU",
+     "resid": "506",
+     "d_sc": 4.62,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    },
+    {
+     "label": "LEU553",
+     "res": "LEU",
+     "resid": "553",
+     "d_sc": 3.94,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m06",
+   "kind": "multi_contact_3",
+   "n_removed": 8,
+   "residues": [
+    {
+     "label": "LEU501",
+     "res": "LEU",
+     "resid": "501",
+     "d_sc": 6.87,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "LEU553",
+     "res": "LEU",
+     "resid": "553",
+     "d_sc": 3.94,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    },
+    {
+     "label": "VAL436",
+     "res": "VAL",
+     "resid": "436",
+     "d_sc": 5.37,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m07",
+   "kind": "multi_contact_3",
+   "n_removed": 9,
+   "residues": [
+    {
+     "label": "VAL436",
+     "res": "VAL",
+     "resid": "436",
+     "d_sc": 5.37,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    },
+    {
+     "label": "GLU506",
+     "res": "GLU",
+     "resid": "506",
+     "d_sc": 4.62,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    },
+    {
+     "label": "LEU567",
+     "res": "LEU",
+     "resid": "567",
+     "d_sc": 5.67,
+     "n_sc_heavy": 3,
+     "class": "contact"
+    }
+   ]
+  }
+ ]
+}

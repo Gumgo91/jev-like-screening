@@ -1,0 +1,76 @@
+{
+ "entries": [
+  {
+   "file": "dockmut/PREREG.md",
+   "sha256": "73b1b19de9149032e371144bba0d3282ab6b4849006943da21dcdafd1e2ff74b",
+   "utc": "2026-09-30T19:30:14.697414+00:00",
+   "note": "before any held-out evaluation of interventional models"
+  },
+  {
+   "file": "dockmut/PREREG.md",
+   "sha256": "fa6d5a13017ffaf1eb26cbde13810ad301c73c23dcc732772e5be2478cda644d",
+   "utc": "2026-09-30T19:52:32.343133+00:00",
+   "note": "addendum 1: family-balanced candidates, clipping"
+  },
+  {
+   "file": "dockmut/PREREG.md",
+   "sha256": "1c290539b171b3b981b8d69d12ce2d8dad47252393abb090a82e8ae3245b7587",
+   "utc": "2026-09-30T19:57:29.713600+00:00",
+   "note": "addendum 2: definition of shuffled-label controls"
+  },
+  {
+   "file": "dockmut/PREREG.md",
+   "sha256": "3321ebcacf1c330e05eae3ca0d479884f247f2c3c1a0f3b0563e28f922b451e1",
+   "utc": "2026-09-30T20:07:10.219042+00:00",
+   "note": "addendum 3: secondary analyses"
+  },
+  {
+   "file": "dockmut/PREREG.md",
+   "sha256": "784f64788e89b2993643d1df8dbb1b7a917d6ebb8c60175d8394e62204b22f81",
+   "utc": "2026-09-30T20:50:42.914671+00:00",
+   "note": "addendum 4: two-fold validation, rse architecture"
+  },
+  {
+   "file": "dockmut/PREREG.md",
+   "sha256": "196154fdbc62f9844c0702b6d1aa6cdb30ed8b2833c5777ee8599132bd1c2aec",
+   "utc": "2026-09-30T21:58:36.639591+00:00",
+   "note": "addendum 5: written after the held-out evaluation of the 36 registered final runs; controls corrected (derangement), post hoc analyses declared"
+  },
+  {
+   "file": "dockmut/PREREG.md",
+   "sha256": "e43ddcc963d8d64b288e40a76275a53d183e69a017eaf14200d2b38b71d5d9a8",
+   "utc": "2026-10-01T00:37:41.714329+00:00",
+   "note": "addendum 6: written after the first complete draft; baseline hit-probability readout added, screening comparison restated"
+  },
+  {
+   "file": "dockmut/PREREG.md",
+   "sha256": "a475b8ae08597371884f54fa4749f6f431e139e4b2173beb2028b1351e8fbef5",
+   "utc": "2026-10-01T23:10:37.759489+00:00",
+   "note": "addendum 7: hit-head extension and RTX 4090 throughput measurements, written before training"
+  },
+  {
+   "file": "dockmut/PREREG.md",
+   "sha256": "fe844b5b28a1e5c4e21109efbbd016c80a139b942896326a0d4b29f79dc068b1",
+   "utc": "2026-10-08T04:52:36.086401+00:00",
+   "note": "addendum 8: joint (cross-attention and pooled) surrogates trained with the baseline recipe, written before training"
+  },
+  {
+   "file": "dockmut/PREREG.md",
+   "sha256": "b9287ae6713ba10e8d7896e0d642230896e670620a40e7a63539a37630d92924",
+   "utc": "2026-10-08T15:43:10.036043+00:00",
+   "note": "addendum 9: 49-target cross-validation with constant-pocket controls and full-scale timing, written before any job"
+  },
+  {
+   "file": "dockmut/PREREG.md",
+   "sha256": "9aac3ced2790d242c82865b9a928ff3c288a1468342b087b81b291910cfeba86",
+   "utc": "2026-10-09T13:15:41.275461+00:00",
+   "note": "addendum 10: manuscript restricted to known pockets; known-pocket evaluation of the existing checkpoints, written before it was computed"
+  },
+  {
+   "file": "dockmut/PREREG.md",
+   "sha256": "73b80ead375ecbb1da1ef7433f7fe61b9528bb529654cadbbb188d0ba0d4592c",
+   "utc": "2026-10-09T13:27:43.260809+00:00",
+   "note": "addendum 11: cross-fitted known-pocket evaluation of the cross-validation networks, written after E3 and before E4 was computed"
+  }
+ ]
+}

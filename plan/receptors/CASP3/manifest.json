@@ -1,0 +1,418 @@
+{
+ "target": "CASP3",
+ "box": {
+  "center_x": 35.109,
+  "center_y": 35.886,
+  "center_z": 33.909,
+  "size_x": 30.0,
+  "size_y": 30.0,
+  "size_z": 30.0
+ },
+ "n_atoms": 1925,
+ "receptors": [
+  {
+   "id": "wt",
+   "kind": "wt",
+   "residues": [],
+   "n_removed": 0
+  },
+  {
+   "id": "c_TYR204",
+   "kind": "single_contact",
+   "n_removed": 8,
+   "residues": [
+    {
+     "label": "TYR204",
+     "res": "TYR",
+     "resid": "204",
+     "d_sc": 4.56,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_GLU123",
+   "kind": "single_contact",
+   "n_removed": 4,
+   "residues": [
+    {
+     "label": "GLU123",
+     "res": "GLU",
+     "resid": "123",
+     "d_sc": 5.06,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_HIE121",
+   "kind": "single_contact",
+   "n_removed": 7,
+   "residues": [
+    {
+     "label": "HIE121",
+     "res": "HIE",
+     "resid": "121",
+     "d_sc": 5.83,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_THR166",
+   "kind": "single_contact",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "THR166",
+     "res": "THR",
+     "resid": "166",
+     "d_sc": 6.08,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_PHE128",
+   "kind": "single_contact",
+   "n_removed": 6,
+   "residues": [
+    {
+     "label": "PHE128",
+     "res": "PHE",
+     "resid": "128",
+     "d_sc": 6.51,
+     "n_sc_heavy": 6,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "c_ARG164",
+   "kind": "single_contact",
+   "n_removed": 11,
+   "residues": [
+    {
+     "label": "ARG164",
+     "res": "ARG",
+     "resid": "164",
+     "d_sc": 7.77,
+     "n_sc_heavy": 6,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "s_ILE160",
+   "kind": "single_shell",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "ILE160",
+     "res": "ILE",
+     "resid": "160",
+     "d_sc": 10.46,
+     "n_sc_heavy": 3,
+     "class": "shell"
+    }
+   ]
+  },
+  {
+   "id": "s_GLU124",
+   "kind": "single_shell",
+   "n_removed": 4,
+   "residues": [
+    {
+     "label": "GLU124",
+     "res": "GLU",
+     "resid": "124",
+     "d_sc": 10.16,
+     "n_sc_heavy": 4,
+     "class": "shell"
+    }
+   ]
+  },
+  {
+   "id": "s_THR67",
+   "kind": "single_shell",
+   "n_removed": 3,
+   "residues": [
+    {
+     "label": "THR67",
+     "res": "THR",
+     "resid": "67",
+     "d_sc": 13.68,
+     "n_sc_heavy": 2,
+     "class": "shell"
+    }
+   ]
+  },
+  {
+   "id": "f_TYR226",
+   "kind": "single_far",
+   "n_removed": 8,
+   "residues": [
+    {
+     "label": "TYR226",
+     "res": "TYR",
+     "resid": "226",
+     "d_sc": 28.51,
+     "n_sc_heavy": 7,
+     "class": "far"
+    }
+   ]
+  },
+  {
+   "id": "m00",
+   "kind": "multi_contact_2",
+   "n_removed": 15,
+   "residues": [
+    {
+     "label": "GLU123",
+     "res": "GLU",
+     "resid": "123",
+     "d_sc": 5.06,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    },
+    {
+     "label": "ARG164",
+     "res": "ARG",
+     "resid": "164",
+     "d_sc": 7.77,
+     "n_sc_heavy": 6,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m01",
+   "kind": "multi_contact_4",
+   "n_removed": 20,
+   "residues": [
+    {
+     "label": "GLU123",
+     "res": "GLU",
+     "resid": "123",
+     "d_sc": 5.06,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    },
+    {
+     "label": "THR166",
+     "res": "THR",
+     "resid": "166",
+     "d_sc": 6.08,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    },
+    {
+     "label": "HIE121",
+     "res": "HIE",
+     "resid": "121",
+     "d_sc": 5.83,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "PHE128",
+     "res": "PHE",
+     "resid": "128",
+     "d_sc": 6.51,
+     "n_sc_heavy": 6,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m02",
+   "kind": "multi_contact_3",
+   "n_removed": 25,
+   "residues": [
+    {
+     "label": "ARG164",
+     "res": "ARG",
+     "resid": "164",
+     "d_sc": 7.77,
+     "n_sc_heavy": 6,
+     "class": "contact"
+    },
+    {
+     "label": "PHE128",
+     "res": "PHE",
+     "resid": "128",
+     "d_sc": 6.51,
+     "n_sc_heavy": 6,
+     "class": "contact"
+    },
+    {
+     "label": "TYR204",
+     "res": "TYR",
+     "resid": "204",
+     "d_sc": 4.56,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m03",
+   "kind": "multi_contact_2",
+   "n_removed": 11,
+   "residues": [
+    {
+     "label": "GLU123",
+     "res": "GLU",
+     "resid": "123",
+     "d_sc": 5.06,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    },
+    {
+     "label": "HIE121",
+     "res": "HIE",
+     "resid": "121",
+     "d_sc": 5.83,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m04",
+   "kind": "multi_contact_2",
+   "n_removed": 14,
+   "residues": [
+    {
+     "label": "PHE128",
+     "res": "PHE",
+     "resid": "128",
+     "d_sc": 6.51,
+     "n_sc_heavy": 6,
+     "class": "contact"
+    },
+    {
+     "label": "TYR204",
+     "res": "TYR",
+     "resid": "204",
+     "d_sc": 4.56,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m05",
+   "kind": "multi_contact_4",
+   "n_removed": 25,
+   "residues": [
+    {
+     "label": "PHE128",
+     "res": "PHE",
+     "resid": "128",
+     "d_sc": 6.51,
+     "n_sc_heavy": 6,
+     "class": "contact"
+    },
+    {
+     "label": "HIE121",
+     "res": "HIE",
+     "resid": "121",
+     "d_sc": 5.83,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "TYR204",
+     "res": "TYR",
+     "resid": "204",
+     "d_sc": 4.56,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    },
+    {
+     "label": "GLU123",
+     "res": "GLU",
+     "resid": "123",
+     "d_sc": 5.06,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m06",
+   "kind": "multi_contact_3",
+   "n_removed": 13,
+   "residues": [
+    {
+     "label": "THR166",
+     "res": "THR",
+     "resid": "166",
+     "d_sc": 6.08,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    },
+    {
+     "label": "PHE128",
+     "res": "PHE",
+     "resid": "128",
+     "d_sc": 6.51,
+     "n_sc_heavy": 6,
+     "class": "contact"
+    },
+    {
+     "label": "GLU123",
+     "res": "GLU",
+     "resid": "123",
+     "d_sc": 5.06,
+     "n_sc_heavy": 4,
+     "class": "contact"
+    }
+   ]
+  },
+  {
+   "id": "m07",
+   "kind": "multi_contact_4",
+   "n_removed": 29,
+   "residues": [
+    {
+     "label": "THR166",
+     "res": "THR",
+     "resid": "166",
+     "d_sc": 6.08,
+     "n_sc_heavy": 2,
+     "class": "contact"
+    },
+    {
+     "label": "HIE121",
+     "res": "HIE",
+     "resid": "121",
+     "d_sc": 5.83,
+     "n_sc_heavy": 5,
+     "class": "contact"
+    },
+    {
+     "label": "ARG164",
+     "res": "ARG",
+     "resid": "164",
+     "d_sc": 7.77,
+     "n_sc_heavy": 6,
+     "class": "contact"
+    },
+    {
+     "label": "TYR204",
+     "res": "TYR",
+     "resid": "204",
+     "d_sc": 4.56,
+     "n_sc_heavy": 7,
+     "class": "contact"
+    }
+   ]
+  }
+ ]
+}
