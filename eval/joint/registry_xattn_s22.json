@@ -1,0 +1,13 @@
+{
+  "model": "xattn",
+  "seed": 22,
+  "params": 1260930,
+  "updates": 30470,
+  "epochs": 5.0002051282051285,
+  "best_cold_recall_1@10": 0.714,
+  "best_update": 12188,
+  "stop_reason": "early_stop_patience",
+  "wall_minutes_logged": 235,
+  "ckpt_sha256": "d494fb73ee18370fe484c06f600fedc2b758520467b9f2136f6e908a4ff08501",
+  "note": "rebuilt from the training log and the checkpoint after concurrent runs overwrote the shared registry file"
+}

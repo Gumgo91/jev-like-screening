@@ -1,0 +1,34 @@
+{
+ "gpu": "NVIDIA GeForce RTX 4090",
+ "cpus": 96,
+ "models": 3,
+ "specs": [
+  "dm:ckpt/rsgh_int_s11.pt",
+  "dm:ckpt/rsgh_int_s22.pt",
+  "dm:ckpt/rsgh_int_s33.pt"
+ ],
+ "library": {
+  "smiles": 260155,
+  "featurised": 260155,
+  "failures": 0,
+  "sec_featurise_cpu": 42.01567053794861,
+  "sec_embed_gpu_all_models": 4.711623191833496
+ },
+ "independence": {
+  "embedding_batch1_vs_big": 1.1920928955078125e-07,
+  "score_batch1_vs_big": 3.814697265625e-06,
+  "score_permuted_batches64_vs_big": 5.7220458984375e-06,
+  "score_range": 38.70831298828125
+ },
+ "pockets": {
+  "n_pockets": 57,
+  "pairs": 14828835,
+  "sec_state_encoding": 0.24653267860412598,
+  "sec_scoring_all_models": 39.1883111000061,
+  "pairs_per_sec_scoring": 378399.4406433527,
+  "per_model_pairs_per_sec": 1135198.321930058,
+  "sec_per_pocket": 0.6918393645370216,
+  "sec_end_to_end": 86.16213750839233
+ },
+ "head": "hit"
+}

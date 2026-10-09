@@ -1,0 +1,1471 @@
+{
+ "schema": "v4_fair_timing/1",
+ "environment": {
+  "device": "cuda",
+  "gpu": "NVIDIA L40S",
+  "torch": "2.4.1+cu124",
+  "cuda": "12.4",
+  "cudnn": 90100,
+  "cpu_count": 128,
+  "featurization_processes": 32,
+  "python": "3.11.10",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+  "date": "2026-10-09T08:56:20+00:00",
+  "tf32_matmul": false,
+  "tf32_cudnn": false,
+  "gpu_memory_gb": 47.665709056,
+  "gpu_capability": "8.9",
+  "rdkit": "2026.03.6"
+ },
+ "invocations": [
+  {
+   "date": "2026-10-09T08:56:20+00:00",
+   "gpu": "NVIDIA L40S",
+   "argv": [
+    "--out",
+    "dockmut/eval/v4_fair_timing.json",
+    "--xattn-fp32-1000"
+   ],
+   "pending": [
+    [
+     "dual",
+     1
+    ],
+    [
+     "dual",
+     5
+    ],
+    [
+     "dual",
+     20
+    ],
+    [
+     "dual",
+     57
+    ],
+    [
+     "dual",
+     1000
+    ],
+    [
+     "pooled",
+     1
+    ],
+    [
+     "pooled",
+     5
+    ],
+    [
+     "pooled",
+     20
+    ],
+    [
+     "pooled",
+     57
+    ],
+    [
+     "pooled",
+     1000
+    ],
+    [
+     "xattn_padded_fp32",
+     5
+    ],
+    [
+     "xattn_fp32",
+     1
+    ],
+    [
+     "xattn_fp32",
+     5
+    ],
+    [
+     "xattn_fp32",
+     20
+    ],
+    [
+     "xattn_fp32",
+     57
+    ],
+    [
+     "xattn_fp32",
+     1000
+    ],
+    [
+     "xattn_fp16",
+     1
+    ],
+    [
+     "xattn_fp16",
+     5
+    ],
+    [
+     "xattn_fp16",
+     20
+    ],
+    [
+     "xattn_fp16",
+     57
+    ],
+    [
+     "xattn_fp16",
+     1000
+    ]
+   ]
+  }
+ ],
+ "library": {
+  "size": 260155,
+  "n_smiles": 260155,
+  "featurization_failures": 0,
+  "n_atoms": 7184423,
+  "mean_atoms": 27.61593280928677,
+  "source": "/workspace/pocketgate/data/processed/ligand_full.parquet",
+  "column": "standardized_smiles"
+ },
+ "featurization_runs": [
+  {
+   "seconds": 22.36551829893142,
+   "processes": 32,
+   "date": "2026-10-09T08:56:20+00:00"
+  }
+ ],
+ "correctness": {
+  "n_lig": 2000,
+  "n_pockets": 5,
+  "reference": "net(ctx, lb)['logit'] (module forward, fp32, eval)",
+  "tolerances": {
+   "fp32_max_abs_diff": 0.001,
+   "fp32_spearman": 0.9999,
+   "fp16_spearman": 0.999
+  },
+  "gating": [
+   "dual",
+   "pooled",
+   "xattn_fp16_pure",
+   "xattn_fp32",
+   "xattn_padded_fp32"
+  ],
+  "results": {
+   "dual": {
+    "max_abs_diff": 3.814697265625e-06,
+    "spearman_min": 0.9999999996249999,
+    "spearman_mean": 0.9999999999250001,
+    "spearman_pooled": 0.999999999976,
+    "top10_overlap_min": 1.0,
+    "finite": true,
+    "logit_min": -34.87309265136719,
+    "logit_max": 2.3173229694366455,
+    "pass": true,
+    "tolerance": {
+     "max_abs_diff": 0.001,
+     "spearman_min": 0.9999
+    },
+    "kind": "fp32",
+    "topk_path_overlap_min": 1.0
+   },
+   "pooled": {
+    "max_abs_diff": 5.7220458984375e-06,
+    "spearman_min": 1.0,
+    "spearman_mean": 1.0,
+    "spearman_pooled": 0.999999999985,
+    "top10_overlap_min": 1.0,
+    "finite": true,
+    "logit_min": -35.93694305419922,
+    "logit_max": 0.15274763107299805,
+    "pass": true,
+    "tolerance": {
+     "max_abs_diff": 0.001,
+     "spearman_min": 0.9999
+    },
+    "kind": "fp32",
+    "topk_path_overlap_min": 1.0
+   },
+   "xattn_padded_fp32": {
+    "max_abs_diff": 5.7220458984375e-06,
+    "spearman_min": 0.9999999996249999,
+    "spearman_mean": 0.9999999999250001,
+    "spearman_pooled": 0.999999999979,
+    "top10_overlap_min": 1.0,
+    "finite": true,
+    "logit_min": -40.689979553222656,
+    "logit_max": 0.04900132119655609,
+    "pass": true,
+    "tolerance": {
+     "max_abs_diff": 0.001,
+     "spearman_min": 0.9999
+    },
+    "kind": "fp32"
+   },
+   "xattn_fp32": {
+    "max_abs_diff": 5.7220458984375e-06,
+    "spearman_min": 1.0,
+    "spearman_mean": 1.0,
+    "spearman_pooled": 0.999999999979,
+    "top10_overlap_min": 1.0,
+    "finite": true,
+    "logit_min": -40.689979553222656,
+    "logit_max": 0.04900132119655609,
+    "pass": true,
+    "tolerance": {
+     "max_abs_diff": 0.001,
+     "spearman_min": 0.9999
+    },
+    "kind": "fp32",
+    "topk_path_overlap_min": 1.0
+   },
+   "xattn_fp16_pure": {
+    "max_abs_diff": 0.01932525634765625,
+    "spearman_min": 0.9999995098747586,
+    "spearman_mean": 0.9999995313247739,
+    "spearman_pooled": 0.9999998045799792,
+    "top10_overlap_min": 0.995,
+    "finite": true,
+    "logit_min": -40.689979553222656,
+    "logit_max": 0.04900132119655609,
+    "pass": true,
+    "tolerance": {
+     "spearman_min": 0.999
+    },
+    "kind": "fp16",
+    "topk_path_overlap_min": 1.0
+   },
+   "xattn_fp16_autocast": {
+    "max_abs_diff": 0.023162841796875,
+    "spearman_min": 0.9999995338747751,
+    "spearman_mean": 0.9999995502247865,
+    "spearman_pooled": 0.9999998180829817,
+    "top10_overlap_min": 0.995,
+    "finite": true,
+    "logit_min": -40.689979553222656,
+    "logit_max": 0.04900132119655609,
+    "pass": true,
+    "tolerance": {
+     "spearman_min": 0.999
+    },
+    "kind": "fp16",
+    "topk_path_overlap_min": 1.0
+   }
+  },
+  "failed": []
+ },
+ "blocks": {
+  "dual": {
+   "1": {
+    "network": "dual",
+    "P": 1,
+    "unique_pockets": 1,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 260155,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.0004934724420309067,
+     "embed_gpu": 1.2152145085856318,
+     "pocket_states_gpu": 0.0010978719219565392,
+     "score_gpu": 0.0002730712294578552,
+     "topk_gpu": 0.0002138521522283554
+    },
+    "reps_s": {
+     "embed": [
+      1.2152145085856318,
+      1.2179968459531665
+     ],
+     "pocket_states": [
+      0.0019454266875982285,
+      0.0010978719219565392
+     ],
+     "score_plus_topk": [
+      0.029086926020681858,
+      0.00048692338168621063
+     ]
+    },
+    "model_time_s": 1.2167993038892746,
+    "scoring_pairs_per_s": 534283235.8944973,
+    "scoring_only_pairs_per_s": 952700145.3668386,
+    "model_pairs_per_s": 213802.719288598,
+    "peak_gpu_mem_gb": 1.1523328,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 24.76219998113811,
+    "end_to_end_s": 25.978999285027385,
+    "end_to_end_pairs_per_s": 10014.050085059916,
+    "wallclock_s": 26.843760547228158
+   },
+   "5": {
+    "network": "dual",
+    "P": 5,
+    "unique_pockets": 5,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 1300775,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.0011057332158088684,
+     "embed_gpu": 1.2164907408878207,
+     "pocket_states_gpu": 0.0012688292190432549,
+     "score_gpu": 0.0002730702981352806,
+     "topk_gpu": 0.00020157359540462494
+    },
+    "reps_s": {
+     "embed": [
+      1.242837032303214,
+      1.2164907408878207
+     ],
+     "pocket_states": [
+      0.005357600748538971,
+      0.0012688292190432549
+     ],
+     "score_plus_topk": [
+      0.005487577058374882,
+      0.00047464389353990555
+     ]
+    },
+    "model_time_s": 1.2182342140004039,
+    "scoring_pairs_per_s": 2740528252.241462,
+    "scoring_only_pairs_per_s": 4763516973.03816,
+    "model_pairs_per_s": 1067754.4474215275,
+    "peak_gpu_mem_gb": 1.152991744,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 24.762812241911888,
+    "end_to_end_s": 25.981046455912292,
+    "end_to_end_pairs_per_s": 50066.30515084558,
+    "wallclock_s": 26.582594407722354
+   },
+   "20": {
+    "network": "dual",
+    "P": 20,
+    "unique_pockets": 20,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 5203100,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.0033781733363866806,
+     "embed_gpu": 1.214258030988276,
+     "pocket_states_gpu": 0.0030457330867648125,
+     "score_gpu": 0.00030823424458503723,
+     "topk_gpu": 0.00025401171296834946
+    },
+    "reps_s": {
+     "embed": [
+      1.3590093394741416,
+      1.214258030988276
+     ],
+     "pocket_states": [
+      0.003553616814315319,
+      0.0030457330867648125
+     ],
+     "score_plus_topk": [
+      0.0006520813331007957,
+      0.0005622459575533867
+     ]
+    },
+    "model_time_s": 1.2178660100325942,
+    "scoring_pairs_per_s": 9254135009.954166,
+    "scoring_only_pairs_per_s": 16880343736.643261,
+    "model_pairs_per_s": 4272309.069419507,
+    "peak_gpu_mem_gb": 1.152991744,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 24.765084682032466,
+    "end_to_end_s": 25.98295069206506,
+    "end_to_end_pairs_per_s": 200250.54358391158,
+    "wallclock_s": 24.62796112522483
+   },
+   "57": {
+    "network": "dual",
+    "P": 57,
+    "unique_pockets": 57,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 14828835,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.007544141262769699,
+     "embed_gpu": 1.220448825508356,
+     "pocket_states_gpu": 0.009024118073284626,
+     "score_gpu": 0.00036522001028060913,
+     "topk_gpu": 0.0005088960751891136
+    },
+    "reps_s": {
+     "embed": [
+      1.2412853669375181,
+      1.220448825508356
+     ],
+     "pocket_states": [
+      0.009173132479190826,
+      0.009024118073284626
+     ],
+     "score_plus_topk": [
+      0.0009659649804234505,
+      0.0008741160854697227
+     ]
+    },
+    "model_time_s": 1.2303470596671104,
+    "scoring_pairs_per_s": 16964377210.872908,
+    "scoring_only_pairs_per_s": 40602471339.41696,
+    "model_pairs_per_s": 12052562.63546659,
+    "peak_gpu_mem_gb": 1.152991744,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 24.76925064995885,
+    "end_to_end_s": 25.99959770962596,
+    "end_to_end_pairs_per_s": 570348.632529412,
+    "wallclock_s": 22.68391645140946
+   },
+   "1000": {
+    "network": "dual",
+    "P": 1000,
+    "unique_pockets": 57,
+    "pockets_repeated": true,
+    "n_lig": 260155,
+    "n_pairs": 260155000,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.04478386417031288,
+     "embed_gpu": 1.21494653634727,
+     "pocket_states_gpu": 0.15240738727152348,
+     "score_gpu": 0.004031045362353325,
+     "topk_gpu": 0.012994124554097652
+    },
+    "reps_s": {
+     "embed": [
+      1.2218847861513495,
+      1.21494653634727
+     ],
+     "pocket_states": [
+      0.15309571381658316,
+      0.15240738727152348
+     ],
+     "score_plus_topk": [
+      0.01715708337724209,
+      0.017025169916450977
+     ]
+    },
+    "model_time_s": 1.3843790935352445,
+    "scoring_pairs_per_s": 15280611076.228909,
+    "scoring_only_pairs_per_s": 64537849767.118835,
+    "model_pairs_per_s": 187921791.95342407,
+    "peak_gpu_mem_gb": 1.152991744,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 24.806490372866392,
+    "end_to_end_s": 26.190869466401637,
+    "end_to_end_pairs_per_s": 9933041.754636437,
+    "wallclock_s": 23.132468288764358
+   }
+  },
+  "pooled": {
+   "1": {
+    "network": "pooled",
+    "P": 1,
+    "unique_pockets": 1,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 260155,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.0003100670874118805,
+     "embed_gpu": 1.2112335292622447,
+     "pocket_states_gpu": 0.0011304812505841255,
+     "score_gpu": 0.0009241607040166855,
+     "topk_gpu": 0.000157197006046772
+    },
+    "reps_s": {
+     "embed": [
+      1.240815570577979,
+      1.2112335292622447
+     ],
+     "pocket_states": [
+      0.001992317847907543,
+      0.0011304812505841255
+     ],
+     "score_plus_topk": [
+      0.0012854533270001411,
+      0.0010813577100634575
+     ]
+    },
+    "model_time_s": 1.2134453682228923,
+    "scoring_pairs_per_s": 240581814.49016836,
+    "scoring_only_pairs_per_s": 281504070.5250577,
+    "model_pairs_per_s": 214393.66518906463,
+    "peak_gpu_mem_gb": 1.152991744,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 24.76201657578349,
+    "end_to_end_s": 25.975461944006383,
+    "end_to_end_pairs_per_s": 10015.413799408043,
+    "wallclock_s": 22.373966832645237
+   },
+   "5": {
+    "network": "pooled",
+    "P": 5,
+    "unique_pockets": 5,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 1300775,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.0010200748220086098,
+     "embed_gpu": 1.2127037728205323,
+     "pocket_states_gpu": 0.0012152381241321564,
+     "score_gpu": 0.004669285379350185,
+     "topk_gpu": 0.00020320620387792587
+    },
+    "reps_s": {
+     "embed": [
+      1.2405728651210666,
+      1.2127037728205323
+     ],
+     "pocket_states": [
+      0.0032625989988446236,
+      0.0012152381241321564
+     ],
+     "score_plus_topk": [
+      0.006495974026620388,
+      0.004872491583228111
+     ]
+    },
+    "model_time_s": 1.2187915025278926,
+    "scoring_pairs_per_s": 266963006.04755765,
+    "scoring_only_pairs_per_s": 278581173.41738194,
+    "model_pairs_per_s": 1067266.2201057898,
+    "peak_gpu_mem_gb": 1.152991744,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 24.762726583518088,
+    "end_to_end_s": 25.98151808604598,
+    "end_to_end_pairs_per_s": 50065.39632103382,
+    "wallclock_s": 22.961264931596816
+   },
+   "20": {
+    "network": "pooled",
+    "P": 20,
+    "unique_pockets": 20,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 5203100,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.005980435758829117,
+     "embed_gpu": 1.2117243194952607,
+     "pocket_states_gpu": 0.003015005961060524,
+     "score_gpu": 0.016193576157093048,
+     "topk_gpu": 0.0002934727817773819
+    },
+    "reps_s": {
+     "embed": [
+      1.2463062452152371,
+      1.2117243194952607
+     ],
+     "pocket_states": [
+      0.003481810912489891,
+      0.003015005961060524
+     ],
+     "score_plus_topk": [
+      0.017414609901607037,
+      0.01648704893887043
+     ]
+    },
+    "model_time_s": 1.2312263743951917,
+    "scoring_pairs_per_s": 315587102.29415244,
+    "scoring_only_pairs_per_s": 321306421.10951865,
+    "model_pairs_per_s": 4225949.109119669,
+    "peak_gpu_mem_gb": 1.250937344,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 24.76768694445491,
+    "end_to_end_s": 25.9989133188501,
+    "end_to_end_pairs_per_s": 200127.59518789483,
+    "wallclock_s": 22.30543308146298
+   },
+   "57": {
+    "network": "pooled",
+    "P": 57,
+    "unique_pockets": 57,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 14828835,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.00991249643266201,
+     "embed_gpu": 1.2117063021287322,
+     "pocket_states_gpu": 0.008740774355828762,
+     "score_gpu": 0.04354988597333431,
+     "topk_gpu": 0.0006452640518546104
+    },
+    "reps_s": {
+     "embed": [
+      1.24346171785146,
+      1.2117063021287322
+     ],
+     "pocket_states": [
+      0.009087178856134415,
+      0.008740774355828762
+     ],
+     "score_plus_topk": [
+      0.04498788807541132,
+      0.04419515002518892
+     ]
+    },
+    "model_time_s": 1.26464222650975,
+    "scoring_pairs_per_s": 335530821.6297114,
+    "scoring_only_pairs_per_s": 340502269.26150227,
+    "model_pairs_per_s": 11725715.53373295,
+    "peak_gpu_mem_gb": 1.28930048,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 24.77161900512874,
+    "end_to_end_s": 26.03626123163849,
+    "end_to_end_pairs_per_s": 569545.4838185615,
+    "wallclock_s": 22.61428819503635
+   },
+   "1000": {
+    "network": "pooled",
+    "P": 1000,
+    "unique_pockets": 57,
+    "pockets_repeated": true,
+    "n_lig": 260155,
+    "n_pairs": 260155000,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.04462332744151354,
+     "embed_gpu": 1.2125461613759398,
+     "pocket_states_gpu": 0.15220162738114595,
+     "score_gpu": 0.7663144338876009,
+     "topk_gpu": 0.014044899493455887
+    },
+    "reps_s": {
+     "embed": [
+      1.2223206479102373,
+      1.2125461613759398
+     ],
+     "pocket_states": [
+      0.1525632357224822,
+      0.15220162738114595
+     ],
+     "score_plus_topk": [
+      0.7809811169281602,
+      0.7803593333810568
+     ]
+    },
+    "model_time_s": 2.1451071221381426,
+    "scoring_pairs_per_s": 333378469.2147251,
+    "scoring_only_pairs_per_s": 339488581.31276983,
+    "model_pairs_per_s": 121278325.59741336,
+    "peak_gpu_mem_gb": 1.40362752,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 24.806329836137593,
+    "end_to_end_s": 26.951436958275735,
+    "end_to_end_pairs_per_s": 9652732.075204493,
+    "wallclock_s": 23.424829937517643
+   }
+  },
+  "xattn_padded_fp32": {
+   "5": {
+    "network": "xattn_padded_fp32",
+    "P": 5,
+    "unique_pockets": 5,
+    "pockets_repeated": false,
+    "n_lig": 20000,
+    "n_pairs": 100000,
+    "subset": true,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": null,
+     "collate_cpu": 0.16431814432144165,
+     "pocket_collate_cpu": 0.0004448322579264641,
+     "embed_gpu": 0.07960384711623192,
+     "pocket_states_gpu": 0.005340629257261753,
+     "score_gpu": 1.1308475201949477,
+     "topk_gpu": null
+    },
+    "reps_s": {
+     "embed": [
+      0.08443825040012598,
+      0.07960384711623192
+     ],
+     "pocket_states": [
+      0.005763486959040165,
+      0.005340629257261753
+     ],
+     "score_plus_topk": [
+      1.1322110891342163,
+      1.1308475201949477
+     ]
+    },
+    "model_time_s": 1.2157919965684414,
+    "scoring_pairs_per_s": 88429.25170208704,
+    "scoring_only_pairs_per_s": 88429.25170208704,
+    "model_pairs_per_s": 82250.91157224988,
+    "peak_gpu_mem_gb": 1.380243968,
+    "over_20gb": false,
+    "group_size": 1024,
+    "pocket_batch": 1,
+    "pocket_chunk": 128,
+    "topk_fraction": null,
+    "total_atoms": 520792,
+    "end_to_end_s": null,
+    "s_per_pair_scoring": 1.1308475201949477e-05,
+    "extrapolated_score_s_per_pocket_full_library": 2.9419563661631662,
+    "note": "subset timing of the original padded implementation; not used in totals"
+   }
+  },
+  "xattn_fp32": {
+   "1": {
+    "network": "xattn_fp32",
+    "P": 1,
+    "unique_pockets": 1,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 260155,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.00040033459663391113,
+     "embed_gpu": 1.2058289628475904,
+     "pocket_states_gpu": 0.0012190407142043114,
+     "score_gpu": 0.5419718781486154,
+     "topk_gpu": 0.0007522562518715858
+    },
+    "reps_s": {
+     "embed": [
+      1.2692930847406387,
+      1.2058289628475904
+     ],
+     "pocket_states": [
+      0.001991349272429943,
+      0.0012190407142043114
+     ],
+     "score_plus_topk": [
+      0.542724134400487,
+      0.5429888749495149
+     ]
+    },
+    "model_time_s": 1.7497721379622817,
+    "scoring_pairs_per_s": 479350.34303823026,
+    "scoring_only_pairs_per_s": 480015.68068198237,
+    "model_pairs_per_s": 148679.35907527173,
+    "peak_gpu_mem_gb": 4.603096064,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp32",
+    "state_fallback_to_fp16": false,
+    "mode": "fp32",
+    "cpu_prep_s": 24.762106843292713,
+    "end_to_end_s": 26.511878981254995,
+    "end_to_end_pairs_per_s": 9812.771104754229,
+    "wallclock_s": 24.340939108282328
+   },
+   "5": {
+    "network": "xattn_fp32",
+    "P": 5,
+    "unique_pockets": 5,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 1300775,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.001057339832186699,
+     "embed_gpu": 1.2056901706382632,
+     "pocket_states_gpu": 0.0015528248623013496,
+     "score_gpu": 2.779495378024876,
+     "topk_gpu": 0.0006500966846942902
+    },
+    "reps_s": {
+     "embed": [
+      1.3527414351701736,
+      1.2056901706382632
+     ],
+     "pocket_states": [
+      0.0031900666654109955,
+      0.0015528248623013496
+     ],
+     "score_plus_topk": [
+      2.7801454747095704,
+      2.783593090251088
+     ]
+    },
+    "model_time_s": 3.987388470210135,
+    "scoring_pairs_per_s": 467880.19254132244,
+    "scoring_only_pairs_per_s": 467989.6251255282,
+    "model_pairs_per_s": 326222.29053379624,
+    "peak_gpu_mem_gb": 4.603096064,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp32",
+    "state_fallback_to_fp16": false,
+    "mode": "fp32",
+    "cpu_prep_s": 24.762763848528266,
+    "end_to_end_s": 28.7501523187384,
+    "end_to_end_pairs_per_s": 45244.10812085325,
+    "wallclock_s": 26.736138557083905
+   },
+   "20": {
+    "network": "xattn_fp32",
+    "P": 20,
+    "unique_pockets": 20,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 5203100,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.0038184309378266335,
+     "embed_gpu": 1.2051453897729516,
+     "pocket_states_gpu": 0.004107275046408176,
+     "score_gpu": 11.151226178742945,
+     "topk_gpu": 0.0006712395697832108
+    },
+    "reps_s": {
+     "embed": [
+      1.2584469579160213,
+      1.2051453897729516
+     ],
+     "pocket_states": [
+      0.005212436430156231,
+      0.004107275046408176
+     ],
+     "score_plus_topk": [
+      11.151897418312728,
+      11.177029783837497
+     ]
+    },
+    "model_time_s": 12.361150083132088,
+    "scoring_pairs_per_s": 466566.3433610766,
+    "scoring_only_pairs_per_s": 466594.4279668924,
+    "model_pairs_per_s": 420923.6167353151,
+    "peak_gpu_mem_gb": 4.603096064,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp32",
+    "state_fallback_to_fp16": false,
+    "mode": "fp32",
+    "cpu_prep_s": 24.765524939633906,
+    "end_to_end_s": 37.126675022765994,
+    "end_to_end_pairs_per_s": 140144.51864621518,
+    "wallclock_s": 35.43976740445942
+   },
+   "57": {
+    "network": "xattn_fp32",
+    "P": 57,
+    "unique_pockets": 57,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 14828835,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.013374878093600273,
+     "embed_gpu": 1.2099093832075596,
+     "pocket_states_gpu": 0.01183412317186594,
+     "score_gpu": 32.12562143895775,
+     "topk_gpu": 0.0007731430232524872
+    },
+    "reps_s": {
+     "embed": [
+      1.2481459816917777,
+      1.2099093832075596
+     ],
+     "pocket_states": [
+      0.022353868931531906,
+      0.01183412317186594
+     ],
+     "score_plus_topk": [
+      32.126394581981,
+      32.20749416667968
+     ]
+    },
+    "model_time_s": 33.34813808836043,
+    "scoring_pairs_per_s": 461577.93904197303,
+    "scoring_only_pairs_per_s": 461589.047488978,
+    "model_pairs_per_s": 444667.5541737588,
+    "peak_gpu_mem_gb": 4.64057856,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp32",
+    "state_fallback_to_fp16": false,
+    "mode": "fp32",
+    "cpu_prep_s": 24.77508138678968,
+    "end_to_end_s": 58.12321947515011,
+    "end_to_end_pairs_per_s": 255127.55717772813,
+    "wallclock_s": 55.41350356210023
+   },
+   "1000": {
+    "network": "xattn_fp32",
+    "P": 1000,
+    "unique_pockets": 57,
+    "pockets_repeated": true,
+    "n_lig": 260155,
+    "n_pairs": 260155000,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.08195879217237234,
+     "embed_gpu": 1.2107704132795334,
+     "pocket_states_gpu": 0.20953636057674885,
+     "score_gpu": 569.8290843851864,
+     "topk_gpu": 0.015225464478135109
+    },
+    "reps_s": {
+     "embed": [
+      1.2523593846708536,
+      1.2107704132795334
+     ],
+     "pocket_states": [
+      0.2534291706979275,
+      0.20953636057674885
+     ],
+     "score_plus_topk": [
+      571.1647839350626,
+      569.8443098496646
+     ]
+    },
+    "model_time_s": 571.2646166235209,
+    "scoring_pairs_per_s": 456536.97949293145,
+    "scoring_only_pairs_per_s": 456549.1778656623,
+    "model_pairs_per_s": 455401.9143311467,
+    "peak_gpu_mem_gb": 5.155539456,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp32",
+    "state_fallback_to_fp16": false,
+    "mode": "fp32",
+    "cpu_prep_s": 24.84366530086845,
+    "end_to_end_s": 596.1082819243893,
+    "end_to_end_pairs_per_s": 436422.3881610123,
+    "wallclock_s": 591.652645518072
+   }
+  },
+  "xattn_fp16": {
+   "1": {
+    "network": "xattn_fp16",
+    "P": 1,
+    "unique_pockets": 1,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 260155,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.0007105488330125809,
+     "embed_gpu": 1.2195914136245847,
+     "pocket_states_gpu": 0.0012572910636663437,
+     "score_gpu": 0.18008629139512777,
+     "topk_gpu": 0.0004937322810292244
+    },
+    "reps_s": {
+     "embed": [
+      1.3610282372683287,
+      1.2195914136245847
+     ],
+     "pocket_states": [
+      0.0019143298268318176,
+      0.0012572910636663437
+     ],
+     "score_plus_topk": [
+      0.1806890880689025,
+      0.180580023676157
+     ]
+    },
+    "model_time_s": 1.401428728364408,
+    "scoring_pairs_per_s": 1440663.2289878791,
+    "scoring_only_pairs_per_s": 1444613.0129316356,
+    "model_pairs_per_s": 185635.55515493394,
+    "peak_gpu_mem_gb": 2.80496128,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp16",
+    "state_fallback_to_fp16": false,
+    "mode": "fp16",
+    "cpu_prep_s": 24.762417057529092,
+    "end_to_end_s": 26.1638457858935,
+    "end_to_end_pairs_per_s": 9943.301230596046,
+    "wallclock_s": 23.776098321191967,
+    "fp16_mode": "pure"
+   },
+   "5": {
+    "network": "xattn_fp16",
+    "P": 5,
+    "unique_pockets": 5,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 1300775,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.001094665378332138,
+     "embed_gpu": 1.2166401566937566,
+     "pocket_states_gpu": 0.0017473474144935608,
+     "score_gpu": 0.8923412747681141,
+     "topk_gpu": 0.0005938531830906868
+    },
+    "reps_s": {
+     "embed": [
+      1.238428889773786,
+      1.2166401566937566
+     ],
+     "pocket_states": [
+      0.007472436875104904,
+      0.0017473474144935608
+     ],
+     "score_plus_topk": [
+      0.8929351279512048,
+      0.8935571536421776
+     ]
+    },
+    "model_time_s": 2.111322632059455,
+    "scoring_pairs_per_s": 1456740.7634466835,
+    "scoring_only_pairs_per_s": 1457710.2245304326,
+    "model_pairs_per_s": 616094.8498577786,
+    "peak_gpu_mem_gb": 2.80496128,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp16",
+    "state_fallback_to_fp16": false,
+    "mode": "fp16",
+    "cpu_prep_s": 24.76280117407441,
+    "end_to_end_s": 26.874123806133866,
+    "end_to_end_pairs_per_s": 48402.50827835754,
+    "wallclock_s": 24.09922920446843,
+    "fp16_mode": "pure"
+   },
+   "20": {
+    "network": "xattn_fp16",
+    "P": 20,
+    "unique_pockets": 20,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 5203100,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.003901856951415539,
+     "embed_gpu": 1.2164120022207499,
+     "pocket_states_gpu": 0.004780198447406292,
+     "score_gpu": 3.569799294695258,
+     "topk_gpu": 0.001013004221022129
+    },
+    "reps_s": {
+     "embed": [
+      1.2518341466784477,
+      1.2164120022207499
+     ],
+     "pocket_states": [
+      0.006740185432136059,
+      0.004780198447406292
+     ],
+     "score_plus_topk": [
+      3.571688245050609,
+      3.5708122989162803
+     ]
+    },
+    "model_time_s": 4.792004499584436,
+    "scoring_pairs_per_s": 1457119.4351434011,
+    "scoring_only_pairs_per_s": 1457532.9228541884,
+    "model_pairs_per_s": 1085787.795159878,
+    "peak_gpu_mem_gb": 2.80496128,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp16",
+    "state_fallback_to_fp16": false,
+    "mode": "fp16",
+    "cpu_prep_s": 24.765608365647495,
+    "end_to_end_s": 29.55761286523193,
+    "end_to_end_pairs_per_s": 176032.48353388882,
+    "wallclock_s": 27.661361269652843,
+    "fp16_mode": "pure"
+   },
+   "57": {
+    "network": "xattn_fp16",
+    "P": 57,
+    "unique_pockets": 57,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 14828835,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.00913253240287304,
+     "embed_gpu": 1.2143973112106323,
+     "pocket_states_gpu": 0.013544748537242413,
+     "score_gpu": 10.118044756352901,
+     "topk_gpu": 0.0007554255425930023
+    },
+    "reps_s": {
+     "embed": [
+      1.2544443225488067,
+      1.2143973112106323
+     ],
+     "pocket_states": [
+      0.01501673087477684,
+      0.013544748537242413
+     ],
+     "score_plus_topk": [
+      10.118800181895494,
+      10.127759274095297
+     ]
+    },
+    "model_time_s": 11.34674224164337,
+    "scoring_pairs_per_s": 1465473.6464241755,
+    "scoring_only_pairs_per_s": 1465583.060471174,
+    "model_pairs_per_s": 1306880.3965227215,
+    "peak_gpu_mem_gb": 2.80496128,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp16",
+    "state_fallback_to_fp16": false,
+    "mode": "fp16",
+    "cpu_prep_s": 24.770839041098952,
+    "end_to_end_s": 36.11758128274232,
+    "end_to_end_pairs_per_s": 410571.0978792897,
+    "wallclock_s": 33.35808423627168,
+    "fp16_mode": "pure"
+   },
+   "1000": {
+    "network": "xattn_fp16",
+    "P": 1000,
+    "unique_pockets": 57,
+    "pockets_repeated": true,
+    "n_lig": 260155,
+    "n_pairs": 260155000,
+    "subset": false,
+    "gpu": "NVIDIA L40S",
+    "stages_s": {
+     "featurize_cpu": 22.36551829893142,
+     "collate_cpu": 2.3961882097646594,
+     "pocket_collate_cpu": 0.0747739402577281,
+     "embed_gpu": 1.2150470996275544,
+     "pocket_states_gpu": 0.2433298733085394,
+     "score_gpu": 178.17308080662042,
+     "topk_gpu": 0.01414848305284977
+    },
+    "reps_s": {
+     "embed": [
+      1.2481691660359502,
+      1.2150470996275544
+     ],
+     "pocket_states": [
+      0.2712112497538328,
+      0.2433298733085394
+     ],
+     "score_plus_topk": [
+      178.18722928967327,
+      178.72719291877002
+     ]
+    },
+    "model_time_s": 179.64560626260936,
+    "scoring_pairs_per_s": 1460009.2331929936,
+    "scoring_only_pairs_per_s": 1460125.1705489585,
+    "model_pairs_per_s": 1448156.7649347375,
+    "peak_gpu_mem_gb": 2.80496128,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp16",
+    "state_fallback_to_fp16": false,
+    "mode": "fp16",
+    "cpu_prep_s": 24.836480448953807,
+    "end_to_end_s": 204.48208671156317,
+    "end_to_end_pairs_per_s": 1272263.0338126759,
+    "wallclock_s": 203.18329777102917,
+    "fp16_mode": "pure"
+   }
+  }
+ },
+ "ratios": {
+  "1": {
+   "pooled": {
+    "model_time": 0.9972436410378753,
+    "scoring_only": 2.2207964347875984,
+    "end_to_end": 0.9998708981962859,
+    "end_to_end_own_cpu_prep": 0.9998638384418818,
+    "shared_cpu_prep_s": 24.76219998113811,
+    "wallclock": 0.8334885417146047
+   },
+   "xattn_fp32": {
+    "model_time": 1.438012112901,
+    "scoring_only": 1114.5986305300003,
+    "end_to_end": 1.0205155259533103,
+    "end_to_end_own_cpu_prep": 1.0205119408327143,
+    "shared_cpu_prep_s": 24.76219998113811,
+    "wallclock": 0.9067633823307865
+   },
+   "xattn_fp16": {
+    "model_time": 1.1517336703637153,
+    "scoring_only": 370.85921618881855,
+    "end_to_end": 1.0071068720719178,
+    "end_to_end_own_cpu_prep": 1.007115227913057,
+    "shared_cpu_prep_s": 24.76219998113811,
+    "wallclock": 0.8857215917777603
+   }
+  },
+  "5": {
+   "pooled": {
+    "model_time": 1.000457455981029,
+    "scoring_only": 10.265573094997498,
+    "end_to_end": 1.00002144981067,
+    "end_to_end_own_cpu_prep": 1.0000181528536385,
+    "shared_cpu_prep_s": 24.762812241911888,
+    "wallclock": 0.8637706530603526
+   },
+   "xattn_fp32": {
+    "model_time": 3.2730885607919835,
+    "scoring_only": 5857.329068273014,
+    "end_to_end": 1.1065836305288457,
+    "end_to_end_own_cpu_prep": 1.106581767887027,
+    "shared_cpu_prep_s": 24.762812241911888,
+    "wallclock": 1.005776116018117
+   },
+   "xattn_fp16": {
+    "model_time": 1.7331007517235557,
+    "scoring_only": 1881.2738141255188,
+    "end_to_end": 1.0343746130308704,
+    "end_to_end_own_cpu_prep": 1.0343741870342695,
+    "shared_cpu_prep_s": 24.762812241911888,
+    "wallclock": 0.906579276455706
+   }
+  },
+  "20": {
+   "pooled": {
+    "model_time": 1.0109703072854788,
+    "scoring_only": 29.32355265054074,
+    "end_to_end": 1.0005141973489053,
+    "end_to_end_own_cpu_prep": 1.0006143500395401,
+    "shared_cpu_prep_s": 24.765084682032466,
+    "wallclock": 0.9056954803545213
+   },
+   "xattn_fp32": {
+    "model_time": 10.149844056162847,
+    "scoring_only": 19834.553309800947,
+    "end_to_end": 1.428869076694301,
+    "end_to_end_own_cpu_prep": 1.4288860207899374,
+    "shared_cpu_prep_s": 24.765084682032466,
+    "wallclock": 1.4390053331763932
+   },
+   "xattn_fp16": {
+    "model_time": 3.934755104509556,
+    "scoring_only": 6350.979052752411,
+    "end_to_end": 1.1375570670133068,
+    "end_to_end_own_cpu_prep": 1.1375772219072309,
+    "shared_cpu_prep_s": 24.765084682032466,
+    "wallclock": 1.1231689512990621
+   }
+  },
+  "57": {
+   "pooled": {
+    "model_time": 1.0278743843642935,
+    "scoring_only": 50.55981780891245,
+    "end_to_end": 1.0013190652880735,
+    "end_to_end_own_cpu_prep": 1.0014101572809704,
+    "shared_cpu_prep_s": 24.76925064995885,
+    "wallclock": 0.9969305011097949
+   },
+   "xattn_fp32": {
+    "model_time": 27.10465947501292,
+    "scoring_only": 36753.00697014091,
+    "end_to_end": 2.2353187686747242,
+    "end_to_end_own_cpu_prep": 2.235543031253551,
+    "shared_cpu_prep_s": 24.76925064995885,
+    "wallclock": 2.4428543316494684
+   },
+   "xattn_fp16": {
+    "model_time": 9.22239148091548,
+    "scoring_only": 11576.037039128467,
+    "end_to_end": 1.3890981427851408,
+    "end_to_end_own_cpu_prep": 1.3891592356973406,
+    "shared_cpu_prep_s": 24.76925064995885,
+    "wallclock": 1.4705610606407864
+   }
+  },
+  "1000": {
+   "pooled": {
+    "model_time": 1.5495084635092629,
+    "scoring_only": 45.835626734451324,
+    "end_to_end": 1.0290455431263472,
+    "end_to_end_own_cpu_prep": 1.0290394136341972,
+    "shared_cpu_prep_s": 24.806490372866392,
+    "wallclock": 1.012638584222994
+   },
+   "xattn_fp32": {
+    "model_time": 412.65042161587456,
+    "scoring_only": 33470.69736432051,
+    "end_to_end": 22.758736885808375,
+    "end_to_end_own_cpu_prep": 22.760156270836802,
+    "shared_cpu_prep_s": 24.806490372866392,
+    "wallclock": 25.576719186747695
+   },
+   "xattn_fp16": {
+    "model_time": 129.76619417435302,
+    "scoring_only": 10466.105781270095,
+    "end_to_end": 7.806235562273047,
+    "end_to_end_own_cpu_prep": 7.80738062071129,
+    "shared_cpu_prep_s": 24.806490372866392,
+    "wallclock": 8.783468120854058
+   }
+  },
+  "padded_vs_ragged": {
+   "5": {
+    "ragged_fp32_over_padded_scoring_pairs_per_s": 5.292249070501668,
+    "ragged_fp16_over_padded_scoring_pairs_per_s": 16.484479925730604
+   }
+  }
+ },
+ "notes": [
+  "P = 1000 cycles the 57 wild-type pockets (repeated pockets, used only for timing); every copy is encoded and scored again.",
+  "Pockets are the wild-type graphs of the targets in sorted order; P pockets are the first P.",
+  "end_to_end_s = featurization + CPU collation + pocket collation + embedding + pocket states + scoring + top-k; wallclock_s = one pass of the full pipeline from SMILES with one timer.",
+  "Ligand and pocket encoders run in fp32 for every network; fp16 applies to the interaction layers and the head only."
+ ],
+ "weights": {
+  "dual": {
+   "path": "/workspace/pocketgate/runs/v1/ckpt_v1_C0.pt",
+   "source": "checkpoint"
+  },
+  "pooled": {
+   "path": "/workspace/pocketgate/runs/v3/ckpt_v3_pooled_s11.pt",
+   "source": "checkpoint"
+  },
+  "xattn": {
+   "path": "/workspace/pocketgate/runs/v3/ckpt_v3_xattn_s11.pt",
+   "source": "checkpoint"
+  }
+ },
+ "library_size": 260155,
+ "featurization": {
+  "seconds": 22.36551829893142,
+  "processes": 32,
+  "date": "2026-10-09T08:56:20+00:00"
+ }
+}

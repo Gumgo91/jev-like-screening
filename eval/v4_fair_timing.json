@@ -1,0 +1,1471 @@
+{
+ "schema": "v4_fair_timing/1",
+ "environment": {
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.4.1+cu124",
+  "cuda": "12.4",
+  "cudnn": 90100,
+  "cpu_count": 96,
+  "featurization_processes": 32,
+  "python": "3.11.10",
+  "platform": "Linux-6.8.0-49-generic-x86_64-with-glibc2.35",
+  "date": "2026-10-09T13:18:49+00:00",
+  "tf32_matmul": false,
+  "tf32_cudnn": false,
+  "gpu_memory_gb": 25.261047808,
+  "gpu_capability": "8.9",
+  "rdkit": "2026.03.6"
+ },
+ "invocations": [
+  {
+   "date": "2026-10-09T13:18:49+00:00",
+   "gpu": "NVIDIA GeForce RTX 4090",
+   "argv": [
+    "--out",
+    "dockmut/eval/v4_fair_timing.json",
+    "--xattn-fp32-1000"
+   ],
+   "pending": [
+    [
+     "dual",
+     1
+    ],
+    [
+     "dual",
+     5
+    ],
+    [
+     "dual",
+     20
+    ],
+    [
+     "dual",
+     57
+    ],
+    [
+     "dual",
+     1000
+    ],
+    [
+     "pooled",
+     1
+    ],
+    [
+     "pooled",
+     5
+    ],
+    [
+     "pooled",
+     20
+    ],
+    [
+     "pooled",
+     57
+    ],
+    [
+     "pooled",
+     1000
+    ],
+    [
+     "xattn_padded_fp32",
+     5
+    ],
+    [
+     "xattn_fp32",
+     1
+    ],
+    [
+     "xattn_fp32",
+     5
+    ],
+    [
+     "xattn_fp32",
+     20
+    ],
+    [
+     "xattn_fp32",
+     57
+    ],
+    [
+     "xattn_fp32",
+     1000
+    ],
+    [
+     "xattn_fp16",
+     1
+    ],
+    [
+     "xattn_fp16",
+     5
+    ],
+    [
+     "xattn_fp16",
+     20
+    ],
+    [
+     "xattn_fp16",
+     57
+    ],
+    [
+     "xattn_fp16",
+     1000
+    ]
+   ]
+  }
+ ],
+ "library": {
+  "size": 260155,
+  "n_smiles": 260155,
+  "featurization_failures": 0,
+  "n_atoms": 7184423,
+  "mean_atoms": 27.61593280928677,
+  "source": "/workspace/pocketgate/data/processed/ligand_full.parquet",
+  "column": "standardized_smiles"
+ },
+ "featurization_runs": [
+  {
+   "seconds": 39.32158706104383,
+   "processes": 32,
+   "date": "2026-10-09T13:18:49+00:00"
+  }
+ ],
+ "correctness": {
+  "n_lig": 2000,
+  "n_pockets": 5,
+  "reference": "net(ctx, lb)['logit'] (module forward, fp32, eval)",
+  "tolerances": {
+   "fp32_max_abs_diff": 0.001,
+   "fp32_spearman": 0.9999,
+   "fp16_spearman": 0.999
+  },
+  "gating": [
+   "dual",
+   "pooled",
+   "xattn_fp16_pure",
+   "xattn_fp32",
+   "xattn_padded_fp32"
+  ],
+  "results": {
+   "dual": {
+    "max_abs_diff": 5.7220458984375e-06,
+    "spearman_min": 0.9999999996249999,
+    "spearman_mean": 0.9999999999250001,
+    "spearman_pooled": 0.99999999997,
+    "top10_overlap_min": 1.0,
+    "finite": true,
+    "logit_min": -34.87309265136719,
+    "logit_max": 2.3173229694366455,
+    "pass": true,
+    "tolerance": {
+     "max_abs_diff": 0.001,
+     "spearman_min": 0.9999
+    },
+    "kind": "fp32",
+    "topk_path_overlap_min": 1.0
+   },
+   "pooled": {
+    "max_abs_diff": 5.7220458984375e-06,
+    "spearman_min": 1.0,
+    "spearman_mean": 1.0,
+    "spearman_pooled": 0.999999999988,
+    "top10_overlap_min": 1.0,
+    "finite": true,
+    "logit_min": -35.93694305419922,
+    "logit_max": 0.15274766087532043,
+    "pass": true,
+    "tolerance": {
+     "max_abs_diff": 0.001,
+     "spearman_min": 0.9999
+    },
+    "kind": "fp32",
+    "topk_path_overlap_min": 1.0
+   },
+   "xattn_padded_fp32": {
+    "max_abs_diff": 7.62939453125e-06,
+    "spearman_min": 0.9999999996249999,
+    "spearman_mean": 0.9999999999250001,
+    "spearman_pooled": 0.999999999985,
+    "top10_overlap_min": 1.0,
+    "finite": true,
+    "logit_min": -40.689979553222656,
+    "logit_max": 0.04900144040584564,
+    "pass": true,
+    "tolerance": {
+     "max_abs_diff": 0.001,
+     "spearman_min": 0.9999
+    },
+    "kind": "fp32"
+   },
+   "xattn_fp32": {
+    "max_abs_diff": 7.62939453125e-06,
+    "spearman_min": 1.0,
+    "spearman_mean": 1.0,
+    "spearman_pooled": 0.999999999994,
+    "top10_overlap_min": 1.0,
+    "finite": true,
+    "logit_min": -40.689979553222656,
+    "logit_max": 0.04900144040584564,
+    "pass": true,
+    "tolerance": {
+     "max_abs_diff": 0.001,
+     "spearman_min": 0.9999
+    },
+    "kind": "fp32",
+    "topk_path_overlap_min": 1.0
+   },
+   "xattn_fp16_pure": {
+    "max_abs_diff": 0.01932525634765625,
+    "spearman_min": 0.9999995076247571,
+    "spearman_mean": 0.9999995318497745,
+    "spearman_pooled": 0.9999998039079792,
+    "top10_overlap_min": 0.995,
+    "finite": true,
+    "logit_min": -40.689979553222656,
+    "logit_max": 0.04900144040584564,
+    "pass": true,
+    "tolerance": {
+     "spearman_min": 0.999
+    },
+    "kind": "fp16",
+    "topk_path_overlap_min": 1.0
+   },
+   "xattn_fp16_autocast": {
+    "max_abs_diff": 0.02317047119140625,
+    "spearman_min": 0.9999995316247736,
+    "spearman_mean": 0.999999547899785,
+    "spearman_pooled": 0.9999998179149816,
+    "top10_overlap_min": 0.995,
+    "finite": true,
+    "logit_min": -40.689979553222656,
+    "logit_max": 0.04900144040584564,
+    "pass": true,
+    "tolerance": {
+     "spearman_min": 0.999
+    },
+    "kind": "fp16",
+    "topk_path_overlap_min": 1.0
+   }
+  },
+  "failed": []
+ },
+ "blocks": {
+  "dual": {
+   "1": {
+    "network": "dual",
+    "P": 1,
+    "unique_pockets": 1,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 260155,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.0003611999563872814,
+     "embed_gpu": 1.5924510559998453,
+     "pocket_states_gpu": 0.0013714388478547335,
+     "score_gpu": 0.00024618697352707386,
+     "topk_gpu": 0.00024560699239373207
+    },
+    "reps_s": {
+     "embed": [
+      1.6100466058123857,
+      1.5924510559998453
+     ],
+     "pocket_states": [
+      0.0015584141947329044,
+      0.0013714388478547335
+     ],
+     "score_plus_topk": [
+      0.03944990015588701,
+      0.0004917939659208059
+     ]
+    },
+    "model_time_s": 1.5943142888136208,
+    "scoring_pairs_per_s": 528991850.30239475,
+    "scoring_only_pairs_per_s": 1056737471.8199297,
+    "model_pairs_per_s": 163176.73486674292,
+    "peak_gpu_mem_gb": 1.1523328,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 41.63886734400876,
+    "end_to_end_s": 43.23318163282238,
+    "end_to_end_pairs_per_s": 6017.4844916454595,
+    "wallclock_s": 41.87312323390506
+   },
+   "5": {
+    "network": "dual",
+    "P": 5,
+    "unique_pockets": 5,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 1300775,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.0004956040065735579,
+     "embed_gpu": 1.59737972705625,
+     "pocket_states_gpu": 0.0028601919766515493,
+     "score_gpu": 0.0002861679531633854,
+     "topk_gpu": 0.0002799679059535265
+    },
+    "reps_s": {
+     "embed": [
+      1.6326721280347556,
+      1.59737972705625
+     ],
+     "pocket_states": [
+      0.0036504340823739767,
+      0.0028601919766515493
+     ],
+     "score_plus_topk": [
+      0.01387361390516162,
+      0.0005661358591169119
+     ]
+    },
+    "model_time_s": 1.6008060548920184,
+    "scoring_pairs_per_s": 2297637535.324147,
+    "scoring_only_pairs_per_s": 4545494999.076058,
+    "model_pairs_per_s": 812575.0124600467,
+    "peak_gpu_mem_gb": 1.152991744,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 41.639001748058945,
+    "end_to_end_s": 43.23980780295096,
+    "end_to_end_pairs_per_s": 30082.81179064877,
+    "wallclock_s": 36.61110306577757
+   },
+   "20": {
+    "network": "dual",
+    "P": 20,
+    "unique_pockets": 20,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 5203100,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.0015977148432284594,
+     "embed_gpu": 1.5987330849748105,
+     "pocket_states_gpu": 0.004397014854475856,
+     "score_gpu": 0.00023246696218848228,
+     "topk_gpu": 0.000240987166762352
+    },
+    "reps_s": {
+     "embed": [
+      1.6073856512084603,
+      1.5987330849748105
+     ],
+     "pocket_states": [
+      0.005102955037727952,
+      0.004397014854475856
+     ],
+     "score_plus_topk": [
+      0.0005363859236240387,
+      0.0004734541289508343
+     ]
+    },
+    "model_time_s": 1.6036035539582372,
+    "scoring_pairs_per_s": 10989660205.3719,
+    "scoring_only_pairs_per_s": 22382105186.118317,
+    "model_pairs_per_s": 3244629.8757301862,
+    "peak_gpu_mem_gb": 1.152991744,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 41.6401038588956,
+    "end_to_end_s": 43.24370741285384,
+    "end_to_end_pairs_per_s": 120320.39599022496,
+    "wallclock_s": 37.82979633286595
+   },
+   "57": {
+    "network": "dual",
+    "P": 57,
+    "unique_pockets": 57,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 14828835,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.004623290849849582,
+     "embed_gpu": 1.599103885004297,
+     "pocket_states_gpu": 0.012134334072470665,
+     "score_gpu": 0.00026762718334794044,
+     "topk_gpu": 0.0005001341924071312
+    },
+    "reps_s": {
+     "embed": [
+      1.6127786429133266,
+      1.599103885004297
+     ],
+     "pocket_states": [
+      0.012134334072470665,
+      0.012211665976792574
+     ],
+     "score_plus_topk": [
+      0.0008300237823277712,
+      0.0007677613757550716
+     ]
+    },
+    "model_time_s": 1.6120059804525226,
+    "scoring_pairs_per_s": 19314380051.244774,
+    "scoring_only_pairs_per_s": 55408553101.72705,
+    "model_pairs_per_s": 9198995.028441053,
+    "peak_gpu_mem_gb": 1.152991744,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 41.64312943490222,
+    "end_to_end_s": 43.255135415354744,
+    "end_to_end_pairs_per_s": 342822.5309574698,
+    "wallclock_s": 36.69918615696952
+   },
+   "1000": {
+    "network": "dual",
+    "P": 1000,
+    "unique_pockets": 57,
+    "pockets_repeated": true,
+    "n_lig": 260155,
+    "n_pairs": 260155000,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.06730605103075504,
+     "embed_gpu": 1.5884911739267409,
+     "pocket_states_gpu": 0.2070711578708142,
+     "score_gpu": 0.0028182610403746367,
+     "topk_gpu": 0.011018391931429505
+    },
+    "reps_s": {
+     "embed": [
+      1.5912009710446,
+      1.5884911739267409
+     ],
+     "pocket_states": [
+      0.20739019801840186,
+      0.2070711578708142
+     ],
+     "score_plus_topk": [
+      0.01440025819465518,
+      0.013836652971804142
+     ]
+    },
+    "model_time_s": 1.8093989847693592,
+    "scoring_pairs_per_s": 18801873583.888744,
+    "scoring_only_pairs_per_s": 92310469567.22543,
+    "model_pairs_per_s": 143779786.65283793,
+    "peak_gpu_mem_gb": 1.152991744,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 41.705812195083126,
+    "end_to_end_s": 43.515211179852486,
+    "end_to_end_pairs_per_s": 5978484.142585331,
+    "wallclock_s": 38.14789990289137
+   }
+  },
+  "pooled": {
+   "1": {
+    "network": "pooled",
+    "P": 1,
+    "unique_pockets": 1,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 260155,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.00021001603454351425,
+     "embed_gpu": 1.5922415910754353,
+     "pocket_states_gpu": 0.0013350280933082104,
+     "score_gpu": 0.0007056298200041056,
+     "topk_gpu": 0.00019060494378209114
+    },
+    "reps_s": {
+     "embed": [
+      1.6140237788204104,
+      1.5922415910754353
+     ],
+     "pocket_states": [
+      0.0015792050398886204,
+      0.0013350280933082104
+     ],
+     "score_plus_topk": [
+      0.0009756479412317276,
+      0.0008962347637861967
+     ]
+    },
+    "model_time_s": 1.5944728539325297,
+    "scoring_pairs_per_s": 290275506.49894434,
+    "scoring_only_pairs_per_s": 368684815.5006918,
+    "model_pairs_per_s": 163160.50747327963,
+    "peak_gpu_mem_gb": 1.152991744,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 41.638716160086915,
+    "end_to_end_s": 43.233189014019445,
+    "end_to_end_pairs_per_s": 6017.483464281069,
+    "wallclock_s": 36.84882755414583
+   },
+   "5": {
+    "network": "pooled",
+    "P": 5,
+    "unique_pockets": 5,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 1300775,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.00047983392141759396,
+     "embed_gpu": 1.6016724079381675,
+     "pocket_states_gpu": 0.0017531090416014194,
+     "score_gpu": 0.003495188895612955,
+     "topk_gpu": 0.0002229670062661171
+    },
+    "reps_s": {
+     "embed": [
+      1.6293184130918235,
+      1.6016724079381675
+     ],
+     "pocket_states": [
+      0.00227810419164598,
+      0.0017531090416014194
+     ],
+     "score_plus_topk": [
+      0.004081716062501073,
+      0.003718155901879072
+     ]
+    },
+    "model_time_s": 1.607143672881648,
+    "scoring_pairs_per_s": 349844125.50926596,
+    "scoring_only_pairs_per_s": 372161573.76578116,
+    "model_pairs_per_s": 809370.7002981748,
+    "peak_gpu_mem_gb": 1.152991744,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 41.63898597797379,
+    "end_to_end_s": 43.24612965085544,
+    "end_to_end_pairs_per_s": 30078.4141957145,
+    "wallclock_s": 37.621404057135805
+   },
+   "20": {
+    "network": "pooled",
+    "P": 20,
+    "unique_pockets": 20,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 5203100,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.0016171950846910477,
+     "embed_gpu": 1.5992695898748934,
+     "pocket_states_gpu": 0.004357953788712621,
+     "score_gpu": 0.013626787113025784,
+     "topk_gpu": 0.0002590678632259369
+    },
+    "reps_s": {
+     "embed": [
+      1.614226665114984,
+      1.5992695898748934
+     ],
+     "pocket_states": [
+      0.004580039996653795,
+      0.004357953788712621
+     ],
+     "score_plus_topk": [
+      0.014349698089063168,
+      0.013885854976251721
+     ]
+    },
+    "model_time_s": 1.6175133986398578,
+    "scoring_pairs_per_s": 374705051.21208596,
+    "scoring_only_pairs_per_s": 381828816.7888365,
+    "model_pairs_per_s": 3216727.60446696,
+    "peak_gpu_mem_gb": 1.250937344,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 41.64012333913706,
+    "end_to_end_s": 43.25763673777692,
+    "end_to_end_pairs_per_s": 120281.65180498938,
+    "wallclock_s": 36.72238046512939
+   },
+   "57": {
+    "network": "pooled",
+    "P": 57,
+    "unique_pockets": 57,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 14828835,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.004572999896481633,
+     "embed_gpu": 1.5992544600740075,
+     "pocket_states_gpu": 0.012462364044040442,
+     "score_gpu": 0.032124501187354326,
+     "topk_gpu": 0.0005670569371432066
+    },
+    "reps_s": {
+     "embed": [
+      1.6171381981112063,
+      1.5992544600740075
+     ],
+     "pocket_states": [
+      0.012462364044040442,
+      0.012483143946155906
+     ],
+     "score_plus_topk": [
+      0.03325378289446235,
+      0.03269155812449753
+     ]
+    },
+    "model_time_s": 1.6444083822425455,
+    "scoring_pairs_per_s": 453598294.19962585,
+    "scoring_only_pairs_per_s": 461605144.10842615,
+    "model_pairs_per_s": 9017732.553623525,
+    "peak_gpu_mem_gb": 1.28930048,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 41.64307914394885,
+    "end_to_end_s": 43.2874875261914,
+    "end_to_end_pairs_per_s": 342566.3129796505,
+    "wallclock_s": 37.30227835685946
+   },
+   "1000": {
+    "network": "pooled",
+    "P": 1000,
+    "unique_pockets": 57,
+    "pockets_repeated": true,
+    "n_lig": 260155,
+    "n_pairs": 260155000,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.06728511000983417,
+     "embed_gpu": 1.5942854478489608,
+     "pocket_states_gpu": 0.20697359507903457,
+     "score_gpu": 0.5633585734758526,
+     "topk_gpu": 0.011145807104185224
+    },
+    "reps_s": {
+     "embed": [
+      1.5975737220142037,
+      1.5942854478489608
+     ],
+     "pocket_states": [
+      0.20704255695454776,
+      0.20697359507903457
+     ],
+     "score_plus_topk": [
+      0.5753128726501018,
+      0.5745043805800378
+     ]
+    },
+    "model_time_s": 2.375763423508033,
+    "scoring_pairs_per_s": 452833796.91089433,
+    "scoring_only_pairs_per_s": 461792918.8418592,
+    "model_pairs_per_s": 109503748.32181616,
+    "peak_gpu_mem_gb": 1.40362752,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "cpu_prep_s": 41.705791254062206,
+    "end_to_end_s": 44.08155467757024,
+    "end_to_end_pairs_per_s": 5901674.791256243,
+    "wallclock_s": 37.81047813384794
+   }
+  },
+  "xattn_padded_fp32": {
+   "5": {
+    "network": "xattn_padded_fp32",
+    "P": 5,
+    "unique_pockets": 5,
+    "pockets_repeated": false,
+    "n_lig": 20000,
+    "n_pairs": 100000,
+    "subset": true,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": null,
+     "collate_cpu": 0.13240674906410277,
+     "pocket_collate_cpu": 0.000471494160592556,
+     "embed_gpu": 0.1174710150808096,
+     "pocket_states_gpu": 0.00703943008556962,
+     "score_gpu": 0.8741378260310739,
+     "topk_gpu": null
+    },
+    "reps_s": {
+     "embed": [
+      0.12114987010136247,
+      0.1174710150808096
+     ],
+     "pocket_states": [
+      0.007387958932667971,
+      0.00703943008556962
+     ],
+     "score_plus_topk": [
+      0.8746706498786807,
+      0.8741378260310739
+     ]
+    },
+    "model_time_s": 0.9986482711974531,
+    "scoring_pairs_per_s": 114398.43583252648,
+    "scoring_only_pairs_per_s": 114398.43583252648,
+    "model_pairs_per_s": 100135.3558446485,
+    "peak_gpu_mem_gb": 1.380243968,
+    "over_20gb": false,
+    "group_size": 1024,
+    "pocket_batch": 1,
+    "pocket_chunk": 128,
+    "topk_fraction": null,
+    "total_atoms": 520792,
+    "end_to_end_s": null,
+    "s_per_pair_scoring": 8.741378260310738e-06,
+    "extrapolated_score_s_per_pocket_full_library": 2.27411326131114,
+    "note": "subset timing of the original padded implementation; not used in totals"
+   }
+  },
+  "xattn_fp32": {
+   "1": {
+    "network": "xattn_fp32",
+    "P": 1,
+    "unique_pockets": 1,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 260155,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.00021046609617769718,
+     "embed_gpu": 1.5947481619659811,
+     "pocket_states_gpu": 0.001535424031317234,
+     "score_gpu": 0.4676763659808785,
+     "topk_gpu": 0.0003003890160471201
+    },
+    "reps_s": {
+     "embed": [
+      1.6304848461877555,
+      1.5947481619659811
+     ],
+     "pocket_states": [
+      0.0017544189468026161,
+      0.001535424031317234
+     ],
+     "score_plus_topk": [
+      0.4679767549969256,
+      0.4685629210434854
+     ]
+    },
+    "model_time_s": 2.064260340994224,
+    "scoring_pairs_per_s": 555914.3637416544,
+    "scoring_only_pairs_per_s": 556271.428115392,
+    "model_pairs_per_s": 126028.19268169429,
+    "peak_gpu_mem_gb": 4.603096064,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp32",
+    "state_fallback_to_fp16": false,
+    "mode": "fp32",
+    "cpu_prep_s": 41.63871661014855,
+    "end_to_end_s": 43.70297695114277,
+    "end_to_end_pairs_per_s": 5952.79814212284,
+    "wallclock_s": 37.420802691951394
+   },
+   "5": {
+    "network": "xattn_fp32",
+    "P": 5,
+    "unique_pockets": 5,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 1300775,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.0004795040003955364,
+     "embed_gpu": 1.590222812956199,
+     "pocket_states_gpu": 0.002337435958907008,
+     "score_gpu": 2.4198008130770177,
+     "topk_gpu": 0.0005382548552006483
+    },
+    "reps_s": {
+     "embed": [
+      1.6160558660048991,
+      1.590222812956199
+     ],
+     "pocket_states": [
+      0.0032668530475348234,
+      0.002337435958907008
+     ],
+     "score_plus_topk": [
+      2.4203390679322183,
+      2.421460469951853
+     ]
+    },
+    "model_time_s": 4.012899316847324,
+    "scoring_pairs_per_s": 537435.030171743,
+    "scoring_only_pairs_per_s": 537554.5759677364,
+    "model_pairs_per_s": 324148.4266846582,
+    "peak_gpu_mem_gb": 4.603096064,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp32",
+    "state_fallback_to_fp16": false,
+    "mode": "fp32",
+    "cpu_prep_s": 41.63898564805277,
+    "end_to_end_s": 45.65188496490009,
+    "end_to_end_pairs_per_s": 28493.34701075572,
+    "wallclock_s": 38.816107901977375
+   },
+   "20": {
+    "network": "xattn_fp32",
+    "P": 20,
+    "unique_pockets": 20,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 5203100,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.0016789280343800783,
+     "embed_gpu": 1.5958560528233647,
+     "pocket_states_gpu": 0.006581506924703717,
+     "score_gpu": 9.721632553031668,
+     "topk_gpu": 0.000327809015288949
+    },
+    "reps_s": {
+     "embed": [
+      1.6347877278458327,
+      1.5958560528233647
+     ],
+     "pocket_states": [
+      0.006702620070427656,
+      0.006581506924703717
+     ],
+     "score_plus_topk": [
+      9.721960362046957,
+      9.7313712190371
+     ]
+    },
+    "model_time_s": 11.324397921795025,
+    "scoring_pairs_per_s": 535190.4149200304,
+    "scoring_only_pairs_per_s": 535208.4612967012,
+    "model_pairs_per_s": 459459.305115557,
+    "peak_gpu_mem_gb": 4.603096064,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp32",
+    "state_fallback_to_fp16": false,
+    "mode": "fp32",
+    "cpu_prep_s": 41.64018507208675,
+    "end_to_end_s": 52.96458299388178,
+    "end_to_end_pairs_per_s": 98237.3447668046,
+    "wallclock_s": 46.517330372007564
+   },
+   "57": {
+    "network": "xattn_fp32",
+    "P": 57,
+    "unique_pockets": 57,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 14828835,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.005047969985753298,
+     "embed_gpu": 1.6055537990760058,
+     "pocket_states_gpu": 0.017307576956227422,
+     "score_gpu": 27.804024812066928,
+     "topk_gpu": 0.0005861259996891022
+    },
+    "reps_s": {
+     "embed": [
+      1.638414307963103,
+      1.6055537990760058
+     ],
+     "pocket_states": [
+      0.019051241921260953,
+      0.017307576956227422
+     ],
+     "score_plus_topk": [
+      27.804610938066617,
+      27.89703619503416
+     ]
+    },
+    "model_time_s": 29.42747231409885,
+    "scoring_pairs_per_s": 533322.873426659,
+    "scoring_only_pairs_per_s": 533334.1162019211,
+    "model_pairs_per_s": 503911.2718116612,
+    "peak_gpu_mem_gb": 4.64057856,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp32",
+    "state_fallback_to_fp16": false,
+    "mode": "fp32",
+    "cpu_prep_s": 41.643554114038125,
+    "end_to_end_s": 71.07102642813697,
+    "end_to_end_pairs_per_s": 208648.10521618236,
+    "wallclock_s": 64.06390789500438
+   },
+   "1000": {
+    "network": "xattn_fp32",
+    "P": 1000,
+    "unique_pockets": 57,
+    "pockets_repeated": true,
+    "n_lig": 260155,
+    "n_pairs": 260155000,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.06823669979348779,
+     "embed_gpu": 1.6018487550318241,
+     "pocket_states_gpu": 0.2934910289477557,
+     "score_gpu": 491.862267856719,
+     "topk_gpu": 0.011653542751446366
+    },
+    "reps_s": {
+     "embed": [
+      1.6280251247808337,
+      1.6018487550318241
+     ],
+     "pocket_states": [
+      0.3341582010034472,
+      0.2934910289477557
+     ],
+     "score_plus_topk": [
+      492.04530199151486,
+      491.8739213994704
+     ]
+    },
+    "model_time_s": 493.76926118345,
+    "scoring_pairs_per_s": 528905.8612007969,
+    "scoring_only_pairs_per_s": 528918.3924061115,
+    "model_pairs_per_s": 526875.6491168953,
+    "peak_gpu_mem_gb": 5.155539456,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp32",
+    "state_fallback_to_fp16": false,
+    "mode": "fp32",
+    "cpu_prep_s": 41.70674284384586,
+    "end_to_end_s": 535.4760040272959,
+    "end_to_end_pairs_per_s": 485838.76409658615,
+    "wallclock_s": 527.6162485568784
+   }
+  },
+  "xattn_fp16": {
+   "1": {
+    "network": "xattn_fp16",
+    "P": 1,
+    "unique_pockets": 1,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 260155,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.0002231658436357975,
+     "embed_gpu": 1.6229738490656018,
+     "pocket_states_gpu": 0.0016555229667574167,
+     "score_gpu": 0.1542205570731312,
+     "topk_gpu": 0.0003356591332703829
+    },
+    "reps_s": {
+     "embed": [
+      1.6302511990070343,
+      1.6229738490656018
+     ],
+     "pocket_states": [
+      0.001965561881661415,
+      0.0016555229667574167
+     ],
+     "score_plus_topk": [
+      0.15573016600683331,
+      0.1545562162064016
+     ]
+    },
+    "model_time_s": 1.7791855882387608,
+    "scoring_pairs_per_s": 1683238.6712455284,
+    "scoring_only_pairs_per_s": 1686902.2193755584,
+    "model_pairs_per_s": 146221.3957440667,
+    "peak_gpu_mem_gb": 2.80496128,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp16",
+    "state_fallback_to_fp16": false,
+    "mode": "fp16",
+    "cpu_prep_s": 41.63872930989601,
+    "end_to_end_s": 43.41791489813477,
+    "end_to_end_pairs_per_s": 5991.881475892254,
+    "wallclock_s": 38.123555748024955,
+    "fp16_mode": "pure"
+   },
+   "5": {
+    "network": "xattn_fp16",
+    "P": 5,
+    "unique_pockets": 5,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 1300775,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.0004857131280004978,
+     "embed_gpu": 1.8267782698385417,
+     "pocket_states_gpu": 0.0026296989526599646,
+     "score_gpu": 0.7679547630250454,
+     "topk_gpu": 0.00037333997897803783
+    },
+    "reps_s": {
+     "embed": [
+      1.8302479709964246,
+      1.8267782698385417
+     ],
+     "pocket_states": [
+      0.0035360020119696856,
+      0.0026296989526599646
+     ],
+     "score_plus_topk": [
+      0.7683281030040234,
+      0.7684285058639944
+     ]
+    },
+    "model_time_s": 2.597736071795225,
+    "scoring_pairs_per_s": 1692994.1712586144,
+    "scoring_only_pairs_per_s": 1693817.217665434,
+    "model_pairs_per_s": 500734.0869317296,
+    "peak_gpu_mem_gb": 2.80496128,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp16",
+    "state_fallback_to_fp16": false,
+    "mode": "fp16",
+    "cpu_prep_s": 41.63899185718037,
+    "end_to_end_s": 44.2367279289756,
+    "end_to_end_pairs_per_s": 29404.864710800106,
+    "wallclock_s": 38.48890946805477,
+    "fp16_mode": "pure"
+   },
+   "20": {
+    "network": "xattn_fp16",
+    "P": 20,
+    "unique_pockets": 20,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 5203100,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.0015941220335662365,
+     "embed_gpu": 1.596599580021575,
+     "pocket_states_gpu": 0.007301930105313659,
+     "score_gpu": 3.072214280953631,
+     "topk_gpu": 0.00034442893229424953
+    },
+    "reps_s": {
+     "embed": [
+      1.6040565250441432,
+      1.596599580021575
+     ],
+     "pocket_states": [
+      0.008193573914468288,
+      0.007301930105313659
+     ],
+     "score_plus_topk": [
+      3.072558709885925,
+      3.0736849999520928
+     ]
+    },
+    "model_time_s": 4.676460220012814,
+    "scoring_pairs_per_s": 1693409.4646455676,
+    "scoring_only_pairs_per_s": 1693599.314428332,
+    "model_pairs_per_s": 1112615.045399818,
+    "peak_gpu_mem_gb": 2.80496128,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp16",
+    "state_fallback_to_fp16": false,
+    "mode": "fp16",
+    "cpu_prep_s": 41.64010026608594,
+    "end_to_end_s": 46.31656048609875,
+    "end_to_end_pairs_per_s": 112337.7890195805,
+    "wallclock_s": 38.79957936005667,
+    "fp16_mode": "pure"
+   },
+   "57": {
+    "network": "xattn_fp16",
+    "P": 57,
+    "unique_pockets": 57,
+    "pockets_repeated": false,
+    "n_lig": 260155,
+    "n_pairs": 14828835,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.004664332140237093,
+     "embed_gpu": 1.6012086898554116,
+     "pocket_states_gpu": 0.020375702064484358,
+     "score_gpu": 8.749467104906216,
+     "topk_gpu": 0.0005630240775644779
+    },
+    "reps_s": {
+     "embed": [
+      1.6267820580396801,
+      1.6012086898554116
+     ],
+     "pocket_states": [
+      0.020375702064484358,
+      0.026957993861287832
+     ],
+     "score_plus_topk": [
+      8.75003012898378,
+      8.75191513914615
+     ]
+    },
+    "model_time_s": 10.371614520903677,
+    "scoring_pairs_per_s": 1694718.1645558751,
+    "scoring_only_pairs_per_s": 1694827.2188696854,
+    "model_pairs_per_s": 1429751.8452997776,
+    "peak_gpu_mem_gb": 2.80496128,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp16",
+    "state_fallback_to_fp16": false,
+    "mode": "fp16",
+    "cpu_prep_s": 41.64317047619261,
+    "end_to_end_s": 52.014784997096285,
+    "end_to_end_pairs_per_s": 285088.84542784933,
+    "wallclock_s": 44.732489930000156,
+    "fp16_mode": "pure"
+   },
+   "1000": {
+    "network": "xattn_fp16",
+    "P": 1000,
+    "unique_pockets": 57,
+    "pockets_repeated": true,
+    "n_lig": 260155,
+    "n_pairs": 260155000,
+    "subset": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "stages_s": {
+     "featurize_cpu": 39.32158706104383,
+     "collate_cpu": 2.3169190830085427,
+     "pocket_collate_cpu": 0.06691601709462702,
+     "embed_gpu": 1.596212161006406,
+     "pocket_states_gpu": 0.34627069206908345,
+     "score_gpu": 153.6929939254187,
+     "topk_gpu": 0.011353616835549474
+    },
+    "reps_s": {
+     "embed": [
+      1.6056929980404675,
+      1.596212161006406
+     ],
+     "pocket_states": [
+      0.3666336238384247,
+      0.34627069206908345
+     ],
+     "score_plus_topk": [
+      153.70434754225425,
+      153.88449597591534
+     ]
+    },
+    "model_time_s": 155.64683039532974,
+    "scoring_pairs_per_s": 1692567.608918686,
+    "scoring_only_pairs_per_s": 1692692.6423610644,
+    "model_pairs_per_s": 1671444.25195957,
+    "peak_gpu_mem_gb": 2.80496128,
+    "over_20gb": false,
+    "group_size": 4096,
+    "pocket_batch": 64,
+    "pocket_chunk": 128,
+    "topk_fraction": 0.1,
+    "total_atoms": 7184423,
+    "state_dtype": "fp16",
+    "state_fallback_to_fp16": false,
+    "mode": "fp16",
+    "cpu_prep_s": 41.705422161147,
+    "end_to_end_s": 197.35225255647674,
+    "end_to_end_pairs_per_s": 1318226.6562959591,
+    "wallclock_s": 192.33416967722587,
+    "fp16_mode": "pure"
+   }
+  }
+ },
+ "ratios": {
+  "1": {
+   "pooled": {
+    "model_time": 1.0000994566253476,
+    "scoring_only": 1.8223785281873879,
+    "end_to_end": 1.0000036676717494,
+    "end_to_end_own_cpu_prep": 1.0000001707299067,
+    "shared_cpu_prep_s": 41.63886734400876,
+    "wallclock": 0.8800114419052694
+   },
+   "xattn_fp32": {
+    "model_time": 1.294763746068101,
+    "scoring_only": 951.5707540671298,
+    "end_to_end": 1.0108700316384724,
+    "end_to_end_own_cpu_prep": 1.0108665451067271,
+    "shared_cpu_prep_s": 41.63886734400876,
+    "wallclock": 0.8936711618791172
+   },
+   "xattn_fp16": {
+    "model_time": 1.1159566220551838,
+    "scoring_only": 314.2702572956943,
+    "end_to_end": 1.0042761437498458,
+    "end_to_end_own_cpu_prep": 1.0042729509681088,
+    "shared_cpu_prep_s": 41.63886734400876,
+    "wallclock": 0.9104540765938365
+   }
+  },
+  "5": {
+   "pooled": {
+    "model_time": 1.003959016753005,
+    "scoring_only": 6.567603591969681,
+    "end_to_end": 1.0001465690601241,
+    "end_to_end_own_cpu_prep": 1.0001462043479306,
+    "shared_cpu_prep_s": 41.639001748058945,
+    "wallclock": 1.0275954807901602
+   },
+   "xattn_fp32": {
+    "model_time": 2.506799186937116,
+    "scoring_only": 4275.191244214046,
+    "end_to_end": 1.0557840884248955,
+    "end_to_end_own_cpu_prep": 1.0557837160826722,
+    "shared_cpu_prep_s": 41.639001748058945,
+    "wallclock": 1.0602277629340522
+   },
+   "xattn_fp16": {
+    "model_time": 1.6227675200606697,
+    "scoring_only": 1357.1443861593602,
+    "end_to_end": 1.0230558383017412,
+    "end_to_end_own_cpu_prep": 1.0230556095570018,
+    "shared_cpu_prep_s": 41.639001748058945,
+    "wallclock": 1.0512906262043902
+   }
+  },
+  "20": {
+   "pooled": {
+    "model_time": 1.0086741168958415,
+    "scoring_only": 29.328828554146362,
+    "end_to_end": 1.0003216617055708,
+    "end_to_end_own_cpu_prep": 1.0003221121813193,
+    "shared_cpu_prep_s": 41.6401038588956,
+    "wallclock": 0.9707263592435876
+   },
+   "xattn_fp32": {
+    "model_time": 7.061843866485936,
+    "scoring_only": 20534.11253079711,
+    "end_to_end": 1.2247909568675734,
+    "end_to_end_own_cpu_prep": 1.22479283490246,
+    "shared_cpu_prep_s": 41.6401038588956,
+    "wallclock": 1.2296479199279753
+   },
+   "xattn_fp16": {
+    "model_time": 2.916219665683407,
+    "scoring_only": 6489.665042513536,
+    "end_to_end": 1.0710590476602198,
+    "end_to_end_own_cpu_prep": 1.071058964577388,
+    "shared_cpu_prep_s": 41.6401038588956,
+    "wallclock": 1.0256354281862252
+   }
+  },
+  "57": {
+   "pooled": {
+    "model_time": 1.0201006709546616,
+    "scoring_only": 42.58036306182544,
+    "end_to_end": 1.0007490995341681,
+    "end_to_end_own_cpu_prep": 1.0007479368756103,
+    "shared_cpu_prep_s": 41.64312943490222,
+    "wallclock": 1.0164333943894668
+   },
+   "xattn_fp32": {
+    "model_time": 18.255188051993432,
+    "scoring_only": 36215.17285982453,
+    "end_to_end": 1.6430558144495455,
+    "end_to_end_own_cpu_prep": 1.6430656324545483,
+    "shared_cpu_prep_s": 41.64312943490222,
+    "wallclock": 1.7456492800954946
+   },
+   "xattn_fp16": {
+    "model_time": 6.433980175428478,
+    "scoring_only": 11396.80948442916,
+    "end_to_end": 1.2025102558652876,
+    "end_to_end_own_cpu_prep": 1.2025112046841966,
+    "shared_cpu_prep_s": 41.64312943490222,
+    "wallclock": 1.2188959651222413
+   }
+  },
+  "1000": {
+   "pooled": {
+    "model_time": 1.3130124662974028,
+    "scoring_only": 41.52047332188956,
+    "end_to_end": 1.013015320927614,
+    "end_to_end_own_cpu_prep": 1.0130148396931133,
+    "shared_cpu_prep_s": 41.705812195083126,
+    "wallclock": 0.9911549057771891
+   },
+   "xattn_fp32": {
+    "model_time": 272.8913110595062,
+    "scoring_only": 35548.620204741295,
+    "end_to_end": 12.30546879722964,
+    "end_to_end_own_cpu_prep": 12.305490183975504,
+    "shared_cpu_prep_s": 41.705812195083126,
+    "wallclock": 13.830807197774169
+   },
+   "xattn_fp16": {
+    "model_time": 86.0212875686839,
+    "scoring_only": 11108.491905915955,
+    "end_to_end": 4.535256459511037,
+    "end_to_end_own_cpu_prep": 4.535247496347914,
+    "shared_cpu_prep_s": 41.705812195083126,
+    "wallclock": 5.041802305417295
+   }
+  },
+  "padded_vs_ragged": {
+   "5": {
+    "ragged_fp32_over_padded_scoring_pairs_per_s": 4.6989678840949285,
+    "ragged_fp16_over_padded_scoring_pairs_per_s": 14.806297003440648
+   }
+  }
+ },
+ "notes": [
+  "P = 1000 cycles the 57 wild-type pockets (repeated pockets, used only for timing); every copy is encoded and scored again.",
+  "Pockets are the wild-type graphs of the targets in sorted order; P pockets are the first P.",
+  "end_to_end_s = featurization + CPU collation + pocket collation + embedding + pocket states + scoring + top-k; wallclock_s = one pass of the full pipeline from SMILES with one timer.",
+  "Ligand and pocket encoders run in fp32 for every network; fp16 applies to the interaction layers and the head only."
+ ],
+ "weights": {
+  "dual": {
+   "path": "/workspace/pocketgate/runs/v1/ckpt_v1_C0.pt",
+   "source": "checkpoint"
+  },
+  "pooled": {
+   "path": "/workspace/pocketgate/runs/v3/ckpt_v3_pooled_s11.pt",
+   "source": "checkpoint"
+  },
+  "xattn": {
+   "path": "/workspace/pocketgate/runs/v3/ckpt_v3_xattn_s11.pt",
+   "source": "checkpoint"
+  }
+ },
+ "library_size": 260155,
+ "featurization": {
+  "seconds": 39.32158706104383,
+  "processes": 32,
+  "date": "2026-10-09T13:18:49+00:00"
+ }
+}

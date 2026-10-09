@@ -1,0 +1,5 @@
+ridge_descriptors  pooled r=-0.001 mutant r=-0.127 within r=0.036 gain=-0.00
+gbm_descriptors    pooled r=0.010 mutant r=-0.016 within r=0.043 gain=0.01
+ridge_descriptors_geo pooled r=0.182 mutant r=0.112 within r=0.059 gain=0.29
+gbm_descriptors_geo pooled r=-0.095 mutant r=-0.189 within r=0.036 gain=-0.13
+size_only          pooled r=0.013 mutant r=-0.296 within r=0.030 gain=0.05

@@ -1,0 +1,12 @@
+{
+ "gpu": "NVIDIA GeForce RTX 4060",
+ "n_lig": 50000,
+ "n_pockets": 5,
+ "chunk": 1024,
+ "xattn": {
+  "embed_s": 0.5486203000182286,
+  "state_s": 0.016409799922257662,
+  "score_cached_s": 8.455232399981469,
+  "score_naive_s": 11.311067200032994
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "caller": "v3_test_eval",
+ "cells": [
+  "test_test"
+ ],
+ "models": [
+  "pooled_s11",
+  "pooled_s22",
+  "pooled_s33",
+  "xattn_s11",
+  "xattn_s22",
+  "xattn_s33"
+ ],
+ "ts": "2026-10-08T09:25:42.060235+00:00"
+}

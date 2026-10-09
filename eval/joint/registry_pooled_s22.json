@@ -1,0 +1,13 @@
+{
+  "model": "pooled",
+  "seed": 22,
+  "params": 848002,
+  "updates": 42658,
+  "epochs": 7.000287179487179,
+  "best_cold_recall_1@10": 0.7537058998450114,
+  "best_update": 24376,
+  "stop_reason": "early_stop_patience",
+  "wall_seconds": 1705.9117476940155,
+  "peak_vram_mb": 341.766144,
+  "ckpt_sha256": "77236d777e2d2a375ab2c9053592572ebfe2c215988981da268f6eb51d57b5f2"
+}

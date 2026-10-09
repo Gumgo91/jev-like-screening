@@ -1,0 +1,15 @@
+gpu NVIDIA GeForce RTX 4090, 570.169 ligands prepared 4093
+{'target': 'ABL1', 'mode': 'fast', 'n': 4000, 'rep': 0, 'sec': 92.722, 'n_ok': 3999, 'rc': 0, 'warmup': 1, 'gpu': 'NVIDIA GeForce RTX 4090, 570.169'}
+{'target': 'ABL1', 'mode': 'fast', 'n': 4000, 'rep': 1, 'sec': 92.239, 'n_ok': 4000, 'rc': 0, 'warmup': 0, 'gpu': 'NVIDIA GeForce RTX 4090, 570.169'}
+{'target': 'ABL1', 'mode': 'balance', 'n': 4000, 'rep': 0, 'sec': 220.965, 'n_ok': 4000, 'rc': 0, 'warmup': 0, 'gpu': 'NVIDIA GeForce RTX 4090, 570.169'}
+{'target': 'ABL1', 'mode': 'detail', 'n': 4000, 'rep': 0, 'sec': 273.11, 'n_ok': 3999, 'rc': 0, 'warmup': 0, 'gpu': 'NVIDIA GeForce RTX 4090, 570.169'}
+{'target': 'MAOB', 'mode': 'fast', 'n': 4000, 'rep': 0, 'sec': 96.624, 'n_ok': 3987, 'rc': 0, 'warmup': 1, 'gpu': 'NVIDIA GeForce RTX 4090, 570.169'}
+{'target': 'MAOB', 'mode': 'fast', 'n': 4000, 'rep': 1, 'sec': 98.719, 'n_ok': 3984, 'rc': 0, 'warmup': 0, 'gpu': 'NVIDIA GeForce RTX 4090, 570.169'}
+{'target': 'MAOB', 'mode': 'balance', 'n': 4000, 'rep': 0, 'sec': 234.893, 'n_ok': 3991, 'rc': 0, 'warmup': 0, 'gpu': 'NVIDIA GeForce RTX 4090, 570.169'}
+{'target': 'MAOB', 'mode': 'detail', 'n': 4000, 'rep': 0, 'sec': 295.651, 'n_ok': 3984, 'rc': 0, 'warmup': 0, 'gpu': 'NVIDIA GeForce RTX 4090, 570.169'}
+{'target': 'PTGS2', 'mode': 'fast', 'n': 4000, 'rep': 0, 'sec': 95.105, 'n_ok': 4000, 'rc': 0, 'warmup': 1, 'gpu': 'NVIDIA GeForce RTX 4090, 570.169'}
+{'target': 'PTGS2', 'mode': 'fast', 'n': 4000, 'rep': 1, 'sec': 94.196, 'n_ok': 4000, 'rc': 0, 'warmup': 0, 'gpu': 'NVIDIA GeForce RTX 4090, 570.169'}
+{'target': 'PTGS2', 'mode': 'balance', 'n': 4000, 'rep': 0, 'sec': 227.385, 'n_ok': 3999, 'rc': 0, 'warmup': 0, 'gpu': 'NVIDIA GeForce RTX 4090, 570.169'}
+{'target': 'PTGS2', 'mode': 'detail', 'n': 4000, 'rep': 0, 'sec': 279.682, 'n_ok': 3998, 'rc': 0, 'warmup': 0, 'gpu': 'NVIDIA GeForce RTX 4090, 570.169'}
+done 12 calls 01:22:07
+FOURK_FINISHED

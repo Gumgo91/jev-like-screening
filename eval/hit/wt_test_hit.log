@@ -1,0 +1,6 @@
+rsgh_wt_s11    R1@10=0.855 R1@5=0.679 spearman=0.773 joint=0.027 (n=3536)
+rsgh_wt_s22    R1@10=0.787 R1@5=0.617 spearman=0.740 joint=0.071 (n=3536)
+rsgh_wt_s33    R1@10=0.852 R1@5=0.664 spearman=0.765 joint=0.036 (n=3536)
+rsgh_int_s11   R1@10=0.835 R1@5=0.665 spearman=0.761 joint=0.038 (n=3536)
+rsgh_int_s22   R1@10=0.840 R1@5=0.677 spearman=0.765 joint=0.038 (n=3536)
+rsgh_int_s33   R1@10=0.850 R1@5=0.674 spearman=0.768 joint=0.032 (n=3536)

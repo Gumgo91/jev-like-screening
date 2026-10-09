@@ -1,0 +1,24 @@
+C0L_s11 edit response with the hit logit: pooled r=+0.067 edit r=-0.068 within r=+0.023 pred SD=0.122 AUC=0.71
+C0L_s22 edit response with the hit logit: pooled r=-0.050 edit r=-0.152 within r=-0.005 pred SD=0.112 AUC=0.69
+C0L_s33 edit response with the hit logit: pooled r=+0.052 edit r=+0.035 within r=+0.008 pred SD=0.163 AUC=0.64
+C1L_s11 edit response with the hit logit: pooled r=+0.012 edit r=-0.071 within r=-0.000 pred SD=0.127 AUC=0.68
+C1L_s22 edit response with the hit logit: pooled r=+0.022 edit r=-0.022 within r=-0.019 pred SD=0.193 AUC=0.65
+C1L_s33 edit response with the hit logit: pooled r=-0.005 edit r=-0.031 within r=-0.017 pred SD=0.128 AUC=0.66
+C2L_s11 edit response with the hit logit: pooled r=+0.025 edit r=-0.074 within r=+0.008 pred SD=0.106 AUC=0.66
+C2L_s22 edit response with the hit logit: pooled r=-0.044 edit r=-0.069 within r=-0.025 pred SD=0.040 AUC=0.68
+C2L_s33 edit response with the hit logit: pooled r=-0.053 edit r=-0.019 within r=-0.010 pred SD=0.043 AUC=0.69
+C0cL_s11 edit response with the hit logit: pooled r=+nan edit r=+nan within r=+nan pred SD=0.000 AUC=0.50
+C0cL_s22 edit response with the hit logit: pooled r=+nan edit r=+nan within r=+nan pred SD=0.000 AUC=0.50
+C0cL_s33 edit response with the hit logit: pooled r=+nan edit r=+nan within r=+nan pred SD=0.000 AUC=0.50
+C0L_s11 dev screening with the hit logit: R1@10=0.744 joint reversal=0.007
+C0L_s22 dev screening with the hit logit: R1@10=0.759 joint reversal=0.008
+C0L_s33 dev screening with the hit logit: R1@10=0.736 joint reversal=0.001
+C1L_s11 dev screening with the hit logit: R1@10=0.744 joint reversal=0.010
+C1L_s22 dev screening with the hit logit: R1@10=0.748 joint reversal=0.020
+C1L_s33 dev screening with the hit logit: R1@10=0.731 joint reversal=0.008
+C2L_s11 dev screening with the hit logit: R1@10=0.699 joint reversal=0.028
+C2L_s22 dev screening with the hit logit: R1@10=0.681 joint reversal=0.160
+C2L_s33 dev screening with the hit logit: R1@10=0.717 joint reversal=0.024
+C0cL_s11 dev screening with the hit logit: R1@10=0.741 joint reversal=0.000
+C0cL_s22 dev screening with the hit logit: R1@10=0.738 joint reversal=0.000
+C0cL_s33 dev screening with the hit logit: R1@10=0.748 joint reversal=0.000

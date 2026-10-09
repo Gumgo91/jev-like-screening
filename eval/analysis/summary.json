@@ -1,0 +1,67 @@
+{
+ "n_targets": 57,
+ "n_dockings": 305227,
+ "median_sigma_seed": 0.21349476263336067,
+ "by_class": {
+  "far control": {
+   "n_mutants": 55,
+   "mean_dS": -0.0,
+   "sd_dS": 0.286,
+   "snr": 1.082,
+   "frac_changed": 0.07
+  },
+  "multi contact": {
+   "n_mutants": 456,
+   "mean_dS": 0.068,
+   "sd_dS": 0.601,
+   "snr": 2.279,
+   "frac_changed": 0.407
+  },
+  "shell control": {
+   "n_mutants": 171,
+   "mean_dS": 0.001,
+   "sd_dS": 0.298,
+   "snr": 1.129,
+   "frac_changed": 0.081
+  },
+  "single contact": {
+   "n_mutants": 551,
+   "mean_dS": -0.008,
+   "sd_dS": 0.446,
+   "snr": 1.692,
+   "frac_changed": 0.205
+  }
+ },
+ "wt_parity": {
+  "median_pearson": 0.9216184206538385,
+  "median_spearman": 0.909879138367629,
+  "median_bias": 0.14090520833333334,
+  "median_mae": 0.29555761718749995,
+  "n_targets": 48
+ },
+ "decomposition_mean": {
+  "mutant_mean": 0.1736363023519516,
+  "ligand_main": 0.24155674874782562,
+  "interaction": 0.3545786440372467,
+  "noise": 0.2518083155155182
+ },
+ "corr_sd_nremoved": 0.38111106609825784,
+ "corr_sd_dmin": -0.29206957600120526,
+ "sigma_seed_min": 0.13501207643879015,
+ "sigma_seed_max": 0.3220260907754163,
+ "delta_sigma_median": 0.26114391000420334,
+ "decomposition_by_group": {
+  "train": {
+   "mutant_mean": 0.15626730024814606,
+   "ligand_main": 0.26131489872932434,
+   "interaction": 0.36488866806030273,
+   "noise": 0.23944836854934692
+  },
+  "heldout": {
+   "mutant_mean": 0.20837430655956268,
+   "ligand_main": 0.20204049348831177,
+   "interaction": 0.33395853638648987,
+   "noise": 0.2765282690525055
+  }
+ }
+}

@@ -1,0 +1,4 @@
+featurised {'smiles': 260155, 'featurised': 260155, 'failures': 0, 'sec_featurise_cpu': 40.70737028121948}
+independence {'embedding_batch1_vs_big': 8.940696716308594e-08, 'score_batch1_vs_big': 4.76837158203125e-07, 'score_permuted_batches64_vs_big': 4.76837158203125e-07, 'score_range': 4.682345390319824}
+pockets {'n_pockets': 57, 'pairs': 14828835, 'sec_state_encoding': 0.25029468536376953, 'sec_scoring_all_models': 36.31098532676697, 'pairs_per_sec_scoring': 408384.26351016125, 'per_model_pairs_per_sec': 1225152.7905304837, 'sec_per_pocket': 0.6414259651251006, 'sec_end_to_end': 82.03686356544495}
+scan {'target': 'DHFR', 'edits': 47, 'sec_build_edited_graphs_cpu': 3.4889063835144043, 'ligands': 260155, 'pairs': 12227285, 'sec_state_encoding_all_models': 0.03497886657714844, 'sec_queries_all_models': 23.732407331466675, 'pairs_per_sec_queries': 1545644.0843809268, 'sec_end_to_end': 69.24296975135803, 'pairs_per_sec_end_to_end': 176585.21932127545}

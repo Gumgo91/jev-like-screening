@@ -1,0 +1,40 @@
+{
+ "gpu": "NVIDIA GeForce RTX 4090",
+ "cpus": 96,
+ "models": 3,
+ "library": {
+  "smiles": 260155,
+  "featurised": 260155,
+  "failures": 0,
+  "sec_featurise_cpu": 46.05519461631775,
+  "sec_embed_gpu_all_models": 4.641146421432495
+ },
+ "independence": {
+  "embedding_batch1_vs_big": 8.940696716308594e-08,
+  "score_batch1_vs_big": 4.76837158203125e-07,
+  "score_permuted_batches64_vs_big": 4.76837158203125e-07,
+  "score_range": 4.682345390319824
+ },
+ "pockets": {
+  "n_pockets": 57,
+  "pairs": 14828835,
+  "sec_state_encoding": 0.24371123313903809,
+  "sec_scoring_all_models": 36.27487802505493,
+  "pairs_per_sec_scoring": 408790.7611917475,
+  "per_model_pairs_per_sec": 1226372.2835752426,
+  "sec_per_pocket": 0.6406770045297188,
+  "sec_end_to_end": 87.21493029594421
+ },
+ "scan": {
+  "target": "DHFR",
+  "edits": 47,
+  "sec_build_edited_graphs_cpu": 3.3365321159362793,
+  "ligands": 260155,
+  "pairs": 12227285,
+  "sec_state_encoding_all_models": 0.03424501419067383,
+  "sec_queries_all_models": 23.705344438552856,
+  "pairs_per_sec_queries": 1547408.6485047217,
+  "sec_end_to_end": 74.43593049049377,
+  "pairs_per_sec_end_to_end": 164265.89846366667
+ }
+}

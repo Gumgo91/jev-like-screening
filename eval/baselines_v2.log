@@ -1,0 +1,10 @@
+C0_s11         pooled r=0.008 mutant r=0.033 within r=0.024 gain=0.11 predSD=0.054 (true 0.710) detectAUC=0.691
+C0_s22         pooled r=0.082 mutant r=0.132 within r=0.003 gain=1.21 predSD=0.048 (true 0.710) detectAUC=0.693
+C0_s33         pooled r=-0.053 mutant r=-0.038 within r=0.005 gain=-0.61 predSD=0.062 (true 0.710) detectAUC=0.632
+C1_s11         pooled r=0.042 mutant r=0.095 within r=0.005 gain=0.90 predSD=0.033 (true 0.710) detectAUC=0.657
+C1_s22         pooled r=0.020 mutant r=0.114 within r=-0.016 gain=0.44 predSD=0.032 (true 0.710) detectAUC=0.664
+C1_s33         pooled r=0.012 mutant r=0.073 within r=-0.011 gain=0.19 predSD=0.044 (true 0.710) detectAUC=0.648
+C2_s11         pooled r=0.046 mutant r=0.034 within r=0.004 gain=0.79 predSD=0.041 (true 0.710) detectAUC=0.650
+C2_s22         pooled r=0.074 mutant r=0.127 within r=-0.013 gain=1.88 predSD=0.028 (true 0.710) detectAUC=0.688
+C2_s33         pooled r=0.030 mutant r=0.061 within r=-0.000 gain=0.96 predSD=0.022 (true 0.710) detectAUC=0.636
+noise ceiling {'sigma_seed': 0.24246591028585643, 'delta_sigma': 0.2799755171456937, 'reliability': 0.8443887410737693, 'r_max': 0.9189062743684849}

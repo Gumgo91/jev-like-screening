@@ -1,0 +1,9 @@
+{
+  "mu": -8.42899484073461,
+  "r2_insample": 0.6996715905803739,
+  "resid_std": 0.6579878844291739,
+  "raw_std": 1.200659023089888,
+  "target_effect_std": 0.5068856331126074,
+  "ligand_effect_std": 0.8669853198833467,
+  "note": "in-sample descriptive decomposition only; not a predictive claim"
+}

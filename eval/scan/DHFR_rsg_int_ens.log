@@ -1,0 +1,1 @@
+{"ligands": 260155, "edits": 47, "pairs": 12227285, "sec_ligand_embedding": 5.635339260101318, "sec_state_encoding": 0.02866983413696289, "sec_queries": 29.220718145370483, "pairs_per_sec": 418445.7390530356, "sec_featurization_cpu": 69.79921555519104, "featurization_failures": 0, "models": 3, "sec_queries_all_models": 87.55167245864868, "edits_per_ligand_library": 47.0}

@@ -1,0 +1,43 @@
+{
+  "model": "dual",
+  "cond": "dual",
+  "fold": 2,
+  "recipe": "R1",
+  "seed": 11,
+  "params": 848002,
+  "updates": 150000,
+  "epochs": 23.414634146341463,
+  "best_update": 140162,
+  "best_val_recall": 0.8888732624091203,
+  "stop_reason": "budget",
+  "wall_seconds": 4724.903760194778,
+  "peak_vram_mb": 357.69088,
+  "ckpt_sha256": "d97949921cba09cb645125c6eabc775d3b9806b5cb79baee591e38a01cecb4a9",
+  "val_targets": [
+    "F10",
+    "KDR",
+    "KIT",
+    "MET",
+    "NOS1",
+    "PTPN1"
+  ],
+  "heldout_targets": [
+    "ADORA2A",
+    "ADRB1",
+    "ADRB2",
+    "CYP2C9",
+    "CYP3A4",
+    "DRD2",
+    "DRD3",
+    "MAOB"
+  ],
+  "heldout_macro_recall_1@10": 0.8509806599386859,
+  "n_train_pairs": 1640000,
+  "train_hit_rate": 0.011184756097560975,
+  "n_val_ligands": 10000,
+  "n_dev_ligands": 10000,
+  "const_pocket_hash": null,
+  "fold_assignment_sha256": "a9551800f8660b435c0636af04c771da34868893b49dcf2ab8e3b1803b6fba9f",
+  "smoke": false,
+  "device": "cuda"
+}
