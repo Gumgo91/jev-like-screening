@@ -1,0 +1,20 @@
+{
+ "val_mutants": {
+  "pooled_r": NaN,
+  "mutant_r": NaN,
+  "within_r": NaN,
+  "gain": 0.0,
+  "pred_sd": 0.0,
+  "true_sd": 0.6586487316435722,
+  "n": 26905
+ },
+ "train_mutants": {
+  "pooled_r": NaN,
+  "mutant_r": NaN,
+  "within_r": NaN,
+  "gain": 0.0,
+  "pred_sd": 0.0,
+  "true_sd": 0.5033823954038253,
+  "n": 57403
+ }
+}
