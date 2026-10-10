@@ -1,26 +1,17 @@
 \begin{table}[t]
-\caption{Top-1\% recall of the networks on known pockets for ligands that were not used in training, within a budget of the best 1, 5, 10 and 20\% of the ranking (macro mean over the pockets; 95\% interval from bootstrapping the pockets). Checkpoint chosen on known pockets: networks of five cross-fitted folds that stop on seen targets, evaluated on the pockets of their training targets, 49 pockets, mean over the folds that train on a pocket. Checkpoint chosen on new targets: the existing networks of the preceding analysis, the 39 training pockets, mean over three seeds. The constant-pocket network is trained with one dummy pocket for every target. Model time: seconds for the 260{,}155 ligands of DOCKSTRING against 57 pockets on one RTX 4090 (cross-attention in float16).}
+\caption{Top-1\% recall of the networks on the 49 known pockets for ligands that were not used in training, within a budget of the best 1, 5, 10 and 20\% of the ranking (macro mean over the pockets; 95\% interval from bootstrapping the pockets). Each network is the mean over the cross-fitted folds that train on a pocket, with the checkpoint chosen on known pockets. The constant-pocket network is the dual encoder trained with one dummy pocket for every target. The pooled network replaces the product of the dual encoder by a learned readout. Time: seconds from SMILES to scores for the 260{,}155 ligands of DOCKSTRING against 1{,}000 pockets on one RTX 4090 (cross-attention in float16). The recall of every network with the checkpoint chosen on new targets and with longer training is in the Supporting Information.}
 \label{tab:known}
 \centering
 \footnotesize
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcccrr}
 \toprule
-Network & 1\% & 5\% & 10\% (95\% interval) & 20\% & Model time (s) \\
+Network & 1\% & 5\% & 10\% (95\% interval) & 20\% & Time (s) \\
 \midrule
-\multicolumn{6}{l}{\emph{Checkpoint chosen on known pockets}} \\
-\quad Dual encoder & 0.29 & 0.72 & 0.88 (0.85 to 0.90) & 0.96 & 1.61 \\
-\quad Pooled concatenation & 0.31 & 0.75 & 0.89 (0.87 to 0.91) & 0.97 & 1.64 \\
-\quad Cross-attention & 0.35 & 0.79 & 0.92 (0.90 to 0.93) & 0.98 & 10.4 \\
-\quad Dual encoder, longer training & 0.33 & 0.77 & 0.90 (0.88 to 0.92) & 0.97 & 1.61 \\
-\quad Cross-attention, longer training & 0.37 & 0.81 & 0.93 (0.92 to 0.94) & 0.99 & 10.4 \\
-\quad Constant pocket & 0.25 & 0.64 & 0.81 (0.76 to 0.85) & 0.93 & 1.61 \\
-\midrule
-\multicolumn{6}{l}{\emph{Checkpoint chosen on new targets}} \\
-\quad Dual encoder & 0.28 & 0.70 & 0.86 (0.83 to 0.89) & 0.96 & 1.61 \\
-\quad Pooled concatenation & 0.27 & 0.68 & 0.85 (0.81 to 0.88) & 0.95 & 1.64 \\
-\quad Cross-attention & 0.27 & 0.68 & 0.85 (0.81 to 0.87) & 0.95 & 10.4 \\
-\quad Constant pocket & 0.26 & 0.66 & 0.83 (0.78 to 0.87) & 0.94 & 1.61 \\
+Dual encoder & 0.29 & 0.72 & 0.88 (0.85 to 0.90) & 0.96 & 43.5 \\
+Cross-attention & 0.35 & 0.79 & 0.92 (0.90 to 0.93) & 0.98 & 197 \\
+Constant pocket & 0.25 & 0.64 & 0.81 (0.76 to 0.85) & 0.93 & 43.5 \\
+Pooled concatenation (Jev-like, learned readout) & 0.31 & 0.75 & 0.89 (0.87 to 0.91) & 0.97 & 44.1 \\
 \bottomrule
 \end{tabular}
 \end{table}

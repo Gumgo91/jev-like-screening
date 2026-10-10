@@ -6,7 +6,7 @@ Code and data for the manuscript by Hyunseung Kong, Interdisciplinary Program in
 
 ## Summary
 
-Docking a large library against many pockets is limited by the cost of the calculation. A Jev-like network encodes each pocket once into a shared state and scores every ligand against it independently, so that a screen of a library against many pockets reduces to a matrix product. On the 49 known pockets of DOCKSTRING, a dual encoder and a pooled network of this organization recover 0.88 and 0.89 of the top-1% docking hits of new ligands in the best 10% of the ranking, against 0.92 for a cross-attention network. On one RTX 4090 the dual encoder ranks 260,155 ligands against 57 pockets from SMILES in 43 s. The cross-attention network needs 6.4 to 18 times the model time of the dual encoder for 57 pockets and 86 to 273 times for 1,000 pockets. The networks serve the pockets of their training data.
+Docking a large library against many pockets is limited by the cost of the calculation. A Jev-like network encodes each pocket once into a shared state and scores every ligand against it independently, so that a screen of a library against many pockets reduces to a matrix product. On the 49 known pockets of DOCKSTRING, a dual encoder of this organization recovers 0.88 of the top-1% docking hits of new ligands in the best 10% of the ranking, which is 95% of the 0.92 of a cross-attention network with the same encoders, against 0.81 for a network that sees only the ligand. On one RTX 4090 the dual encoder ranks 260,155 ligands against 57 pockets from SMILES in 43.3 s and against 1,000 pockets in 43.5 s, and the cross-attention network needs 4.5 to 12 times longer for 1,000 pockets. The networks serve the pockets of their training data.
 
 ## Figures
 
@@ -16,7 +16,7 @@ Docking a large library against many pockets is limited by the cost of the calcu
 
 ![Figure 2](manuscript/figures/fig_cost.png)
 
-**Figure 2.** Model time against the number of pockets (a), the same from SMILES (b), and recall against model time (c).
+**Figure 2.** Time from SMILES to scores against the number of pockets (a), and recall against the time for 1,000 pockets (b).
 
 ## Contents
 

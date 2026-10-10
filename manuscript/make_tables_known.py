@@ -1,4 +1,4 @@
-"""Known-pocket tables: table_known.tex (main text; experiments E3 and E4) and si_table_known_targets.tex (per pocket, SI).
+"""Known-pocket tables: table_known.tex (main text, Table 1; experiment E4), si_table_recall_all.tex (SI, E3 and E4 side by side) and per-pocket SI tables.
 
 E3: existing checkpoints chosen on new targets, 39 training pockets, three seeds (dockmut/eval/v5_known_pockets_summary.json).
 E4: cross-fitted networks with checkpoints chosen on seen pockets, 49 pockets (dockmut/eval/v5_known_cv_summary.json), when present.
@@ -34,6 +34,25 @@ def row(name, s, key, net):
     return f"\\quad {name} & {v[0]:.2f} & {v[1]:.2f} & {v[2]:.2f} ({ci[0]:.2f} to {ci[1]:.2f}) & {v[3]:.2f} & {fs(B[net]['57']['model_time_s'])} " + r"\\"
 
 
+def main_table(s4):
+    """Table of the main text: the cross-fitted networks (checkpoint chosen on known pockets), the dual encoder against the cross-attention network."""
+    rows = (("Dual encoder", "dual_R0", "dual"), ("Cross-attention", "xattn_R0", "xattn_fp16"), ("Constant pocket", "dual_const_R0", "dual"),
+            ("Pooled concatenation (Jev-like, learned readout)", "pooled_R0", "pooled"))
+    cap = (r"\caption{Top-1\% recall of the networks on the " + str(s4["n_targets"]["dual_R0"]) + r" known pockets for ligands that were not used in training, within a budget of the best 1, 5, 10 and 20\% of the ranking "
+           r"(macro mean over the pockets; 95\% interval from bootstrapping the pockets). Each network is the mean over the cross-fitted folds that train on a pocket, with the checkpoint chosen on known pockets. "
+           r"The constant-pocket network is the dual encoder trained with one dummy pocket for every target. The pooled network replaces the product of the dual encoder by a learned readout. "
+           r"Time: seconds from SMILES to scores for the " + f"{T['library_size']:,}".replace(",", "{,}") + r" ligands of DOCKSTRING against 1{,}000 pockets on one " + GPU + r" (cross-attention in float16). "
+           r"The recall of every network with the checkpoint chosen on new targets and with longer training is in the Supporting Information.}")
+    lines = [r"\begin{table}[t]", cap, r"\label{tab:known}", r"\centering", r"\footnotesize", r"\setlength{\tabcolsep}{3pt}", r"\begin{tabular}{lcccrr}", r"\toprule",
+             r"Network & 1\% & 5\% & 10\% (95\% interval) & 20\% & Time (s) \\", r"\midrule"]
+    for nm, k, net in rows:
+        v = [s4["mean"][k][m] for m in COLS]
+        ci = s4["ci"][k]["recall_1@10"]
+        lines.append(f"{nm} & {v[0]:.2f} & {v[1]:.2f} & {v[2]:.2f} ({ci[0]:.2f} to {ci[1]:.2f}) & {v[3]:.2f} & {fs(B[net]['1000']['end_to_end_s'])} " + r"\\")
+    lines += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
+    (here / "table_known.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def main():
     s3 = json.loads((EV / "v5_known_pockets_summary.json").read_text())
     f4 = EV / "v5_known_cv_summary.json"
@@ -46,7 +65,7 @@ def main():
     cap += (r"Checkpoint chosen on new targets: the existing networks of the preceding analysis, the " + str(s3["n_targets"]) + r" training pockets, mean over three seeds. ")
     cap += (r"The constant-pocket network is trained with one dummy pocket for every target. Model time: seconds for the " + f"{T['library_size']:,}".replace(",", "{,}") +
             r" ligands of DOCKSTRING against 57 pockets on one " + GPU + r" (cross-attention in float16).}")
-    lines = [r"\begin{table}[t]", cap, r"\label{tab:known}", r"\centering", r"\footnotesize", r"\setlength{\tabcolsep}{3pt}", r"\begin{tabular}{lcccrr}", r"\toprule",
+    lines = [r"\begin{table}[h]", cap, r"\label{tab:si_recall_all}", r"\centering", r"\footnotesize", r"\setlength{\tabcolsep}{3pt}", r"\begin{tabular}{lcccrr}", r"\toprule",
              r"Network & 1\% & 5\% & 10\% (95\% interval) & 20\% & Model time (s) \\", r"\midrule"]
     if s4:
         lines.append(r"\multicolumn{6}{l}{\emph{Checkpoint chosen on known pockets}} \\")
@@ -59,7 +78,9 @@ def main():
     for nm, k, net in (("Dual encoder", "C0", "dual"), ("Pooled concatenation", "PC", "pooled"), ("Cross-attention", "XA", "xattn_fp16"), ("Constant pocket", "C0c", "dual")):
         lines.append(row(nm, s3, k, net))
     lines += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
-    (here / "table_known.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (here / "si_table_recall_all.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    if s4:
+        main_table(s4)
     pt = {c: s3["mean"][c]["per_target"]["recall_1@10"] for c in ("C0", "PC", "XA", "C0c")}
     out = [r"\begin{longtable}{lrrrr}", r"\caption{Top-1\% recall at the 10\% budget of every known pocket (checkpoint chosen on new targets; mean over three seeds; 10{,}000 ligands that were not used in training).}\label{tab:si_known_targets}\\",
            r"\toprule", r"Pocket & Dual encoder & Pooled concatenation & Cross-attention & Constant pocket \\", r"\midrule", r"\endfirsthead", r"\toprule",

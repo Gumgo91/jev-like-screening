@@ -30,14 +30,32 @@ def fs(x):
 
 
 def table_cost():
+    """Table of the main text: end-to-end times of the dual encoder, the cross-attention network and Uni-Dock for 57 and 1,000 pockets."""
+    rows = [("Dual encoder", "dual"), ("Cross-attention, float16", "xattn_fp16"), ("Cross-attention, float32", "xattn_fp32")]
+    lines = [r"\begin{table}[t]",
+             r"\caption{Time to screen the " + f"{L0:,}".replace(",", "{,}") + r" ligands of DOCKSTRING from SMILES to scores at the full scale on one " + GPU + r" (seconds; best of two runs for the GPU stages, "
+             r"featurization of the SMILES on " + str(T["environment"]["featurization_processes"]) + r" CPU processes included). 1{,}000 pockets are the 57 pockets of DOCKSTRING used cyclically. "
+             r"Uni-Dock: library size times the number of pockets divided by the median docking rate of the fast mode at 4{,}000 ligands per call, without ligand preparation. "
+             r"The model time and every stage are in the Supporting Information.}",
+             r"\label{tab:cost}", r"\centering", r"\footnotesize", r"\setlength{\tabcolsep}{4pt}", r"\begin{tabular}{lrr}", r"\toprule",
+             r"Network & 57 pockets & 1{,}000 pockets \\", r"\midrule"]
+    for nm, k in rows:
+        lines.append(f"{nm} & {fs(B[k]['57']['end_to_end_s'])} & {fs(B[k]['1000']['end_to_end_s'])} " + r"\\")
+    r_fast = CM["unidock_rate"]["fast"]
+    lines.append(f"Uni-Dock, fast mode & {fs(L0 * 57 / r_fast)} & {fs(L0 * 1000 / r_fast)} " + r"\\")
+    lines += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
+    (here / "table_cost.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def table_cost_full():
     rows = [("Dual encoder", "dual"), ("Pooled concatenation", "pooled"),
             ("Cross-attention, float16", "xattn_fp16"), ("Cross-attention, float32", "xattn_fp32")]
-    lines = [r"\begin{table}[t]",
+    lines = [r"\begin{table}[h]",
              r"\caption{Cost of screening the " + f"{L0:,}".replace(",", "{,}") + r" ligands of DOCKSTRING at the full scale on one " + GPU + r" (seconds, best of two runs for the GPU stages). "
              r"Model time: ligand embedding, pocket states, scoring and selection of the best 10\% per pocket. End to end: model time plus the featurization of the SMILES on " + str(T["environment"]["featurization_processes"]) +
              r" CPU processes (" + fs(T["featurization"]["seconds"]) + r" s) and the collation of the batches. 1{,}000 pockets are the 57 pockets of DOCKSTRING used cyclically. "
              r"Mpairs/s: million pairs per second of the scoring and selection stages for 57 pockets. Uni-Dock: library size times the number of pockets divided by the median docking rate at 4{,}000 ligands per call on one RTX 4090, without ligand preparation.}",
-             r"\label{tab:cost}", r"\centering", r"\footnotesize", r"\setlength{\tabcolsep}{3pt}", r"\begin{tabular}{lrrrrr}", r"\toprule",
+             r"\label{tab:si_cost_full}", r"\centering", r"\footnotesize", r"\setlength{\tabcolsep}{3pt}", r"\begin{tabular}{lrrrrr}", r"\toprule",
              r" & \multicolumn{2}{c}{57 pockets} & \multicolumn{2}{c}{1{,}000 pockets} & Scoring rate \\",
              r"\cmidrule(lr){2-3}\cmidrule(lr){4-5}", r"Network & Model & End to end & Model & End to end & Mpairs/s \\", r"\midrule"]
     for nm, k in rows:
@@ -47,7 +65,7 @@ def table_cost():
         r = CM["unidock_rate"][key]
         lines.append(f"{nm} & {fs(L0 * 57 / r)} & {fs(L0 * 57 / r)} & {fs(L0 * 1000 / r)} & {fs(L0 * 1000 / r)} & $" + f"{r / 1e6 * 1e5:.1f}" + r"\times10^{-5}$ " + r"\\")
     lines += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
-    (here / "table_cost.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (here / "si_table_cost_full.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def table_known():
@@ -104,6 +122,7 @@ def table_timing_si(Tx=None, outname="si_table_timing.tex", label="tab:si_timing
 
 if __name__ == "__main__":
     table_cost()
+    table_cost_full()
     import make_tables_known
     make_tables_known.main()
     table_timing_si()
