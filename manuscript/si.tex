@@ -1,0 +1,73 @@
+\documentclass[journal=jcisd8,manuscript=article]{achemso}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{array}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.6}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{3}
+\setcounter{totalnumber}{5}
+
+\setlength{\emergencystretch}{3em}
+\newcommand{\kcal}{kcal\,mol$^{-1}$}
+\input{numbers}
+\input{numbers_v5}
+
+\author{Hyunseung Kong}
+\email{hskong@snu.ac.kr}
+\affiliation{Interdisciplinary Program in Bioinformatics, Seoul National University, Seoul 08826, Republic of Korea}
+
+\title{Supporting Information for Jev-Like Shared-State Networks for Fast Structure-Based Screening}
+
+\begin{document}
+
+\maketitle
+
+\section*{Scope of this document}
+
+This document gives the details behind the main text: the Uni-Dock benchmark, the stages of the full-scale timing, the existing networks and the longer training recipe, the evaluation on held-out protein families and the recall of every known pocket. Script names refer to the folder \texttt{scripts/} of the repository \url{https://github.com/Gumgo91/jev-like-screening}, evaluation and timing outputs to \texttt{eval/}, run records to \texttt{runs/}, and the split definitions and the cross-validation folds to \texttt{data/splits/}. The trained checkpoints are in release v1.0 of the repository.
+
+\section{Extended methods}
+
+\subsection{Docking rate benchmark}
+
+Ligands were prepared with the DOCKSTRING recipe. SMILES strings were canonicalized, neutralized and checked for a single fragment without radicals, protonated at pH 7.4 with Open Babel, embedded with RDKit ETKDG (seed 974528263, at most ten attempts per atom), optimized with MMFF94 for at most 1000 iterations (UFF as fallback), written as a MOL file and converted to PDBQT with Gasteiger charges. The benchmark ran on a RunPod pod with one RTX 4090 (driver 570.169, 96 visible CPU threads) in a micromamba environment with Uni-Dock 1.2.0, Open Babel 3.2.1 and RDKit 2026.03.6. The ligands are a random sample of the DOCKSTRING collection (1,024 molecules with seed 0 and 3,072 further molecules with seed 1), of which 1,023 and \dockPrepOkFourK{} passed the preparation. For ABL1, MAOB and PTGS2 the receptor and the DOCKSTRING box were docked against the first $n$ prepared ligands with \texttt{-{}-scoring vina -{}-num\_modes 1 -{}-seed 974528263} and the search mode under test, in three jobs: batches of 160 and 256 ligands (detail mode with both sizes, balance and fast modes with 256 ligands), batches of 1,000 ligands, and batches of 4,000 ligands (one repetition per mode after one warm-up call). The first call of every job and receptor is a warm-up and is not counted. A call is one \texttt{unidock} process, timed from the start of the process to its exit, and the rate is the number of ligands with a score in the output divided by that time. No call returned a code other than zero. Table~\ref{tab:si_speed} gives the rates, and the records of all calls (\texttt{eval/docking\_timing*.csv}) and the best-pose scores of the first repetition of each configuration (\texttt{eval/docking\_scores*.csv}) are in the repository. Two runs of the detail mode with batches of 160 and 256 ligands, which share their first 160 ligands, give scores with a Spearman correlation of \dockAgreeDetail{}, and the balance and fast modes agree with the detail mode at \dockAgreeBal{} and \dockAgreeFast{} (4,000 ligands per call, mean over receptors).
+
+\subsection{Full-scale timing}
+
+The full-scale timing of the main text (\texttt{v4\_fair\_timing.py}) ran on one \tmAGpu{} of a RunPod instance (\tmACpus{} visible CPU threads, \tmAProcs{} featurization processes, Python 3.11.10, PyTorch 2.4.1 with CUDA 12.4, RDKit 2026.03.6) and, as a second measurement, on one \tmBGpu{} of a RunPod instance (\tmBCpus{} visible CPU threads, \tmBProcs{} featurization processes). Table~\ref{tab:si_timing} gives every stage of the first measurement and Table~\ref{tab:si_timing_b} that of the second. On the second GPU the featurization takes \tmBFeat{} s, and the cross-attention network needs \tmBRatioXaHalfFiftySevenFull{} to \tmBRatioXaSingleFiftySevenFull{} times the time of the dual encoder from SMILES to scores for 57 pockets and \tmBRatioXaHalfThousandFull{} to \tmBRatioXaSingleThousandFull{} times for 1{,}000 pockets, and \tmBRatioXaHalfFiftySevenModel{} to \tmBRatioXaSingleFiftySevenModel{} and \tmBRatioXaHalfThousandModel{} to \tmBRatioXaSingleThousandModel{} times the model time. The ragged implementation of the cross-attention network, which the main text uses, scores \tmAPaddedSingle{} times (float32) and \tmAPaddedHalf{} times (float16) as many pairs per second in the scoring stage as its padded implementation in float32 on the first GPU, and \tmBPaddedSingle{} and \tmBPaddedHalf{} times on the second GPU. The padded implementation pads the ligands of a batch to a common number of atoms and was timed on a subset.
+
+\subsection{Known-pocket evaluations}
+
+Table~\ref{tab:si_recall_all} gives the recall of two groups of networks, and Table~1 of the main text reports the cross-fitted networks, the first group of Table~\ref{tab:si_recall_all}.
+The cross-fitted evaluation (\texttt{v5\_known\_cv\_eval.py}) used 40 networks of five folds: the dual encoder, the pooled network and the cross-attention network with the real pockets and with one constant pocket, trained with the recipe of the main text, and the dual encoder and the cross-attention network trained with a longer recipe (learning rate $10^{-4}$, up to 150{,}000 updates or 30 epochs, patience of eight evaluations), all with seed 11. The best update of each cross-fitted network is in its registry file (\texttt{runs/v4/registry\_f*\_*\_s11.json}). With the longer recipe the dual encoder keeps \kfRatioDualLong{}\% (\kfRatioDualLongLo{} to \kfRatioDualLongHi{}) of the recall of the cross-attention network at the 10\% budget. For the pooled network the pocket state adds \kfDiffPooledPooledConstTen{} (\kfDiffPooledPooledConstTenLo{} to \kfDiffPooledPooledConstTenHi{}) to the recall of its constant-pocket version. Table~\ref{tab:si_known_cv_targets} gives the recall of every known pocket at the 10\% budget, with the family and the role of the target and the fold that holds it out.
+
+The existing networks are the dual encoder, the constant-pocket network, the pooled network and the cross-attention network, three seeds each. They were trained on the 39 training targets with 40{,}000 training ligands per target and the recipe of the main text. The dual encoders and the constant-pocket networks were trained on RunPod GPU pods and the pooled and cross-attention networks (\texttt{v3\_train\_joint.py}) on a desktop with one RTX 4060. The checkpoint of a network is the evaluation point with the highest macro recall on the ten development targets against 10{,}000 development ligands, a choice of the checkpoint on new targets, and the same 10{,}000 development ligands evaluate the 39 training pockets (\texttt{v5\_known\_pockets\_eval.py}). Table~\ref{tab:si_joint_runs} gives the best update and the development recall of each pooled and cross-attention run.
+
+\subsection{Held-out protein families}
+
+The cross-fitted networks of the main text were also evaluated on the targets of the protein families that their fold held out, against the same 10{,}000 development ligands (\texttt{v4\_cv\_train.py}, summary in \texttt{eval/v4\_cv\_summary.json}). The checkpoint of each network was chosen as in the main text, and each held-out target is evaluated by the one network of its fold (seed 11). On the \hoNTargets{} held-out targets the dual encoder, the pooled network and the cross-attention network recover \hoDualTen{}, \hoPooledTen{} and \hoXattnTen{} of the top-1\% docking hits at the 10\% budget, against \hoConstTen{} for the dual encoder with a constant pocket. The pocket state adds \hoGainDualTen{} (\hoGainDualTenLo{} to \hoGainDualTenHi{}), \hoGainPooledTen{} (\hoGainPooledTenLo{} to \hoGainPooledTenHi{}) and \hoGainXattnTen{} (\hoGainXattnTenLo{} to \hoGainXattnTenHi{}) to the recall of the constant-pocket version of the same network. None of the three networks gains measurably from the pocket of a protein family that is absent from its training data, and the main text therefore evaluates the networks on the pockets of their training data.
+
+\input{si_table_speed}
+
+\input{si_table_timing}
+
+\input{si_table_timing_b}
+
+\input{si_table_recall_all}
+
+\clearpage
+
+{\footnotesize\input{si_table_known_cv_targets}}
+
+\input{si_table_joint}
+
+\end{document}

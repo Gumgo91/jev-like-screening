@@ -1,0 +1,9 @@
+# Versions used for the paper (Python 3.11 to 3.13). Install PyTorch separately (2.4.1 for the timing, 2.7.1 for the evaluation).
+numpy==2.2.6
+pandas==2.3.1
+pyarrow==25.0.1
+scipy==1.16.1
+scikit-learn==1.7.1
+rdkit==2026.3.6
+biopython==1.88
+matplotlib==3.10.5

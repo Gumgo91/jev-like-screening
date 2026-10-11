@@ -1,0 +1,14 @@
+\subsection{The cost of a screen with the Jev-like network hardly grows with the number of pockets}
+
+The dual encoder embeds every ligand once, and the scoring of a pocket is a matrix product. A joint network pays its interaction layers for every ligand-pocket pair. Table~\ref{tab:cost} and Figure~\ref{fig:cost}a give the time to screen all \tmALig{} ligands of DOCKSTRING from SMILES to scores on one \tmAGpu{}, measured at the full scale. The dual encoder needs \tmADualFiftySevenFull{} s for 57 pockets and \tmADualThousandFull{} s for 1{,}000 pockets, of which \tmAFeat{} s is the featurization of the ligands on the CPU. One more pocket adds \tmADualPerPocketMs{} ms to its model time. The cross-attention network needs \tmAXaHalfFiftySevenFull{} s in float16 and \tmAXaSingleFiftySevenFull{} s in float32 for 57 pockets, and \tmAXaHalfThousandFull{} and \tmAXaSingleThousandFull{} s for 1{,}000 pockets. One more pocket adds \tmAXaHalfPerPocket{} s in float16 and \tmAXaSinglePerPocket{} s in float32. The cross-attention network therefore needs \tmARatioXaHalfFiftySevenFull{} to \tmARatioXaSingleFiftySevenFull{} times the time of the dual encoder for 57 pockets and \tmARatioXaHalfThousandFull{} to \tmARatioXaSingleThousandFull{} times for 1{,}000 pockets. Without the featurization, which every network needs, the ratios of the model times are \tmARatioXaHalfFiftySevenModel{} to \tmARatioXaSingleFiftySevenModel{} for 57 pockets and \tmARatioXaHalfThousandModel{} to \tmARatioXaSingleThousandModel{} for 1{,}000 pockets (Supporting Information).
+
+Uni-Dock docks \dockRateFastest{} ligands per second in its fastest search mode, which puts the \pocketPairs{} million pairs of the library against 57 pockets at \pocketDockDaysFast{} GPU-days. The dual encoder ranks the same pairs in \tmADualFiftySevenFull{} s. Figure~\ref{fig:cost}b puts recall and time together. For 1{,}000 pockets the dual encoder has a recall of \kfDualTen{} at \tmADualThousandFull{} s and the cross-attention network a recall of \kfXattnTen{} at \tmAXaHalfThousandFull{} s in float16.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/fig_cost}
+\caption{Cost and recall of the Jev-like and the joint network. (a) Time from SMILES to scores to screen the \tmALig{} ligands of DOCKSTRING against $P$ pockets on one \tmAGpu{}, measured at the full scale (markers), and the time of Uni-Dock in its fastest search mode (line). The vertical line marks the 57 pockets of DOCKSTRING, and the 1{,}000 pockets use them cyclically. (b) Top-1\% recall at the 10\% budget on the \kfNTargets{} known pockets for ligands that were not used in training (95\% intervals over the pockets) against the time for 1{,}000 pockets. The constant pocket is the dual encoder trained with one dummy pocket.}
+\label{fig:cost}
+\end{figure*}
+
+\input{table_cost}

@@ -1,0 +1,98 @@
+"""Macros of numbers.tex: the Uni-Dock benchmark, the library size and the parameter counts of the joint networks.
+
+Writes numbers.tex with the twelve macros that the manuscript takes from the docking benchmark and the run records:
+
+  dockRate, dockRateFastest             Uni-Dock rates in ligands per second (best detail setting; fastest setting), eval/docking_timing*.csv
+  dockBillionDays, dockBillionDaysFast  GPU-days for 10^9 ligands at these two rates
+  dockAgreeDetail                       Spearman correlation of the detail scores of two repetitions (160 and 256 ligands per call)
+  dockAgreeBal, dockAgreeFast           Spearman correlation of the balance and fast scores with the detail scores at 4,000 ligands per call,
+                                        eval/docking_scores*.csv, mean over the receptors
+  dockPrepOkFourK                       ligands prepared for the 4,000-ligand batches, eval/prep4k.log
+  paramsPc, paramsXa                    parameters of the pooled-concatenation and the cross-attention network, runs/v3/registry_*.json
+  pocketPairs                           ligand-pocket pairs (millions) of the library against 57 pockets, eval/v4_fair_timing.json
+  pocketDockDaysFast                    GPU-days of Uni-Dock in the fastest setting for these pairs
+
+Usage: python manuscript/make_numbers_docking.py
+"""
+from __future__ import annotations
+
+import json
+import re
+
+import numpy as np
+import pandas as pd
+
+import paths
+from paths import thousands
+
+defs: dict[str, str] = {}
+
+
+def put(name: str, value, fmt: str = "{:.2f}"):
+    s = value if isinstance(value, str) else fmt.format(value)
+    if s in ("-0.00", "-0.0", "-0"):
+        s = s[1:]
+    defs[name] = s.replace("-", "$-$")
+
+
+# Uni-Dock rates (median over the timed calls, pooled over the receptors; warm-up calls removed)
+rates = paths.unidock_rates()
+DETAIL_RATE, FAST_RATE = rates["detail"], rates["fastest"]
+put("dockRate", DETAIL_RATE, "{:.1f}")
+put("dockRateFastest", FAST_RATE, "{:.1f}")
+put("dockBillionDays", thousands(round(1e9 / DETAIL_RATE / 86400, -1)))
+put("dockBillionDaysFast", thousands(round(1e9 / FAST_RATE / 86400, -1)))
+
+# agreement of the search modes with the detail mode at 4,000 ligands per call
+for f in paths.DOCKING_SCORE_FILES:
+    if not f.exists():
+        raise FileNotFoundError(f"docking score file not found: {f}")
+ds = pd.concat([pd.read_csv(f) for f in paths.DOCKING_SCORE_FILES])
+NAG = 4000
+if not (ds.n == NAG).any():
+    raise ValueError("docking_scores_4k.csv holds no rows with 4000 ligands per call")
+rho_rep, rho = [], {"balance": [], "fast": []}
+for t, g in ds.groupby("target"):
+    dref = g[(g["mode"] == "detail") & (g.n == NAG)].set_index("k").score
+    d256 = g[(g["mode"] == "detail") & (g.n == 256)].set_index("k").score
+    d160 = g[(g["mode"] == "detail") & (g.n == 160)].set_index("k").score
+    jj = d160.index.intersection(d256.index)
+    rho_rep.append(float(d160[jj].corr(d256[jj], method="spearman")))
+    for mode in ("balance", "fast"):
+        b = g[(g["mode"] == mode) & (g.n == NAG)].set_index("k").score
+        jj = dref.index.intersection(b.index)
+        rho[mode].append(float(dref[jj].corr(b[jj], method="spearman")))
+put("dockAgreeDetail", float(np.mean(rho_rep)))
+put("dockAgreeBal", float(np.mean(rho["balance"])))
+put("dockAgreeFast", float(np.mean(rho["fast"])))
+
+# ligands prepared for the 4,000-ligand batches
+m = re.search(r'"ok": (\d+)', paths.PREP_LOG_4K.read_text(encoding="utf-8"))
+if not m:
+    raise ValueError(f"no '\"ok\": <count>' entry in {paths.PREP_LOG_4K}")
+put("dockPrepOkFourK", thousands(int(m.group(1))))
+
+# parameter counts of the existing joint networks (first run of each kind)
+reg = {f.stem: json.loads(f.read_text()) for f in sorted(paths.RUNS_V3.glob("registry_*.json"))}
+for kind, nm in (("xattn", "Xa"), ("pooled", "Pc")):
+    ps = [v["params"] for v in reg.values() if v["model"] == kind]
+    if not ps:
+        raise ValueError(f"no registry of the {kind} network in {paths.RUNS_V3}")
+    if len(set(ps)) != 1:
+        raise ValueError(f"the {kind} runs differ in their parameter counts: {sorted(set(ps))}")
+    put("params" + nm, thousands(ps[0]))
+
+# library against 57 pockets
+T = paths.load_timing(paths.TIMING_PRIMARY)
+pairs = T["library_size"] * paths.N_POCKETS
+if pairs != T["blocks"]["dual"][str(paths.N_POCKETS)]["n_pairs"]:
+    raise ValueError("library size times 57 differs from the number of pairs in the 57-pocket timing block")
+put("pocketPairs", pairs / 1e6, "{:.1f}")
+put("pocketDockDaysFast", pairs / FAST_RATE / 86400, "{:.1f}")
+
+EXPECTED = {"dockAgreeBal", "dockAgreeDetail", "dockAgreeFast", "dockBillionDays", "dockBillionDaysFast", "dockPrepOkFourK", "dockRate",
+            "dockRateFastest", "paramsPc", "paramsXa", "pocketDockDaysFast", "pocketPairs"}
+assert set(defs) == EXPECTED, set(defs) ^ EXPECTED
+out = paths.MS / "numbers.tex"
+n = paths.write_macros(out, defs, header="% Generated by make_numbers_docking.py; do not edit.")
+print(n, "macros written to", out.name)

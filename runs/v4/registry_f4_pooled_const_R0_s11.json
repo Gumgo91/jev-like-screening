@@ -1,0 +1,38 @@
+{
+  "model": "pooled",
+  "cond": "pooled_const",
+  "fold": 4,
+  "recipe": "R0",
+  "seed": 11,
+  "params": 848002,
+  "updates": 60000,
+  "epochs": 8.347826086956522,
+  "best_update": 48752,
+  "best_val_recall": 0.7671532023464422,
+  "stop_reason": "budget",
+  "wall_seconds": 1258.0327990055084,
+  "peak_vram_mb": 362.428928,
+  "ckpt_sha256": "b03be9b090bf746d08d14c85584342bd8f417b6652f3158a47945272365bc007",
+  "val_targets": [
+    "CYP3A4",
+    "F10",
+    "F2",
+    "MAOB",
+    "MAPK1",
+    "PTK2"
+  ],
+  "heldout_targets": [
+    "PDE5A",
+    "PTGS2",
+    "PTPN1"
+  ],
+  "heldout_macro_recall_1@10": 0.6613411113680946,
+  "n_train_pairs": 1840000,
+  "train_hit_rate": 0.011256521739130434,
+  "n_val_ligands": 10000,
+  "n_dev_ligands": 10000,
+  "const_pocket_hash": "e868af369f5544f3181787156af145ae417040d44c3dd28430b31bed720a7d83",
+  "fold_assignment_sha256": "a9551800f8660b435c0636af04c771da34868893b49dcf2ab8e3b1803b6fba9f",
+  "smoke": false,
+  "device": "cuda"
+}
