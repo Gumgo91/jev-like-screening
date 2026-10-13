@@ -32,12 +32,6 @@ from pocketgate.common import (  # noqa: E402
 
 BOX_MARGIN = 4.0  # Angstrom
 
-AA3 = {
-    "ALA", "ARG", "ASN", "ASP", "CYS", "GLN", "GLU", "GLY", "HIS", "ILE",
-    "LEU", "LYS", "MET", "PHE", "PRO", "SER", "THR", "TRP", "TYR", "VAL",
-    "HID", "HIE", "HIP", "CYX", "ASH", "GLH", "MSE", "SEC", "PYL",
-}
-
 
 def parse_conf(conf_path: Path) -> dict[str, float]:
     vals = {}

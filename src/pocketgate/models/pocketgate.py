@@ -77,32 +77,6 @@ class PocketGate(nn.Module):
         return self.head(feats)
 
 
-class LigandOnlyNet(nn.Module):
-    """Ligand-only baseline: ligand encoder + optional target-id embedding
-    -> head."""
-
-    def __init__(self, dim=128, ligand_layers=3, dropout=0.1,
-                 n_targets: int = 0, target_emb_dim: int = 32):
-        super().__init__()
-        self.ligand_encoder = LigandEncoder(dim, ligand_layers, dropout)
-        self.target_emb = (nn.Embedding(n_targets, target_emb_dim)
-                           if n_targets else None)
-        self.head = HitScoreHead(dim + (target_emb_dim if n_targets else 0),
-                                 dim)
-
-    def encode_pocket(self, pb):
-        return None
-
-    def forward(self, ctx, lb, target_idx=None) -> dict:
-        H_L = self.ligand_encoder(lb["x"], lb["edge_index"], lb["edge_attr"])
-        _, _, pool = _ligand_pool(H_L, lb)
-        if self.target_emb is not None:
-            if target_idx is None:
-                raise ValueError("target-conditioned ligand-only net: "
-                                 "target_idx required")
-            pool = torch.cat([pool, self.target_emb(target_idx)], dim=-1)
-        return self.head(pool)
-
 
 class PooledConcatNet(nn.Module):
     """Pooled-concatenation baseline: same encoders, pooled ligand and

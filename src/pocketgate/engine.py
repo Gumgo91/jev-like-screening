@@ -53,16 +53,6 @@ class TrainLog:
     stop_reason: str = ""
 
 
-def score_scaler(train_df: pd.DataFrame) -> dict:
-    s = train_df["score"].dropna()
-    return {"mean": float(s.mean()), "std": float(s.std())}
-
-
-def hit_labels(train_df: pd.DataFrame, q: float = 0.01) -> pd.Series:
-    """tau_P per target from TRAIN ligands only; y = 1[score <= tau]."""
-    tau = train_df.dropna(subset=["score"]).groupby("target_id")["score"] \
-        .quantile(q)
-    return train_df["target_id"].map(tau).rename("tau"), tau
 
 
 def move(d: dict, device) -> dict:

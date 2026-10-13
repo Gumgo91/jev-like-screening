@@ -24,11 +24,7 @@ SPLITS_DIR = DATA_DIR / "splits"
 LABELS_DIR = DATA_DIR / "labels"
 TARGETS_DIR = RAW_DIR / "targets"
 MANIFESTS_DIR = PROJECT_ROOT / "manifests"
-RUNS_DIR = PROJECT_ROOT / "runs"
-
 # Quantile used to define a hit on TRAIN ligands per target
-TRAIN_HIT_QUANTILE = 0.01
-
 
 def sha256_file(path: os.PathLike | str, chunk_size: int = 1 << 20) -> str:
     h = hashlib.sha256()
@@ -40,11 +36,6 @@ def sha256_file(path: os.PathLike | str, chunk_size: int = 1 << 20) -> str:
             h.update(chunk)
     return h.hexdigest()
 
-
-def sha256_obj(obj) -> str:
-    return hashlib.sha256(
-        json.dumps(obj, sort_keys=True, default=str).encode()
-    ).hexdigest()
 
 
 def set_seed(seed: int) -> None:
