@@ -2,7 +2,7 @@
 
 Code and data for the manuscript by Hyunseung Kong, Interdisciplinary Program in Bioinformatics, Seoul National University.
 
-![Table-of-contents graphic](manuscript/figures/toc.png)
+![Table-of-contents graphic](figures/toc.png)
 
 ## Summary
 
@@ -10,11 +10,11 @@ Docking limits structure-based virtual screening: the fastest search mode of Uni
 
 ## Figures
 
-![Figure 1](manuscript/figures/fig1_concept.png)
+![Figure 1](figures/fig1_concept.png)
 
 **Figure 1.** The Jev interface (a), the Jev-like network (b) and the joint cross-attention network (c).
 
-![Figure 2](manuscript/figures/fig_cost.png)
+![Figure 2](figures/fig_cost.png)
 
 **Figure 2.** Time from SMILES to scores against the number of pockets (a), and recall against the time for 1,000 pockets (b).
 
@@ -25,8 +25,8 @@ Docking limits structure-based virtual screening: the fastest search mode of Uni
 - `configs/g2_config.json`: the 40,000 training and the 10,000 evaluation ligands.
 - `data/splits/`: target and ligand splits and the cross-validation folds. `data/processed/`: pocket graphs.
 - `runs/`: run records and per-pocket results of the trained networks.
-- `eval/`: summaries and timing records from which the tables are built.
-- `manuscript/`: LaTeX sources, table and figure scripts.
+- `eval/`: summaries and timing records of the paper.
+- `figures/`: the figures of the paper.
 
 Checkpoints and predictions (`runs/**/ckpt_*.pt`, `runs/v4/pred_*.parquet`) are in `checkpoints_and_predictions.zip` under Releases (v1.0). Unzip it in the repository root.
 
@@ -34,15 +34,10 @@ Checkpoints and predictions (`runs/**/ckpt_*.pt`, `runs/v4/pred_*.parquet`) are 
 
 Python 3.11 or newer; `pip install -r requirements.txt` (and PyTorch).
 
-**Tables, figures and PDF from the shipped outputs (CPU).**
+**Figure 2 from the shipped outputs (CPU).**
 
 ```bash
-python manuscript/make_numbers_docking.py
-python manuscript/make_numbers_v5.py
-python manuscript/make_tables_v5.py
-python manuscript/make_si_tables2.py
-python manuscript/fig_cost.py
-cd manuscript && tectonic main.tex && tectonic si.tex
+python scripts/plot_cost.py
 ```
 
 **Evaluation summaries.** `--summary-only` rebuilds them from the per-pocket results in `runs/v5`; without it the scripts score the networks (GPU recommended, needs the data below). `v4_cv_analyze.py` reads the predictions in `runs/v4`, which are in the release archive.

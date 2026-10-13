@@ -4,23 +4,64 @@
     (eval/v4_fair_timing.json), and the time of Uni-Dock (median rate of the fast mode at 4,000 ligands per call, from eval/docking_timing*.csv).
 (b) Top-1% recall at a 10% budget on the known pockets (eval/v5_known_cv_summary.json) against the end-to-end time for 1,000 pockets.
 Writes figures/fig_cost.pdf and figures/fig_cost.png.
-Usage: python manuscript/fig_cost.py
+Usage: python scripts/plot_cost.py
 """
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
-import paths
-from figstyle import DOUBLE, PAL, apply, panel
+ROOT = Path(__file__).resolve().parents[1]
+EVAL = ROOT / "eval"
+FIGURES = ROOT / "figures"
 
-apply()
-T = paths.load_timing(paths.TIMING_PRIMARY)
-GPU = paths.gpu_name(T)
+DOUBLE = 7.0    # inches, ACS double column
+PAL = {"orange": "#d9730d", "purple": "#6f4a9e", "grey": "#6b6b6b", "light": "#d9d9d9"}
+
+
+def style():
+    mpl.rcParams.update({
+        "font.family": "sans-serif", "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],
+        "font.size": 7.5, "axes.labelsize": 7.5, "axes.titlesize": 8, "axes.titleweight": "bold",
+        "xtick.labelsize": 7, "ytick.labelsize": 7, "legend.fontsize": 6.8,
+        "axes.linewidth": 0.7, "xtick.major.width": 0.7, "ytick.major.width": 0.7,
+        "xtick.major.size": 2.5, "ytick.major.size": 2.5, "lines.linewidth": 1.2,
+        "axes.spines.top": False, "axes.spines.right": False,
+        "figure.dpi": 150, "savefig.dpi": 600, "savefig.bbox": "tight", "savefig.pad_inches": 0.03,
+        "pdf.fonttype": 42, "ps.fonttype": 42, "axes.unicode_minus": True,
+    })
+
+
+def panel(ax, letter, dx=-0.16, dy=1.04):
+    ax.text(dx, dy, letter, transform=ax.transAxes, fontsize=9, fontweight="bold", va="bottom", ha="left")
+
+
+def load_timing(path):
+    T = json.loads(Path(path).read_text(encoding="utf-8"))
+    if "1000" not in T.get("blocks", {}).get("xattn_fp16", {}):
+        raise ValueError(f"{Path(path).name} has no xattn_fp16 block for 1000 pockets")
+    return T
+
+
+def unidock_fast_rate():
+    """Median fast-mode rate (ligands per second) at the number of ligands per call with the highest rate, from the timed calls."""
+    files = [EVAL / n for n in ("docking_timing.csv", "docking_timing_big.csv", "docking_timing_4k.csv")]
+    dt = pd.concat([pd.read_csv(f) for f in files])
+    dt = dt[dt.warmup == 0].copy()
+    dt["rate"] = dt.n_ok / dt.sec
+    return float(dt[dt["mode"] == "fast"].groupby("n").rate.median().max())
+
+
+style()
+T = load_timing(EVAL / "v4_fair_timing.json")
+GPU = T["environment"]["gpu"].replace("NVIDIA GeForce ", "").replace("NVIDIA ", "")
 L0 = T["library_size"]
-rate = paths.unidock_rates()["fast"]
+rate = unidock_fast_rate()
 PS = [1, 5, 20, 57, 1000]
 COL = {"dual": PAL["orange"], "xattn_fp16": PAL["purple"], "xattn_fp32": PAL["purple"], "dock": PAL["grey"]}
 LAB = {"dual": "dual encoder", "xattn_fp16": "cross-attention, float16", "xattn_fp32": "cross-attention, float32"}
@@ -48,7 +89,7 @@ ax.legend(frameon=False, fontsize=5.8, loc="upper left", handlelength=1.8, label
 panel(ax, "a", dx=-0.17)
 
 ax = fig.add_subplot(gs[1])
-s = json.loads(paths.KNOWN_CV_SUMMARY.read_text())
+s = json.loads((EVAL / "v5_known_cv_summary.json").read_text())
 t1000 = {n: T["blocks"][n]["1000"]["end_to_end_s"] for n in ("dual", "xattn_fp16", "xattn_fp32")}
 pts = [("dual encoder", "dual_R0", t1000["dual"], COL["dual"], 0.95, "o"),
        ("constant pocket", "dual_const_R0", t1000["dual"], PAL["grey"], 1.05, "o"),
@@ -68,7 +109,7 @@ ax.set_title(str(s["n_targets"]["dual_R0"]) + " known pockets, new ligands", fon
 xs = list(t1000.values())
 ax.set_xlim(min(xs) * 0.55, max(xs) * 2.2)
 panel(ax, "b")
-paths.FIGURES.mkdir(exist_ok=True)
-plt.savefig(paths.FIGURES / "fig_cost.pdf")
-plt.savefig(paths.FIGURES / "fig_cost.png", dpi=200)
-print("saved fig_cost, timing from", paths.TIMING_PRIMARY.name, GPU)
+FIGURES.mkdir(exist_ok=True)
+plt.savefig(FIGURES / "fig_cost.pdf")
+plt.savefig(FIGURES / "fig_cost.png", dpi=200)
+print("saved fig_cost, timing from eval/v4_fair_timing.json", GPU)

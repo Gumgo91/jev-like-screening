@@ -2,7 +2,7 @@
 
 For each target the receptor is docked against the first n prepared ligands in every configuration (search mode and batch size, the
 number n of ligands per call is the batch). Every call is written as one row of the timing table (target, mode, n ligands, repetition,
-seconds, ligands docked, return code, warm-up flag, GPU name and driver), so that the rate in the manuscript can be recomputed from the
+seconds, ligands docked, return code, warm-up flag, GPU name and driver), so that the rate of the paper can be recomputed from the
 file. The first call of each target is a warm-up and is labeled. For the first repetition of each configuration the best-pose scores
 are written to the score table (column k is the row of the ligand list), to compare the faster modes with the detail mode. The
 outputs of a call are written to <workdir>/<target>_<mode>_<n> and removed after the call (--keep keeps them).

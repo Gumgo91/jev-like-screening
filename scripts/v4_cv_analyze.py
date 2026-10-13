@@ -21,7 +21,7 @@ Macro means over the 49 targets carry 95% percentile bootstrap intervals (5,000 
 and for the low-headroom targets (oracle recall < 0.5). Paired differences use the same resamples for both conditions.
 Pocket gain is a real-pocket condition minus its constant-pocket counterpart.
 
-Writes eval/v4_cv_summary.json (the file read by manuscript/make_numbers_v5.py). A markdown rendering of the same numbers is written
+Writes eval/v4_cv_summary.json. A markdown rendering of the same numbers is written
 only when --markdown PATH is given. The meta block holds paths relative to the repository root.
 
 Usage (repository root): python scripts/v4_cv_analyze.py [--runs runs/v4] [--out eval/v4_cv_summary.json] [--folds PATH]
