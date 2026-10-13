@@ -7,7 +7,7 @@ file. The first call of each target is a warm-up and is labeled. For the first r
 are written to the score table (column k is the row of the ligand list), to compare the faster modes with the detail mode. The
 outputs of a call are written to <workdir>/<target>_<mode>_<n> and removed after the call (--keep keeps them).
 
-The benchmark behind eval/docking_timing*.csv, eval/docking_scores*.csv and eval/prep4k.log ran on a RunPod pod with one RTX 4090
+The benchmark behind eval/docking_timing*.csv and eval/docking_scores*.csv ran on a RunPod pod with one RTX 4090
 (NVIDIA driver 570.169, 96 visible CPU threads) in the micromamba environment of scripts/pod_setup.sh (Uni-Dock 1.2.0, Open Babel 3.2.1,
 RDKit 2026.03.6) with the repository as working directory and /workspace/mamba/envs/ud/bin first on PATH. The commands, in order:
 
@@ -19,7 +19,7 @@ RDKit 2026.03.6) with the repository as working directory and /workspace/mamba/e
   python scripts/dock_rate_bench.py --ligdir bench/lig --targets ABL1,MAOB,PTGS2 --min-n 1000 \\
       --out eval/docking_timing_big.csv --scores eval/docking_scores_big.csv
 
-  python scripts/prep_ligands.py --ligands bench/ligands4k.csv --out bench/lig4k --procs 32 > eval/prep4k.log
+  python scripts/prep_ligands.py --ligands bench/ligands4k.csv --out bench/lig4k --procs 32 > bench/prep4k.log
   python scripts/dock_rate_bench.py --ligdir bench/lig4k --targets ABL1,MAOB,PTGS2 \\
       --configs fast:4000:2,balance:4000:1,detail:4000:1 --out eval/docking_timing_4k.csv --scores eval/docking_scores_4k.csv
 

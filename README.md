@@ -23,12 +23,12 @@ Docking limits structure-based virtual screening: the fastest search mode of Uni
 - `src/pocketgate/`: library (models, features, data preparation, metrics).
 - `scripts/`: training, evaluation, timing and docking benchmark.
 - `configs/g2_config.json`: the 40,000 training and the 10,000 evaluation ligands.
-- `data/splits/`: target and ligand splits and the cross-validation folds. `data/processed/`: pocket graphs.
+- `data/splits/`: target and ligand splits and the cross-validation folds.
 - `runs/`: run records and per-pocket results of the trained networks.
 - `eval/`: summaries and timing records of the paper.
 - `figures/`: the figures of the paper.
 
-Checkpoints and predictions (`runs/**/ckpt_*.pt`, `runs/v4/pred_*.parquet`) are in `checkpoints_and_predictions.zip` under Releases (v1.0). Unzip it in the repository root.
+Large files (`runs/**/ckpt_*.pt` checkpoints, `runs/v4/pred_*.parquet` predictions and the pocket graphs `data/processed/*.pt`) are in `large_files.zip` under Releases (v1.0). Unzip it in the repository root.
 
 ## Reproduce
 

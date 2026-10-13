@@ -2,10 +2,10 @@ __pycache__/
 *.pyc
 data/raw/
 data/labels/
+data/processed/*.pt
 data/processed/ligands.parquet
-data/processed/g2_ligand_graphs.pt
-data/processed/v4_probcal_ligand_graphs.pt
 bench/
+data/splits/split_manifest.json
 manifests/
 runs/**/ckpt_*.pt
 runs/v4/pred_*.parquet

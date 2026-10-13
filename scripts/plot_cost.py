@@ -3,7 +3,7 @@
 (a) End-to-end time from SMILES to scores for the 260,155 ligands of DOCKSTRING against P pockets, measured at the full scale
     (eval/v4_fair_timing.json), and the time of Uni-Dock (median rate of the fast mode at 4,000 ligands per call, from eval/docking_timing*.csv).
 (b) Top-1% recall at a 10% budget on the known pockets (eval/v5_known_cv_summary.json) against the end-to-end time for 1,000 pockets.
-Writes figures/fig_cost.pdf and figures/fig_cost.png.
+Writes figures/fig_cost.png.
 Usage: python scripts/plot_cost.py
 """
 from __future__ import annotations
@@ -110,6 +110,5 @@ xs = list(t1000.values())
 ax.set_xlim(min(xs) * 0.55, max(xs) * 2.2)
 panel(ax, "b")
 FIGURES.mkdir(exist_ok=True)
-plt.savefig(FIGURES / "fig_cost.pdf")
 plt.savefig(FIGURES / "fig_cost.png", dpi=200)
 print("saved fig_cost, timing from eval/v4_fair_timing.json", GPU)
